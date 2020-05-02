@@ -57,7 +57,7 @@ Usuario::verificarSesion(12);
             </div>
             <div class="col-md-6">
                 Cantidad de ficha
-                <input type="number" placeholder="Cantidad de ficha" id="cantidadFicha" class="form-control">
+                <input type="text" placeholder="Cantidad de ficha" id="cantidadFicha" class="form-control">
             </div>
         </div>
 
