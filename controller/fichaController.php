@@ -32,5 +32,5 @@ if(isset($_POST['modificarFicha'])){
     $data = $ficha->modificarFicha();
     echo json_encode($data);
 } */
-
+// jjjj
 ?>
