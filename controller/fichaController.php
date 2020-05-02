@@ -3,8 +3,9 @@ require_once ('../model/fichaClass.php');
 
 $ficha = new ficha();
 
-if(isset($_POST['nuevaFicha'])){
-    $ficha->idempleado = $_POST['idempleado'];
+if(isset($_POST['nuevaFicha']))
+{
+    $ficha->empleado = $_POST['empleado'];
     $ficha->cantidad = $_POST['cantidad'];
     $ficha->fecha = $_POST['fecha'];
     $data = $ficha->nuevaFicha();   

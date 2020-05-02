@@ -19,10 +19,9 @@ function nuevaFicha(){
     .then(res=> res.json())
     .then(data => {
         alert(data);
-        if(data)
+        if(data == true)
         {
-            alert('Se cargo el ficha satisfactoriamente');
-            
+            alert('Se cargo el ficha satisfactoriamente');            
         }
         else
         {

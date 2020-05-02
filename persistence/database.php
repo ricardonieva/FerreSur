@@ -6,7 +6,7 @@ abstract class Database {
     {
         try
         {
-            $connection = new PDO("mysql:host=localhost; dbname=ferresur3","root");
+            $connection = new PDO("mysql:host=localhost; dbname=ferresur2","root");
         } 
         catch (PDOException $e) 
         {
