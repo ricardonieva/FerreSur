@@ -10,8 +10,9 @@ if(isset($_POST['nuevaFicha']))
     $ficha->fecha = $_POST['fecha'];
     $data = $ficha->nuevaFicha();   
     echo json_encode($data);
+    
 }
-/* 
+
 if(isset($_POST['cargarFichas'])){
     $data = $ficha->cargarFichas();
     echo json_encode($data);
@@ -25,13 +26,11 @@ if(isset($_POST['eliminarFicha'])){
 
 if(isset($_POST['modificarFicha'])){
     $ficha->idFicha = $_POST['idFicha'];
-    $ficha->tipoFicha = $_POST['tipoFicha'];
-    $ficha->detalle = $_POST['detalle'];
-    $ficha->percepcionSalarial = $_POST['percepcionSalarial'];
-    $ficha->tipo = $_POST['tipo'];
-    $ficha->valor = $_POST['valor'];
+    $ficha->cantidad = $_POST['cantidad'];
+    $ficha->fecha = $_POST['fecha'];
+    $ficha->empleado = $_POST['idEmpleado'];
     $data = $ficha->modificarFicha();
     echo json_encode($data);
-} */
+}
 // jjjj
 ?>

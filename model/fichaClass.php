@@ -30,6 +30,22 @@ class ficha
             return false;
         }
     }
+
+    public function cargarFichas(){
+        $connect = Database::connectDB();
+        $sql = "SELECT * FROM ficha";
+        //var_dump($sql);
+        $result = $connect->query($sql);
+        if($result->rowCount() >0)
+        {
+            return $result->fetchAll();
+        }
+        else
+        {
+            echo "<script> alert('No se encontro fichas cargadas'); </script>";
+        }
+    }
+
     public function eliminarFicha(){
         try {
             $connect= Database::connectDB();

@@ -1,3 +1,33 @@
+var tablaFicha = document.getElementById('tablaFicha');
+
+window.addEventListener('load', cargarFichas)
+
+function cargarFichas(){
+    tablaFicha.innerHTML = ``;
+    const data = new FormData();
+
+    data.append('traerFichas', 'true');
+    fetch('../controller/FichaController/fichaController.php',{
+        method: 'POST',
+        body: data
+    })
+    .then(res => res.json())
+    .then(data => {
+        for(let item of data){
+            tablaFicha.innerHTML += `
+            <tr>
+                <th>${item.idficha}</th>
+                <td>${item.cantidad}</td>
+                <td>${item.fecha}</td>
+                <td>${item.empleado_idEmpleado}</td>
+                <td><button class="btn btn-success form-control"  type="button" onclick="botonModificarFicha();">Modificar</button></td>
+                <td><button class="btn btn-danger form-control" onclick="eliminarFicha();">Eliminar</button></td>
+            </tr>
+            `;
+        }
+    })
+}
+
 //*************Nueva ficha */
 
 function nuevaFicha(){
@@ -21,7 +51,7 @@ function nuevaFicha(){
         alert(data);
         if(data == true)
         {
-            alert('Se cargo el ficha satisfactoriamente');            
+            alert('Se cargo la ficha satisfactoriamente');            
         }
         else
         {

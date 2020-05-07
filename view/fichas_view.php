@@ -20,6 +20,7 @@ Usuario::verificarSesion(12);
             <table class="table ">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Cantidad</th>
                         <th>Fecha</th>
                         <th>Empleado</th>
