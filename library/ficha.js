@@ -6,8 +6,8 @@ function cargarFichas(){
     tablaFicha.innerHTML = ``;
     const data = new FormData();
 
-    data.append('traerFichas', 'true');
-    fetch('../controller/FichaController/fichaController.php',{
+    data.append('cargarFichas', 'true');
+    fetch('../controller/fichaController.php',{
         method: 'POST',
         body: data
     })
