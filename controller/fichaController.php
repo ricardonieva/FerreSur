@@ -28,7 +28,7 @@ if(isset($_POST['modificarFicha'])){
     $ficha->idFicha = $_POST['idFicha'];
     $ficha->cantidad = $_POST['cantidad'];
     $ficha->fecha = $_POST['fecha'];
-    $ficha->empleado = $_POST['idEmpleado'];
+    $ficha->empleado = $_POST['idempleado'];
     $data = $ficha->modificarFicha();
     echo json_encode($data);
 }

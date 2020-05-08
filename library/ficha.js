@@ -69,9 +69,9 @@ modificarFicha.addEventListener('click', modificarFichaBD());
 
 function modificarFichaBD(){
 
-    var empleado = getElementById('idempleadoModificar');
-    var cantidad = getElementById('cantidadFichaModificar');
-    var fecha = getElementById('fechaModificar');
+    var idempleado = document.getElementById('idempleadoModificar');
+    var cantidad = document.getElementById('cantidadFichaModificar');
+    var fecha = document.getElementById('fechaModificar');
 
     const data = new FormData();
     data.append('modificarFicha', true);
