@@ -84,7 +84,7 @@ function modificarFichaBD(){
         method: 'POST',
         body: data
     })
-    .then(res => res.text())
+    .then(res => res.json())
     .then(data => {
        if(data == 'true'){
             alert("se cargo la ficha satisfactoriamente");

@@ -67,14 +67,17 @@ class ficha
         {
             $connect = Database::connectDB();
             $sql = "UPDATE ficha SET cantidad = $this->cantidad, fecha = '$this->fecha', empleado_idEmpleado = $this->empleado WHERE idficha = $this->idficha";
-            var_dump($sql);
+            // var_dump($sql);
             $result = $connect->query($sql);
             if($result != false)
             {
+                return true;
                 echo "<script> alert('se modifico los datos correctamente'); </script>";
+                
             }
             else
             {
+                return false;
                 echo "<script> alert('error al actualizar'); </script>";
             }
         } 
