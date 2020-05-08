@@ -61,7 +61,7 @@ class ficha
                 echo "<script> alert('No se pudo eliminar'); </script>";
         }
     }
-    public function updateFicha(){
+    public function modificarFicha(){
         try {
             $connect = Database::connectDB();
             $sql = "UPDATE ficha SET cantidad = '$this->cantidad', fecha = '$this->fecha', empleado_idEmpleado = '$this->empleado', WHERE = idficha = '$this->idficha' ";

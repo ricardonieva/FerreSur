@@ -20,8 +20,8 @@ function cargarFichas(){
                 <td>${item.cantidad}</td>
                 <td>${item.fecha}</td>
                 <td>${item.empleado_idEmpleado}</td>
-                <td><button class="btn btn-success form-control"  type="button" onclick="botonModificarFicha();">Modificar</button></td>
-                <td><button class="btn btn-danger form-control" onclick="eliminarFicha();">Eliminar</button></td>
+                <td><button class="btn btn-success form-control"  type="button" onclick="botonModificarFicha(${item.idficha},${item.cantidad},'${item.fecha}',${item.empleado_idEmpleado});">Modificar</button></td>
+                <td><button class="btn btn-danger form-control" onclick="eliminarFicha(${item.idficha});">Eliminar</button></td>
             </tr>
             `;
         }
@@ -62,5 +62,55 @@ function nuevaFicha(){
 
 
 }
+//************* end Nueva ficha */
 
-//*************Nueva ficha */
+// ************ Modificar ficha
+modificarFicha.addEventListener('click', modificarFichaBD());
+
+function modificarFichaBD(){
+
+    var empleado = getElementById('idempleadoModificar');
+    var cantidad = getElementById('cantidadFichaModificar');
+    var fecha = getElementById('fechaModificar');
+
+    const data = new FormData();
+    data.append('modificarFicha', true);
+    data.append('idFicha', idFichaGlobal);
+    data.append('cantidad', cantidad.value);
+    data.append('fecha', fecha.value);
+    data.append('idempleado',idempleado.value);
+    
+    fetch('../controller/fichaController.php', {
+        method: 'POST',
+        body: data
+    })
+    .then(res => res.text())
+    .then(data => {
+       if(data == 'true'){
+            alert("se cargo la ficha satisfactoriamente");
+       }
+       else{
+            alert("Error al cargar la ficha");
+       }
+       cargarFichas();
+       $('#exampleModal2').modal('hide');
+    });
+}
+// ************ end Modificar ficha
+
+var idFichaGlobal;
+// boton modificar ficha
+function botonModificarFicha(idficha, cantidad, fecha, idempleado){
+
+    idFichaGlobal = idficha;
+
+    $('#exampleModal2').modal('show');
+
+    document.getElementById('idempleadoModificar').value = idempleado;
+    document.getElementById('cantidadFichaModificar').value = cantidad;
+    document.getElementById('fechaModificar').value = fecha;
+    
+    
+
+}
+// end boton modificar ficha

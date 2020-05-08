@@ -38,7 +38,7 @@ Usuario::verificarSesion(12);
 
 
 <hr>
-<!-- Modal Ficha-->
+<!-- Modal Nueva Ficha -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -78,10 +78,52 @@ Usuario::verificarSesion(12);
     </div>
   </div>
 </div>
-<!-- end modal Ficha -->
+<!-- end modal Nueva Ficha -->
+
+<!-- Modal Ficha MODIFICAR-->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Modificar Ficha</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="container-fluid">
+        
+      <div class="row justify-content-center">
+            <div class="col-md-6">
+                Empleado
+                <input type="number" placeholder="id de empleado" name="empleado" id="idempleadoModificar" class="form-control">
+            </div>
+            <div class="col-md-6">
+                Cantidad de ficha
+                <input type="text" placeholder="Cantidad de ficha" id="cantidadFichaModificar" class="form-control">
+            </div>
+        </div>
+
+        <div class="row justify-align-content-md-start">
+            <div class="col-md-6">
+                Fecha
+                <input type="date" name="fecha" id="fechaModificar" class="form-control">
+            </div>
+        </div>
+
+      </div>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button class="btn btn-primary" id="modificarFicha">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal Ficha MODIFICAR-->
 
 <!-- Modal modificar concepto-->
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -146,8 +188,8 @@ Usuario::verificarSesion(12);
       </div>
     </div>
   </div>
-</div>
-<!-- end modal modificar concepto -->
+</div> -->
+
 
 
 <?php
