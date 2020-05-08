@@ -25,7 +25,7 @@ if(isset($_POST['eliminarFicha'])){
 }
 
 if(isset($_POST['modificarFicha'])){
-    $ficha->idFicha = $_POST['idFicha'];
+    $ficha->idficha = $_POST['idFicha'];
     $ficha->cantidad = $_POST['cantidad'];
     $ficha->fecha = $_POST['fecha'];
     $ficha->empleado = $_POST['idempleado'];

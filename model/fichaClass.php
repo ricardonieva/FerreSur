@@ -61,17 +61,25 @@ class ficha
                 echo "<script> alert('No se pudo eliminar'); </script>";
         }
     }
-    public function modificarFicha(){
-        try {
+    public function modificarFicha()
+    {
+        try
+        {
             $connect = Database::connectDB();
-            $sql = "UPDATE ficha SET cantidad = '$this->cantidad', fecha = '$this->fecha', empleado_idEmpleado = '$this->empleado', WHERE = idficha = '$this->idficha' ";
+            $sql = "UPDATE ficha SET cantidad = $this->cantidad, fecha = '$this->fecha', empleado_idEmpleado = $this->empleado WHERE idficha = $this->idficha";
+            var_dump($sql);
             $result = $connect->query($sql);
-        if($result != false){
-            echo "<script> alert('se modifico los datos correctamente'); </script>";
-        }else{
-            echo "<script> alert('error al actualizar'); </script>";
-        }
-        } catch (Exception $e) {
+            if($result != false)
+            {
+                echo "<script> alert('se modifico los datos correctamente'); </script>";
+            }
+            else
+            {
+                echo "<script> alert('error al actualizar'); </script>";
+            }
+        } 
+        catch (Exception $e) 
+        {
             echo "<script> alert('error al actualizar los datos'); </script>";
         }
     }
