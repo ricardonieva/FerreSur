@@ -71,19 +71,16 @@ class ficha
             $result = $connect->query($sql);
             if($result != false)
             {
-                return true;
-                echo "<script> alert('se modifico los datos correctamente'); </script>";
-                
+                return true;                
             }
             else
             {
                 return false;
-                echo "<script> alert('error al actualizar'); </script>";
             }
         } 
         catch (Exception $e) 
         {
-            echo "<script> alert('error al actualizar los datos'); </script>";
+            return false;
         }
     }
 

@@ -65,7 +65,7 @@ function nuevaFicha(){
 //************* end Nueva ficha */
 
 // ************ Modificar ficha
-modificarFicha.addEventListener('click', modificarFichaBD());
+modificarFicha.addEventListener('click', modificarFichaBD);
 
 function modificarFichaBD(){
 
@@ -86,7 +86,7 @@ function modificarFichaBD(){
     })
     .then(res => res.json())
     .then(data => {
-       if(data == 'true'){
+       if(data == 1){
             alert("se cargo la ficha satisfactoriamente");
        }
        else{
