@@ -20,8 +20,8 @@ function cargarFichas(){
                 <td>${item.cantidad}</td>
                 <td>${item.fecha}</td>
                 <td>${item.empleado_idEmpleado}</td>
-                <td><button class="btn btn-success form-control"  type="button" onclick="botonModificarFicha(${item.idficha},${item.cantidad},'${item.fecha}',${item.empleado_idEmpleado});">Modificar</button></td>
-                <td><button class="btn btn-danger form-control" onclick="eliminarFicha(${item.idficha});">Eliminar</button></td>
+                <td><button class="btn btn-success form-control"   onclick="botonModificarFicha(${item.idficha},${item.cantidad},'${item.fecha}',${item.empleado_idEmpleado});">Modificar</button></td>
+                <td><button class="btn btn-danger form-control"  onclick="eliminarFicha(${item.idficha});">Eliminar</button></td>
             </tr>
             `;
         }
@@ -100,6 +100,7 @@ function modificarFichaBD(){
 
 var idFichaGlobal;
 // boton modificar ficha
+
 function botonModificarFicha(idficha, cantidad, fecha, idempleado){
 
     idFichaGlobal = idficha;
@@ -114,3 +115,34 @@ function botonModificarFicha(idficha, cantidad, fecha, idempleado){
 
 }
 // end boton modificar ficha
+
+// ELIMINAR FICHA
+
+function eliminarFicha(idficha){
+    
+    idFichaGlobal = idficha;
+    var r = confirm('Desea Eliminar Esta ficha?');
+    if(r)
+    {
+        const data = new FormData();
+        data.append('eliminarFicha', 'true');
+        data.append('idFicha', idficha);
+
+        fetch('../controller/fichaController.php', {
+            method: 'POST',
+            body: data
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data)
+            {
+                alert('Se elimino la ficha satisfactoriamente');
+                cargarFichas();
+            }
+            else
+            {
+                alert('Error al eliminar la ficha');
+            }
+        });
+    }    
+}
