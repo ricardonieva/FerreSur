@@ -15,7 +15,7 @@ Usuario::verificarSesion(12);
         </div>
     </div>    
 
-    <div class="rol justify-content-center mt-4">
+    <div class="rol justify-content-center mt-3">
         <div class="col-md-9">
             <table class="table ">
                 <thead>

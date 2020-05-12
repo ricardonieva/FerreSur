@@ -20,7 +20,7 @@ function cargarFichas(){
                 <td>${item.cantidad}</td>
                 <td>${item.fecha}</td>
                 <td>${item.empleado_idEmpleado}</td>
-                <td><button class="btn btn-success form-control"   onclick="botonModificarFicha(${item.idficha},${item.cantidad},'${item.fecha}',${item.empleado_idEmpleado});">Modificar</button></td>
+                <td><button class="btn btn-info form-control"   onclick="botonModificarFicha(${item.idficha},${item.cantidad},'${item.fecha}',${item.empleado_idEmpleado});">Modificar</button></td>
                 <td><button class="btn btn-danger form-control"  onclick="eliminarFicha(${item.idficha});">Eliminar</button></td>
             </tr>
             `;
