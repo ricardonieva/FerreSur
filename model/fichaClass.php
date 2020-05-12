@@ -46,21 +46,29 @@ class ficha
         }
     }
 
-    public function eliminarFicha(){
-        try {
+    public function eliminarFicha()
+    {
+        try 
+        {
             $connect= Database::connectDB();
-            $sql = "DELETE * FROM ficha where idficha = $this->idficha";
+            $sql = "DELETE FROM ficha where idficha = $this->idficha";
+            //var_dump($sql);
             $result = $connect->query($sql);
-            if ($result != false) {
-                echo "<script> alert('Se pudo eliminar los datos correctamente'); </script>";
+            if ($result != false) 
+            {
+                return true;
             }
-            else{
-                echo "<script> alert('error al eliminar'); </script>";
+            else
+            {
+                return false;
             }
-        } catch (Exception $e) {
-                echo "<script> alert('No se pudo eliminar'); </script>";
+        } 
+        catch (Exception $e) 
+        {
+            return false;
         }
     }
+
     public function modificarFicha()
     {
         try

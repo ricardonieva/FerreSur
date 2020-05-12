@@ -19,7 +19,7 @@ if(isset($_POST['cargarFichas'])){
 }
 
 if(isset($_POST['eliminarFicha'])){
-    $ficha->idFicha = $_POST['idFicha'];
+    $ficha->idficha = $_POST['idFicha'];
     $data = $ficha->eliminarFicha();
     echo json_encode($data);
 }

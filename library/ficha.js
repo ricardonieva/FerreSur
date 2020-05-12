@@ -134,7 +134,8 @@ function eliminarFicha(idficha){
         })
         .then(res => res.json())
         .then(data => {
-            if(data)
+            
+            if(data != 0)
             {
                 alert('Se elimino la ficha satisfactoriamente');
                 cargarFichas();
