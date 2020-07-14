@@ -93,7 +93,7 @@ class Usuario{
             $connect = Database::connectDB();
             $idsesion = $_SESSION['idempleado'];
             $sql ="SELECT * FROM empleado_has_modulo where empleado_idEmpleado = $idsesion";
-            var_dump($sql);
+            //var_dump($sql);
             $result = $connect->query($sql);
             $count= $result->rowCount();
             if($count > 0){

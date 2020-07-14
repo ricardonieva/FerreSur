@@ -2,6 +2,7 @@
 require_once ('../view/cabecera.php');
 require_once ('../model/RubroClass.php');
 require_once ('../model/subModulosClass.php');
+require_once ('../model/UsuarioClass.php');
 Usuario::verificarSesion(22);
 
 if(isset($_POST['btnEliminar']))
