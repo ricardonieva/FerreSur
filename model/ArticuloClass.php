@@ -115,7 +115,7 @@ class Articulo
         if($result->rowCount() > 0)
         {
             $result = $result->fetchObject();
-            $stock = $result->stock + $cantidad;
+            $stock = $result->stock - $cantidad;
             $sql= "UPDATE articulo SET stock=$stock WHERE idarticulo = $this->idarticulo";
             //var_dump($sql);
             $connect->query($sql);

@@ -190,7 +190,7 @@ class Compra
                 {
                     $articulo = new Articulo();
                     $articulo->idarticulo = $row['idarticulo'];
-                    $articulo->reducirStock($row['unidades']);
+                    $articulo->reducirStock(-$row['unidades']);
                 }
             }
             $sql = "UPDATE compra SET estado='Finalizado' WHERE idcompra = $this->idcompra";
