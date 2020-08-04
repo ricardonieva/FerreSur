@@ -147,6 +147,8 @@ if(isset($_POST['btnEliminar']))
                            
                             $liq->selectAllReciboDeHaberes();
                             $total = 0;
+                            //var_dump($liq->listaReciboDeHaberes);
+                            //die();
                             foreach($liq->listaReciboDeHaberes as $row)
                             {
                                 echo "<tr>";
@@ -158,17 +160,21 @@ if(isset($_POST['btnEliminar']))
                                     echo "<td><button class='btn btn-danger' form='form1' name='btnEliminar' value='$row->idReciboDeHaberes'>Eliminar Recibo</button></td>";
                                 echo "</tr>";
                                 $row->selectAllRecibo_Concepto();
-
+                                //echo "<br>";
                                 //var_dump($row->listaRecibo_Concepto);
+                                //die();
                                 foreach($row->listaRecibo_Concepto as $row2)
                                 {
-                                    if($row2->concepto->percepcionSalarial == "Haber")
+                                    if($row2->concepto->percepcionSalarial === "Haber")
                                     {
                                         $total = $total + $row2->importe;
+                                        //echo "total: ".$row2->importe."<br>";                                        
                                     }
                                 }
+                                //temporalemte se solucionara el bug asi xD
                                 
                             }
+                            $total = $total/2;
                         }
                    ?>
                             

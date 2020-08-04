@@ -12,7 +12,6 @@ class Liquidacion
     public $banco;
     public $fechaDePago;
     public $TipoDeLiquidacion;
-
     public $listaReciboDeHaberes = array();
    
     public function ultimaIdLiquidacion(){
@@ -67,9 +66,8 @@ class Liquidacion
         }
         else
         {   
-           $count = $result->rowCount();
-           if($count > 0)
-           {
+            if($result->rowCount() > 0)
+            {
                 $result = $result->fetchObject();
                 $this->nombre = $result->nombre;
                 $this->desde = $result->desde;
@@ -80,7 +78,7 @@ class Liquidacion
                 $tiposLiq->idTiposDeLiquidacion = $result->TiposDeLiquidacion_idTiposDeLiquidacion;
                 $tiposLiq->SelectTiposLiq();
                 $this->TipoDeLiquidacion = $tiposLiq;
-           }
+            }
         }
     }
     ////////

@@ -171,8 +171,8 @@ class tiposDeLiquidacion
                     if($listaDeConceptos[$j][0] == $this->TiposDeLiquidacion_conceptos[$i]->idConcepto)
                     {
                         //var_dump("pasa 3");
-                        var_dump($listaDeConceptos[$j][0]);
-                        var_dump($this->TiposDeLiquidacion_conceptos[$i]->idConcepto);
+                        //var_dump($listaDeConceptos[$j][0]);
+                        //var_dump($this->TiposDeLiquidacion_conceptos[$i]->idConcepto);
                         unset($listaDeConceptos[$j]);
                         unset($this->TiposDeLiquidacion_conceptos[$i]);
                         $listaDeConceptos = array_values($listaDeConceptos);
@@ -187,14 +187,14 @@ class tiposDeLiquidacion
         foreach($listaDeConceptos as $rowAgregar)
         {
             $sql="INSERT INTO tiposdeliquidacion_concepto(`TiposDeLiquidacion_idTiposDeLiquidacion`, `concepto_idconcepto`) VALUES ($this->idTiposDeLiquidacion, $rowAgregar[0])";
-            var_dump($sql);
+            //var_dump($sql);
             $connect->query($sql);
         }
        
         foreach($this->TiposDeLiquidacion_conceptos as $rowEliminar)
         {
             $sql = "DELETE FROM tiposdeliquidacion_concepto WHERE TiposDeLiquidacion_idTiposDeLiquidacion =$this->idTiposDeLiquidacion AND concepto_idconcepto = $rowEliminar->idConcepto";
-            var_dump($sql);
+            //var_dump($sql);
             $connect->query($sql);
         }
        

@@ -336,7 +336,7 @@ class ReciboDeHaberes
             foreach($this->liquidacion->TipoDeLiquidacion->TiposDeLiquidacion_conceptos as $row)
             {
                 if($row->detalle == "Despido")
-                {                
+                {
                     $recibo_concepto = new Recibo_concepto();
                     $recibo_concepto->importe = $SuledoTotalPorDespido;
                     $recibo_concepto->cantidad = $SuledoTotalPorDespido;
@@ -346,7 +346,8 @@ class ReciboDeHaberes
                     $recibo_concepto->insertRecibo_concepto();
                     $sueldoBrutoSinConceptos = $sueldoBrutoSinConceptos + $SuledoTotalPorDespido;
                     //var_dump($recibo_concepto);
-                } 
+                    //die();
+                }
             }
         }
         ///////////////////
@@ -429,7 +430,7 @@ class ReciboDeHaberes
 
         ////////////
         $datosFamiliares = $this->empleado->datosDeFamiliares();
-        var_dump($datosFamiliares);
+        //var_dump($datosFamiliares);
         foreach($this->liquidacion->TipoDeLiquidacion->TiposDeLiquidacion_conceptos as $row)
         {
             if($row->tipoConcepto == "Hijos")

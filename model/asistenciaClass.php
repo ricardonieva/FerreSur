@@ -27,17 +27,17 @@ class Asistencia{
         // $fecha = date("Y-m-d");
 
         $sql = "SELECT * FROM asistencia,calendario WHERE asistencia.calendario_idcalendario =  calendario.idcalendario AND calendario.fecha = '$fecha' AND asistencia.empleado_idEmpleado = $idempleado";
-        var_dump($sql);
+        //var_dump($sql);
         $result = $connect->query($sql);
         $count = $result->rowCount();
-        var_dump($count);
+        //var_dump($count);
         if($count < 2){
             $sql = "SELECT * FROM calendario WHERE calendario.fecha = '$fecha'";
-            var_dump($sql);
+            //var_dump($sql);
             $result = $connect->query($sql)->fetchObject();
 
             $sql = "INSERT INTO asistencia(entrada, salida, novedades, horasExt, empleado_idEmpleado, calendario_idcalendario) VALUES ('$entrada', '$salida', '$novedad', '$tiempo', $idempleado, $result->idcalendario)";
-            var_dump($sql);
+            //var_dump($sql);
             $result = $connect->query($sql);
             if($result != false){
                 return true;
@@ -53,7 +53,7 @@ class Asistencia{
 
     public function mostrarAsistenciaDeEmpleado($idempleado){
         $connect = Database::connectDB();
-        $sql = "SELECT * FROM asistencia, calendario WHERE asistencia.empleado_idEmpleado = $idempleado AND asistencia.calendario_idcalendario = calendario.idcalendario ORDER BY calendario.fecha DESC";
+        $sql = "SELECT * FROM asistencia, calendario WHERE asistencia.empleado_idEmpleado = $idempleado AND asistencia.calendario_idcalendario = calendario.idcalendario ORDER BY calendario.fecha DESC LIMIT 100";
         //var_dump($sql);
         $result = $connect->query($sql);
         if($result != false){
