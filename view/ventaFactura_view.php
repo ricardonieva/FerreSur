@@ -1,7 +1,7 @@
 <?php
 require_once ('../view/cabecera.php');
 require_once ('../model/UsuarioClass.php');
-usuario::verificarSesion(2);
+usuario::verificarSesion(28);
 $idVenta = (int) $_GET['ventaid'];
 ?>
 

@@ -1,6 +1,6 @@
 <?php
 require_once ('../model/UsuarioClass.php');
-//Usuario::verificarSesion(5);//2 es todo lo q sea articulos
+Usuario::verificarSesion(26);
 require_once ('../view/cabecera.php');
 $idCompra = (int) $_GET['idcompra'];
 ?>
@@ -85,7 +85,7 @@ $idCompra = (int) $_GET['idcompra'];
 require_once ('../view/pie5.php');
 ?>
 
-<script>
+<script type="text/javascript">
 var compra = <?php echo $idCompra; ?>;
 
 document.title = "Orden de Compra N° "+compra;
