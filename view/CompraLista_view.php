@@ -1,6 +1,6 @@
 <?php
 require_once ('../model/UsuarioClass.php');
-Usuario::verificarSesion(25);
+//Usuario::verificarSesion(25);
 require_once ('../view/cabecera.php');
 ?>
 
@@ -28,8 +28,9 @@ require_once ('../view/cabecera.php');
                     <tr>
                         <th>N°</th>                            
                         <th>Fecha</th>
-                        <th>Empleado</th>
                         <th>Proveedor</th>
+                        <th>CUIT</th>
+                        <th>Condicion</th>
                         <th>Estado</th>
                         <th></th>
                         <th></th>
@@ -78,7 +79,7 @@ require_once ('../view/cabecera.php');
                     <th scope="col">Nombre</th>
                     <th scope="col">Descripcion</th>
                     <th scope="col">Costo Unitario</th>
-                    <th scope="col"></th>
+                    <th scope="col">Cantidad</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>

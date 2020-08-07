@@ -126,18 +126,19 @@ function buscarCodigoArticulo(e){
 }
 //////////////////////// botom agregar articulo
 var total = 0;
-agregarArticulo.addEventListener('click', function(e){
+agregarArticulo.addEventListener('click', function(e) {
     e.preventDefault();
     var cantidadinput = document.getElementById('cantidad');
+    var precioinput = document.getElementById('precio');
     var tabla = document.getElementById('tablaArticulo');
-    var subtotal = cantidadinput.value * articulo.costoUnitario;
+    var subtotal = cantidadinput.value * precioinput.value;
     total = total + subtotal;
       tabla.innerHTML += `
       <tr>
         <td>${articulo.codigo}</td>
         <td>${articulo.nombre}</td>
         <td>${articulo.descripcion}</td>
-        <td>${articulo.costoUnitario}</td>
+        <td>${precioinput.value}</td>
         <td>${cantidadinput.value}</td>
         <td>${subtotal}</td>
       </tr>    
@@ -147,7 +148,7 @@ agregarArticulo.addEventListener('click', function(e){
     data.append('agregarArticulo', 'true');
     data.append('idarticulo', articulo.codigo);
     data.append('unidades', cantidadinput.value);
-    data.append('costoUnitario', articulo.costoUnitario);    
+    data.append('costoUnitario', precioinput.value);    
     data.append('nombre', articulo.nombre); 
 
     fetch('../controller/CompraController.php',{

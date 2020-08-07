@@ -122,8 +122,9 @@ Usuario::verificarSesion(24);
     </div>
 
     <div class="row justify-content-center">
-        <div class="col-md-2 input-group">
+        <div class="col-md-5 input-group">
             <input type="text" class="form-control" placeholder="Cantidad" id="cantidad">
+            <input type="text" class="form-control" placeholder="Precio" id="precio">
             <button class="btn btn-primary" id="agregarArticulo">Agregar</button>
         </div>
     </div>
@@ -162,13 +163,7 @@ Usuario::verificarSesion(24);
         <button class="btn btn-info" id="finalizarCompra">Finalizar</button>
       </div>
     </div>
-
-    
-
-
 </div>
-
-
 
 <?php
 require_once ('../view/pie5.php');

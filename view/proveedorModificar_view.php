@@ -12,6 +12,7 @@ if(isset($_POST['btnGuaradar']))
 { 
   $proveedor->razonSocial = $_POST['razonSocial'];
   $proveedor->email = $_POST['email'];
+  $proveedor->condicioniva = $_POST['condicioniva'];
   $proveedor->cuil = $_POST['cuil'];
   $proveedor->telefono = $_POST['telefono'];
   $proveedor->direccion = $_POST['direccion'];
@@ -30,8 +31,13 @@ if(isset($_POST['btnGuaradar']))
                   <input autofocus type="text" class="form-control" name="razonSocial" placeholder="Razon Social" value="<?php echo $proveedor->razonSocial; ?>">
               </div>
               <div class="form-group col-md-4">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" placeholder="Email" value="<?php echo $proveedor->email; ?>">
+                <label for="email">Condicion frente al IVA</label>
+                <select name="condicioniva" class="form-control">
+                  <option>RI</option>
+                  <option>EX</option>
+                  <option>MT</option>
+                  <option>CF</option>
+                </select>
               </div>
           </div>
 
@@ -48,13 +54,14 @@ if(isset($_POST['btnGuaradar']))
           </div>
 
           <div class="row justify-content-center">    
+          <div class="form-group col-md-4">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email" placeholder="Email" value="<?php echo $proveedor->email; ?>">
+            </div>
             <div class="form-group col-md-4">
               <label>Telefono</label>
               <input type="text" class="form-control" name="telefono" placeholder="Telefono" value="<?php echo $proveedor->telefono; ?>">
-            </div>
-            <div class="form-group col-md-4">            
-            </div>
-          
+            </div>          
           </div>         
       
 

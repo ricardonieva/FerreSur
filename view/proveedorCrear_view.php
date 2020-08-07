@@ -9,6 +9,7 @@ if(isset($_POST['agregarProveedor']))
   $proveedor = new Proveedor();
   $proveedor->razonSocial = $_POST['razonSocial'];
   $proveedor->email = $_POST['email'];
+  $proveedor->condicioniva = $_POST['condicioniva'];
   $proveedor->cuil = $_POST['cuil'];
   $proveedor->telefono = $_POST['telefono'];
   $proveedor->direccion = $_POST['direccion'];
@@ -27,15 +28,20 @@ if(isset($_POST['agregarProveedor']))
                   <input autofocus type="text" class="form-control" name="razonSocial" placeholder="Razon Social">
               </div>
               <div class="form-group col-md-4">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" placeholder="Email">
+                <label for="email">Condicion frente al IVA</label>
+                <select name="condicioniva" class="form-control">
+                  <option>RI</option>
+                  <option>EX</option>
+                  <option>MT</option>
+                  <option>CF</option>
+                </select>
               </div>
           </div>
 
        
           <div class="row justify-content-center">        
             <div class="form-group col-md-4">
-              <label>CUIL</label>
+              <label>CUIT/CUIL</label>
               <input tyme="text" class="form-control" name="cuil" placeholder="CUIL"></input>
             </div>
             <div class="form-group col-md-4">
@@ -46,12 +52,13 @@ if(isset($_POST['agregarProveedor']))
 
           <div class="row justify-content-center">    
             <div class="form-group col-md-4">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email" placeholder="Email">
+            </div>
+            <div class="form-group col-md-4">
               <label>Telefono</label>
               <input type="text" class="form-control" name="telefono" placeholder="Telefono">
-            </div>
-            <div class="form-group col-md-4">            
-            </div>
-          
+            </div>         
           </div>         
       
 

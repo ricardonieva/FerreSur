@@ -18,14 +18,14 @@ function cargarCompras()
     })
     .then(res => res.json())
     .then(data => {
-        
         for(let item of data){
             tablaVenta.innerHTML += `
                 <tr>
                     <td>${item.idcompra}</td>
                     <td>${item.fecha}</td>
-                    <td>${item.nombre}, ${item.apellido}</td>
                     <td>${item.razonSocial}</td>
+                    <td>${item.cuil}</td>
+                    <td>${item.condicioniva}</td>
                     <td>${item.estado}</td>
                     <td><button class="btn btn-info" onclick="mostrarFacturaCompra(${item.idcompra});">Ver</button></td>
                     <td><button class="btn btn-warning" onclick="cambiarEstadoDeCompra(${item.idcompra});">Finalizar</button></td>
@@ -104,7 +104,7 @@ var idcompraGlobal;
 function modificarCompra(idcompra){
     idcompraGlobal = idcompra;
     tabla.innerHTML = ``;
-    detalle = [];
+    //detalle = [];
 
     const data = new FormData();
     data.append('buscarCompraCompleta', 'true');
@@ -187,35 +187,47 @@ function buscarArticulo(){
                 <td>${data.codigo}</td>
                 <td>${data.nombre}</td>
                 <td>${data.descripcion}</td>
-                <td>${data.costoUnitario}</td>
+                <td><input type="text" class="form-control" placeholder="Precio" id="precio" size="5"></td>
                 <td><input type="text" class="form-control" placeholder="Cantidad" id="cantidad" size="5"></td>
-                <td><button class="btn btn-primary" id="agregarArticulo" onclick="botonAgregarArticulo(${data.codigo}, '${data.nombre}', ${data.costoUnitario});">Agregar</button></td>
+                <td><button class="btn btn-primary" id="agregarArticulo" onclick="botonAgregarArticulo(${data.codigo}, '${data.nombre}');">Agregar</button></td>
             </tr>
         `;
     });
 }
 //////////////////////////agregar articulo con la cantidad
 
-function botonAgregarArticulo(codigoArt, nombre, costounitario){
+function botonAgregarArticulo(codigoArt, nombre){
     var cantidad = document.getElementById('cantidad').value;
+    var precio = document.getElementById('precio').value;
+
     var long = detalle.length;
-    for(var i=0; i < long; i++)
+    if(long == 0)
     {
-        if(detalle[i].codigo == codigoArt)
-        {           
-            detalle[i].unidades = parseFloat(detalle[i].unidades) + parseFloat(cantidad);
-            break;
-        }
-        else
-        {   
-            if(i == long-1)
-            {
-                var detalle_compra = {codigo:codigoArt, nombre:nombre, unidades:cantidad, costounitario:costounitario};
-                detalle.push(detalle_compra);            
-            }
-          
-        }        
+        var detalle_compra = {codigo:codigoArt, nombre:nombre, unidades:cantidad, costounitario:precio};
+        detalle.push(detalle_compra);
     }
+    else
+    {
+        for(var i=0; i <= long; i++)
+        {
+            if(detalle[i].codigo == codigoArt)
+            {
+                detalle[i].unidades = parseFloat(detalle[i].unidades) + parseFloat(cantidad);
+                break;
+            }
+            else
+            {
+                if(i == long-1)
+                {
+                    var detalle_compra = {codigo:codigoArt, nombre:nombre, unidades:cantidad, costounitario:precio};
+                    detalle.push(detalle_compra);
+                }
+            }
+        }
+    }
+
+   
+    //console.log(detalle);
     iterarArrayDeArticulo(detalle);  
 }
 

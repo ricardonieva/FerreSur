@@ -204,5 +204,54 @@ class Compra
             return false;
         }
     }
+
+    public static function calcularIVACompra($idcompra, $condicioniva) 
+    {
+        $connect = Database::connectDB();
+        $sql = "SELECT * FROM detalle_compra, articulo WHERE detalle_compra.idcompra = $idcompra AND detalle_compra.idarticulo = articulo.idarticulo";
+        //var_dump($sql);
+        $result = $connect->query($sql);
+        if($result != false)
+        {
+            if($result->rowCount() > 0)
+            {
+                $result = $result->fetchAll();
+                if($condicioniva == "MT")
+                {
+                    $total = 0;
+                    foreach($result as $row)
+                    {
+                        $total = $total + $row['unidades'] * $row['articulo_costounitario'];
+                    }
+                    $netoGravado = "-";
+                    $iva = "-";
+                    return compact("netoGravado", "iva", "total");
+                }
+                else
+                {
+                    $total = 0;
+                    $netoGravado = 0;
+                    $iva = 0;
+                    foreach($result as $row)
+                    {
+                        $total = $total + $row['unidades'] * $row['articulo_costounitario'];
+                        $iva = ($row['unidades'] * $row['articulo_costounitario']) * $row['iva'] /100;
+                        $netoGravado = ($row['unidades'] * $row['articulo_costounitario']) - $iva;
+                    } 
+                    $netoGravado = $netoGravado;
+                    $iva = $iva;                 
+                    return compact("netoGravado", "iva", "total");
+                }
+            }
+            else
+            {
+                return false;
+            }        
+        }
+        else
+        {
+            return false;
+        } 
+    }
 }
 ?>

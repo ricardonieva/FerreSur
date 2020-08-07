@@ -5,6 +5,7 @@ class Proveedor
 {
     public $idproveedor;
     public $razonSocial;
+    public $condicioniva;
     public $email;
     public $cuil;
     public $telefono;
@@ -13,8 +14,8 @@ class Proveedor
     public function insertProveedor()
     {
         $connect = Database::connectDB();
-        $sql = "INSERT INTO proveedor(razonSocial, email, cuil, telefono, direccion) 
-        VALUES ('$this->razonSocial', '$this->email', '$this->cuil','$this->telefono', '$this->direccion')";
+        $sql = "INSERT INTO proveedor(razonSocial, email, condicioniva, cuil, telefono, direccion) 
+        VALUES ('$this->razonSocial', '$this->email', '$this->condicioniva','$this->cuil','$this->telefono', '$this->direccion')";
         //var_dump($sql);
         $result = $connect->query($sql);
         if(!$result)
@@ -42,6 +43,7 @@ class Proveedor
             {
                 $result = $result->fetchObject();
                 $this->razonSocial = $result->razonSocial;
+                $this->condicioniva = $result->condicioniva;
                 $this->email = $result->email;
                 $this->cuil = $result->cuil;
                 $this->telefono = $result->telefono;
@@ -71,7 +73,7 @@ class Proveedor
 
     public function updateProveedor(){
         $connect = Database::connectDB();
-        $sql = "UPDATE proveedor SET razonSocial='$this->razonSocial',email='$this->email',cuil='$this->cuil',telefono='$this->telefono',direccion='$this->direccion' 
+        $sql = "UPDATE proveedor SET razonSocial='$this->razonSocial', condicioniva= '$this->condicioniva',email='$this->email',cuil='$this->cuil',telefono='$this->telefono',direccion='$this->direccion' 
         WHERE idproveedor = $this->idproveedor";
         //var_dump($sql);
         $result = $connect->query($sql);
