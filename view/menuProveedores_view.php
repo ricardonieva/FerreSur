@@ -16,7 +16,6 @@ Usuario::verificarSesion(7);
                 <li><a href="../view/proveedores_view.php">Lista Proveedores</a></li>
                 <li><a href="../view/compraProveedores_view.php">Compra a Proveedores</a></li>
                 <li><a href="../view/CompraLista_view.php">Lista de Compra a Proveedores</a></li>
-                <li><a href="../view/compraLibroIva.php">Libro IVA Compra</a></li>
                 <li><a href="../view/menuPrincipal_view.php">Volver</a></li>
 
             </ul>

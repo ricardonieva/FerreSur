@@ -253,5 +253,57 @@ class Compra
             return false;
         } 
     }
+
+    public function cantidadDeUnidadesCompradas($desde, $hasta)
+    {
+        $connect = Database::connectDB();
+        $sql = "SELECT articulo.idarticulo, articulo.nombre,SUM(detalle_compra.unidades) as cantidad, SUM(detalle_compra.unidades * detalle_compra.articulo_costounitario) 
+        as sumaTotal FROM compra,detalle_compra,articulo WHERE compra.fecha BETWEEN '$desde' AND '$hasta' AND detalle_compra.idarticulo = articulo.idarticulo AND 
+        compra.idcompra = detalle_compra.idcompra GROUP BY detalle_compra.idarticulo";
+        //var_dump($sql);
+        $result = $connect->query($sql);
+        if($result != false)
+        {
+            if($result->rowCount() > 0)
+            {
+                return $result->fetchAll();
+            }
+            else
+            {
+                return false;
+            }        
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function cantidadDeUnidadesCompradasDeArticulo($desde, $hasta, $idartuculo)
+    {
+        $connect = Database::connectDB();
+        $sql = "SELECT SUM(detalle_compra.unidades) as cantidad, detalle_compra.articulo_costounitario,
+        concat(proveedor.razonSocial, detalle_compra.idarticulo,detalle_compra.articulo_costounitario) as asd, proveedor.razonSocial 
+        FROM compra,detalle_compra, proveedor WHERE compra.fecha BETWEEN '$desde' AND '$hasta' AND 
+        compra.idproveedor = proveedor.idproveedor AND compra.idcompra = detalle_compra.idcompra AND detalle_compra.idarticulo = $idartuculo 
+        GROUP BY asd";
+        //var_dump($sql);
+        $result = $connect->query($sql);
+        if($result != false)
+        {
+            if($result->rowCount() > 0)
+            {
+                return $result->fetchAll();
+            }
+            else
+            {
+                return false;
+            }        
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 ?>

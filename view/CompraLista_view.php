@@ -17,9 +17,15 @@ require_once ('../view/cabecera.php');
             <input type="date" class="form-control input-group" placeholder="Fecha Hasta" id="fechahasta" name="fechahasta">
         </div>   
         <div class="col-md-1 mt-4">
-            <button class="btn btn-primary" id="botonMostrar">Mostrar</button>
-        </div>      
-    </div>           
+            <button class="btn btn-primary form-control" id="botonMostrar">Mostrar</button>
+        </div>
+        <div class="col-md-1 mt-4">
+            <button class="btn btn-primary form-control" id="btnLibroIVA">IVA Compra</button>
+        </div>
+        <div class="col-md-1 mt-4">
+            <button class="btn btn-primary form-control" id="btnGraficos">Graficos</button>
+        </div>
+    </div>      
  
     <div class="row justify-content-center mt-3">
         <div class="col-md-12">

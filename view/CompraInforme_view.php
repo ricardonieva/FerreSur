@@ -72,7 +72,7 @@ $idCompra = (int) $_GET['idcompra'];
 
     <div class="eliminarImprimir">
         <div class="d-flex justify-content-center">
-                <button class="btn btn-primary" onclick="botonImprimir()">Imprirmir</button>
+                <button class="btn btn-primary" onclick="window.print();">Imprirmir</button>
         </div>
 
         <div class="d-flex justify-content-center mt-3">

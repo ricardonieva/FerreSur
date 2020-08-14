@@ -1,35 +1,18 @@
 <?php
-require_once ('../model/CompraClass.php');
 require_once ('../model/UsuarioClass.php');
+require_once ('../model/CompraClass.php');
 //Usuario::verificarSesion(25);
 require_once ('../view/cabecera.php');
 
-if(isset($_POST['btnMostrar']))
-{
-    $compras = new Compra();
-    $compras = $compras->consultarComprasFechas($_POST['fechadesde'], $_POST['fechahasta']);
-    //var_dump($compras);
-}
+
+$compras = new Compra();
+$compras = $compras->consultarComprasFechas($_GET['fechadesde'], $_GET['fechahasta']);
+//var_dump($compras);
+
 ?>
 
 <br><br><br>
-<form action="" method="POST">
     <div class="container-fluid">
-        <h5 class="text-center">Libro IVA Compra</h5>
-        <div class="row justify-content-center mt-3 eliminarImprimir">
-            <div class="col-md-3">
-                Fecha Desde:
-                <input type="date" class="form-control input-group" placeholder="Fecha Desde" id="fechadesde" name="fechadesde"> 
-            </div>
-            <div class="col-md-3">
-                Fecha Hasta:
-                <input type="date" class="form-control input-group" placeholder="Fecha Hasta" id="fechahasta" name="fechahasta">
-            </div>   
-            <div class="col-md-1 mt-4">
-                <button class="btn btn-primary" name="btnMostrar">Mostrar</button>
-            </div>      
-        </div>           
-        <hr>
         <div class="row justify-content-center">
             <div class="col-md-3">
                 <img src="../view/images/logoferresur.png" class="rounded float-left logo" alt="">            
@@ -42,8 +25,8 @@ if(isset($_POST['btnMostrar']))
             </div>
             <div class="col-md-2">
                 <h6 class="mt-2">Libro IVA Compras</h6>
-                <h6><?php if(isset($_POST['fechadesde'])) { echo "Desde ".date("d/m/Y", strtotime($_POST['fechadesde'])); }?></h6>
-                <h6><?php if(isset($_POST['fechahasta'])) { echo "Hasta ".date("d/m/Y", strtotime($_POST['fechahasta'])); }?></h6>
+                <h6><?php if(isset($_GET['fechadesde'])) { echo "Desde ".date("d/m/Y", strtotime($_GET['fechadesde'])); }?></h6>
+                <h6><?php if(isset($_GET['fechahasta'])) { echo "Hasta ".date("d/m/Y", strtotime($_GET['fechahasta'])); }?></h6>
             </div>
         </div>
 
@@ -106,7 +89,6 @@ if(isset($_POST['btnMostrar']))
             </div>
         </div>
     </div>
-</form>
 
     <div class="eliminarImprimir">
         <div class="d-flex justify-content-center">

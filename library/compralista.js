@@ -256,3 +256,21 @@ function guardarCambios(){
         });
     }
 }
+
+///////// boton LibroIVA
+
+btnLibroIVA.addEventListener("click", function(){
+    var fechaDesde = document.getElementById('fechadesde').value;
+    var fechaHasta = document.getElementById('fechahasta').value;
+
+    window.open("../view/compraLibroIva.php?fechadesde="+fechaDesde+"&fechahasta="+fechaHasta);
+});
+
+///////// boton graficos
+
+btnGraficos.addEventListener("click", function(){
+    var fechaDesde = document.getElementById('fechadesde').value;
+    var fechaHasta = document.getElementById('fechahasta').value;
+
+    window.open("../view/compraGrafico.php?fechadesde="+fechaDesde+"&fechahasta="+fechaHasta);
+});
