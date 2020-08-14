@@ -22,10 +22,10 @@ if(isset($_POST['btnMostrar'])) {
     $articulo->selectArticulo();
     $compras2 = new Compra();
     $compras2 = $compras2->cantidadDeUnidadesCompradasDeArticulo($_GET['fechadesde'], $_GET['fechahasta'], $_POST['selectArticulo']);
-    var_dump($articulo);
+    //var_dump($articulo);
     $tituloDelGrafico2 = "$articulo->nombre comprado desde el ".date("d/m/Y", strtotime($_GET['fechadesde']))." hasta ".date("d/m/Y", strtotime($_GET['fechahasta']));
     foreach($compras2 as $row) {
-        $dataPoints2[] = array("y" => $row["cantidad"], "label" => $row["razonSocial"], "indexLabel"=> "$".$row["articulo_costounitario"]); 
+        $dataPoints2[] = array("y" => $row["articulo_costounitario"], "label" => $row["razonSocial"], "indexLabel"=> "Unidades: ".$row["cantidad"]); 
     }
 }
 
@@ -90,11 +90,11 @@ if(isset($_POST['btnMostrar'])) {
             text: "<?php echo $tituloDelGrafico2; ?>"
         },
         axisY: {
-            title: "Unidades"
+            title: "Precio"
         },
         data: [{
             type: "column",
-            yValueFormatString: "#,##0.## unidades",
+            yValueFormatString: "$ #,##0.##",
             dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
         }]
         });
