@@ -1,14 +1,14 @@
 <?php
 require_once ('../view/cabecera.php');
 require_once ('../model/UsuarioClass.php');
-Usuario::verificarSesion(19);
+//Usuario::verificarSesion(19);
 ?>
 <br><br><br>
 <div class="container-fluid">
     <h3 class="text-center">Clientes</h3>
     <div class="row justify-content-center">
         <div class="col-md-4">
-            <input type="text" class="form-control" id="dni" placeholder="Ingrese DNI">
+            <input type="text" class="form-control" id="cuit" placeholder="Ingrese CUIT/CUIT">
         </div>
         <div class="col-md-2">
             <button class="btn btn-primary form-control" id="botonBuscar">Buscar</button>
@@ -33,9 +33,9 @@ Usuario::verificarSesion(19);
                     <tr>
                         <th>Id</th>
                         <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>DNI</th>
-                        <th>Email</th>
+                        <th>CUIT/CUIL</th>
+                        <th>Dirección</th>
+                        <th>Localidad</th>
                         <th>Condición IVA</th>
                         <th></th>
                         <th></th>
@@ -65,12 +65,12 @@ Usuario::verificarSesion(19);
                     <div class="col-md-12">                            
                             Nombre:
                             <input type="text" class="form-control" id="nombreAgregar">
-                            Apellido
-                            <input type="text" class="form-control" id="apellidoAgregar"> 
-                            DNI:
-                            <input type="text" class="form-control" id="dniAgregar">
-                            E-mail:
-                            <input type="text" class="form-control" id="emailAgregar">
+                            CUIT/CUIL:
+                            <input type="text" class="form-control" id="cuitAgregar">
+                            Direccion:
+                            <input type="text" class="form-control" id="direccionAgregar">                            
+                            Localidad:
+                            <input type="text" class="form-control" id="localidadAgregar">
                             Condición Frente al IVA:
                             <select id="ivaAgregar" class="form-control">
                               <option value="RI">Responsable Inscripto</option>
@@ -106,12 +106,12 @@ Usuario::verificarSesion(19);
                     <div class="col-md-12">                            
                             Nombre:
                             <input type="text" class="form-control" id="nombreModificar">
-                            Apellido
-                            <input type="text" class="form-control" id="apellidoModificar"> 
-                            DNI:
-                            <input type="text" class="form-control" id="dniModificar">
-                            E-mail:
-                            <input type="text" class="form-control" id="emailModificar">
+                            CUIT/CUIL:
+                            <input type="text" class="form-control" id="cuitModificar">
+                            Dirección
+                            <input type="text" class="form-control" id="direccionModificar">                            
+                            Localidad:
+                            <input type="text" class="form-control" id="localidadModificar">
                             Condición Frente al IVA:
                             <select id="ivaModificar" class="form-control">
                               <option value="RI">Responsable Inscripto</option>
@@ -160,7 +160,7 @@ Usuario::verificarSesion(19);
                                 <th>idCliente</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
-                                <th>DNI</th>
+                                <th>CUIT/CUIL</th>
                                 <th>Email</th>
                             </tr>
                         </thead>

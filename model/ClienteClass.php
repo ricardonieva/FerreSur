@@ -4,15 +4,15 @@ class Cliente
 {
     public $idcliente;
     public $nombre;
-    public $apellido;
-    public $dni;
-    public $email;
+    public $cuit;
+    public $direccion;
+    public $localidad;
     public $condicioniva;
 
-    public function selectDNICliente()
+    public function selectCuitCliente()
     {
         $connect = Database::connectDB();
-        $sql = "SELECT * FROM cliente WHERE dni=$this->dni";
+        $sql = "SELECT * FROM cliente WHERE cuit=$this->cuit";
         //var_dump($sql);
         $result = $connect->query($sql);
         
@@ -23,9 +23,9 @@ class Cliente
                 $result = $result->fetchObject();
                 $this->idcliente = $result->idcliente;
                 $this->nombre = $result->nombre;
-                $this->apellido = $result->apellido;
-                $this->dni = $result->dni;
-                $this->email = $result->email;
+                $this->cuit = $result->cuit;
+                $this->direccion = $result->direccion;
+                $this->localidad = $result->localidad;
                 $this->condicioniva = $result->condicioniva;
 
                 return true;
@@ -66,8 +66,8 @@ class Cliente
     public function insertCliente()
     {
         $connect = Database::connectDB();
-        $sql = "INSERT INTO cliente(nombre, apellido, dni, email, condicioniva)
-        VALUES ('$this->nombre', '$this->apellido', '$this->dni', '$this->email', '$this->condicioniva')";
+        $sql = "INSERT INTO cliente(nombre, cuit, direccion, localidad, condicioniva)
+        VALUES ('$this->nombre', '$this->cuit', '$this->direccion', '$this->localidad', '$this->condicioniva')";
         $result = $connect->query($sql);
         if($result != false)
         {    
@@ -83,7 +83,7 @@ class Cliente
     public function updateCliente()
     {
         $connect = Database::connectDB();
-        $sql = "UPDATE cliente SET nombre= '$this->nombre',apellido= '$this->apellido',dni= $this->dni,email= '$this->email', condicioniva = '$this->condicioniva'
+        $sql = "UPDATE cliente SET nombre= '$this->nombre', cuit= $this->cuit, direccion= '$this->direccion',localidad= '$this->localidad', condicioniva = '$this->condicioniva'
         WHERE idcliente = $this->idcliente";
         //var_dump($sql);
         $result = $connect->query($sql);
@@ -113,10 +113,10 @@ class Cliente
         }
     }
 
-    public function buscarClientePorApellido($apellido)
+    public function buscarClientePorApellido($nombre)
     {
         $connect = Database::connectDB();
-        $sql = "SELECT * FROM `cliente` WHERE cliente.apellido LIKE '%$apellido%'";
+        $sql = "SELECT * FROM `cliente` WHERE cliente.nombre LIKE '%$nombre%'";
         //var_dump($sql);
         $result = $connect->query($sql);
         

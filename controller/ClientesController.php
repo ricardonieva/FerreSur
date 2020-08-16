@@ -7,9 +7,9 @@ if(isset($_POST['traerClientes'])){
     echo json_encode($datos);
 }
 
-if(isset($_POST['buscarPorDNI'])){
-    $cliente->dni = $_POST['dni']; 
-    if($cliente->selectDNICliente($_POST['dni']))
+if(isset($_POST['buscarPorCuit'])){
+    $cliente->cuit = $_POST['cuit']; 
+    if($cliente->selectCuitCliente())
     {
         echo json_encode($cliente);
     }
@@ -19,27 +19,25 @@ if(isset($_POST['buscarPorDNI'])){
     }
 }
 
-if(isset($_POST['agregarCliente'])){
-
+if(isset($_POST['agregarCliente']))
+{
     $cliente->nombre = $_POST['nombre'];
-    $cliente->apellido = $_POST['apellido'];
-    $cliente->dni = $_POST['dni'];
-    $cliente->email = $_POST['email'];
-    $cliente->condicioniva = $_POST['iva'];
-   
+    $cliente->cuit = $_POST['cuit'];
+    $cliente->direccion = $_POST['direccion'];
+    $cliente->localidad = $_POST['localidad'];
+    $cliente->condicioniva = $_POST['iva'];   
     $datos = $cliente->insertCliente();
     echo json_encode($datos);
 }
 
-if(isset($_POST['modificarCliente'])){
-
+if(isset($_POST['modificarCliente']))
+{
     $cliente->idcliente = $_POST['idCliente'];
     $cliente->nombre = $_POST['nombre'];
-    $cliente->apellido = $_POST['apellido'];
-    $cliente->dni = $_POST['dni'];
-    $cliente->email = $_POST['email'];
+    $cliente->cuit = $_POST['cuit'];
+    $cliente->direccion = $_POST['direccion'];
+    $cliente->localidad = $_POST['localidad'];
     $cliente->condicioniva = $_POST['iva'];
-
     $datos = $cliente->updateCliente();
     echo json_encode($datos);
 }

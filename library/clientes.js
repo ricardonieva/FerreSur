@@ -21,11 +21,11 @@ function cargarClientes(){
                 <tr>
                     <th>${item.idcliente}</th>
                     <td>${item.nombre}</td>
-                    <td>${item.apellido}</td>
-                    <td>${item.dni}</td>
-                    <td>${item.email}</td>
+                    <td>${item.cuit }</td>
+                    <td>${item.direccion}</td>
+                    <td>${item.localidad}</td>
                     <td>${item.condicioniva}</td>
-                    <td><button class="btn btn-success form-control"  type="button" onclick="botonModificarCliente(${item.idcliente},'${item.nombre}','${item.apellido}',${item.dni},'${item.email}');">Modificar</button></td>
+                    <td><button class="btn btn-success form-control"  type="button" onclick="botonModificarCliente(${item.idcliente},'${item.nombre}','${item.cuit}','${item.direccion}','${item.localidad}','${item.condicioniva}');">Modificar</button></td>
                     <td><button class="btn btn-danger form-control" onclick="eliminarClienteDB(${item.idcliente});">Eliminar</button></td>
                 </tr>
             `;
@@ -35,17 +35,17 @@ function cargarClientes(){
 
 }
 
-////////////////////////////buscar por id
+////////////////////////////buscar por cuit
 
 botonBuscar.addEventListener('click', function(e){
     e.preventDefault();
 
-    var dniCliente = document.getElementById('dni');
+    var cuitCliente = document.getElementById('cuit');
     tablaCliente.innerHTML = ``;
 
     const data = new FormData();
-    data.append('buscarPorDNI', 'true');
-    data.append('dni', dniCliente.value);
+    data.append('buscarPorCuit', 'true');
+    data.append('cuit', cuitCliente.value);
     fetch('../controller/ClientesController.php', {
         method: 'POST',
         body: data
@@ -60,11 +60,11 @@ botonBuscar.addEventListener('click', function(e){
             <tr>
                 <th>${data.idcliente}</th>
                 <td>${data.nombre}</td>
-                <td>${data.apellido}</td>
-                <td>${data.dni}</td>
-                <td>${data.email}</td>
+                <td>${data.cuit}</td>
+                <td>${data.direccion}</td>
+                <td>${data.localidad}</td>
                 <td>${data.condicioniva}</td>
-                <td><button class="btn btn-success form-control" onclick="botonModificarCliente(${data.idcliente},'${data.nombre}','${data.apellido}',${data.dni},'${data.email}');">Modificar</button></td>
+                <td><button class="btn btn-success form-control" onclick="botonModificarCliente(${data.idcliente},'${data.nombre}','${data.cuit}','${data.direccion}','${data.localidad}','${data.condicioniva}');">Modificar</button></td>
                 <td><button class="btn btn-danger form-control" onclick="eliminarClienteDB(${data.idcliente});">Eliminar</button></td>
             </tr>
             `;
@@ -84,17 +84,17 @@ botonAgregarCliente.addEventListener('click', function(e){
     e.preventDefault();
 
     var nombre = document.getElementById('nombreAgregar');
-    var apellido = document.getElementById('apellidoAgregar');
-    var dni = document.getElementById('dniAgregar');
-    var email = document.getElementById('emailAgregar');
+    var cuit = document.getElementById('cuitAgregar');
+    var direccion = document.getElementById('direccionAgregar');
+    var localidad = document.getElementById('localidadAgregar');
     var iva = document.getElementById('ivaAgregar');
 
     const data = new FormData();
     data.append('agregarCliente', 'true');
     data.append('nombre', nombre.value);
-    data.append('apellido',apellido.value);
-    data.append('dni',dni.value);
-    data.append('email',email.value);
+    data.append('cuit',cuit.value);
+    data.append('direccion',direccion.value);
+    data.append('localidad',localidad.value);
     data.append('iva',iva.value); 
 
     fetch('../controller/ClientesController.php', {
@@ -122,9 +122,9 @@ modificarCliente.addEventListener('click', modificarClienteDB);
 function modificarClienteDB(){
 
     var nombre = document.getElementById('nombreModificar');
-    var apellido = document.getElementById('apellidoModificar');
-    var dni = document.getElementById('dniModificar');
-    var email = document.getElementById('emailModificar');
+    var cuit = document.getElementById('cuitModificar');
+    var direccion = document.getElementById('direccionModificar');
+    var localidad = document.getElementById('localidadModificar');
     var iva = document.getElementById('ivaModificar');
 
     const data = new FormData();
@@ -132,9 +132,9 @@ function modificarClienteDB(){
     data.append('modificarCliente', 'true');
     data.append('idCliente', idClienteGlobal);
     data.append('nombre', nombre.value);
-    data.append('apellido',apellido.value);
-    data.append('dni',dni.value);
-    data.append('email',email.value);
+    data.append('cuit',cuit.value);
+    data.append('direccion',direccion.value);
+    data.append('localidad',localidad.value);
     data.append('iva',iva.value);
 
     fetch('../controller/ClientesController.php', {
@@ -156,16 +156,17 @@ function modificarClienteDB(){
 
 ////////////////////////boton moficiar cliente
 var idClienteGlobal;
-function botonModificarCliente(idCliente, nombre, apellido, dni, email){
+function botonModificarCliente(idCliente, nombre, cuit, direccion, localidad, iva){
 
     idClienteGlobal = idCliente;
 
     $('#exampleModal2').modal('show');
 
     document.getElementById('nombreModificar').value = nombre;
-    document.getElementById('apellidoModificar').value = apellido;
-    document.getElementById('dniModificar').value = dni;
-    document.getElementById('emailModificar').value = email;
+    document.getElementById('cuitModificar').value = cuit;
+    document.getElementById('direccionModificar').value = direccion;
+    document.getElementById('localidadModificar').value = localidad;
+    document.getElementById('ivaModificar').value = iva;
 
 }
 ///////////////////////eliminar lciente
