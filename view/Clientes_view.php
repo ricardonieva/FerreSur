@@ -36,6 +36,7 @@ Usuario::verificarSesion(19);
                         <th>Apellido</th>
                         <th>DNI</th>
                         <th>Email</th>
+                        <th>Condición IVA</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -70,6 +71,12 @@ Usuario::verificarSesion(19);
                             <input type="text" class="form-control" id="dniAgregar">
                             E-mail:
                             <input type="text" class="form-control" id="emailAgregar">
+                            Condición Frente al IVA:
+                            <select id="ivaAgregar" class="form-control">
+                              <option value="RI">Responsable Inscripto</option>
+                              <option value="MT">Monotributista</option>
+                              <option value="CF">Consumidor Final</option>
+                            </select>
                     </div>
                 </div>
             </div>
@@ -105,6 +112,12 @@ Usuario::verificarSesion(19);
                             <input type="text" class="form-control" id="dniModificar">
                             E-mail:
                             <input type="text" class="form-control" id="emailModificar">
+                            Condición Frente al IVA:
+                            <select id="ivaModificar" class="form-control">
+                              <option value="RI">Responsable Inscripto</option>
+                              <option value="MT">Monotributista</option>
+                              <option value="CF">Consumidor Final</option>
+                            </select>
                     </div>
                 </div>
             </div>

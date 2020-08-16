@@ -24,6 +24,7 @@ function cargarClientes(){
                     <td>${item.apellido}</td>
                     <td>${item.dni}</td>
                     <td>${item.email}</td>
+                    <td>${item.condicioniva}</td>
                     <td><button class="btn btn-success form-control"  type="button" onclick="botonModificarCliente(${item.idcliente},'${item.nombre}','${item.apellido}',${item.dni},'${item.email}');">Modificar</button></td>
                     <td><button class="btn btn-danger form-control" onclick="eliminarClienteDB(${item.idcliente});">Eliminar</button></td>
                 </tr>
@@ -62,6 +63,7 @@ botonBuscar.addEventListener('click', function(e){
                 <td>${data.apellido}</td>
                 <td>${data.dni}</td>
                 <td>${data.email}</td>
+                <td>${data.condicioniva}</td>
                 <td><button class="btn btn-success form-control" onclick="botonModificarCliente(${data.idcliente},'${data.nombre}','${data.apellido}',${data.dni},'${data.email}');">Modificar</button></td>
                 <td><button class="btn btn-danger form-control" onclick="eliminarClienteDB(${data.idcliente});">Eliminar</button></td>
             </tr>
@@ -85,6 +87,7 @@ botonAgregarCliente.addEventListener('click', function(e){
     var apellido = document.getElementById('apellidoAgregar');
     var dni = document.getElementById('dniAgregar');
     var email = document.getElementById('emailAgregar');
+    var iva = document.getElementById('ivaAgregar');
 
     const data = new FormData();
     data.append('agregarCliente', 'true');
@@ -92,6 +95,7 @@ botonAgregarCliente.addEventListener('click', function(e){
     data.append('apellido',apellido.value);
     data.append('dni',dni.value);
     data.append('email',email.value);
+    data.append('iva',iva.value); 
 
     fetch('../controller/ClientesController.php', {
         method: 'POST',
@@ -99,14 +103,15 @@ botonAgregarCliente.addEventListener('click', function(e){
     })
     .then(res => res.text())
     .then(data => {
-       if(data == 'true'){
-            alert("se cargo el cliente satisfactoriamente");
-       }
-       else{
-            alert("Error al cargar cliente");
-       }
-       cargarClientes();
-       $('#exampleModal').modal('hide');
+        console.log(data);
+        if(data == 'true'){
+                alert("se cargo el cliente satisfactoriamente");
+        }
+        else{
+                alert("Error al cargar cliente");
+        }
+        cargarClientes();
+        $('#exampleModal').modal('hide');
     });
 
 });
@@ -120,6 +125,7 @@ function modificarClienteDB(){
     var apellido = document.getElementById('apellidoModificar');
     var dni = document.getElementById('dniModificar');
     var email = document.getElementById('emailModificar');
+    var iva = document.getElementById('ivaModificar');
 
     const data = new FormData();
 
@@ -129,6 +135,7 @@ function modificarClienteDB(){
     data.append('apellido',apellido.value);
     data.append('dni',dni.value);
     data.append('email',email.value);
+    data.append('iva',iva.value);
 
     fetch('../controller/ClientesController.php', {
         method: 'POST',

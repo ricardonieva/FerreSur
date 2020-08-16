@@ -25,7 +25,8 @@ if(isset($_POST['agregarCliente'])){
     $cliente->apellido = $_POST['apellido'];
     $cliente->dni = $_POST['dni'];
     $cliente->email = $_POST['email'];
-
+    $cliente->condicioniva = $_POST['iva'];
+   
     $datos = $cliente->insertCliente();
     echo json_encode($datos);
 }
@@ -37,6 +38,7 @@ if(isset($_POST['modificarCliente'])){
     $cliente->apellido = $_POST['apellido'];
     $cliente->dni = $_POST['dni'];
     $cliente->email = $_POST['email'];
+    $cliente->condicioniva = $_POST['iva'];
 
     $datos = $cliente->updateCliente();
     echo json_encode($datos);

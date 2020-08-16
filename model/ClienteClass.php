@@ -7,6 +7,7 @@ class Cliente
     public $apellido;
     public $dni;
     public $email;
+    public $condicioniva;
 
     public function selectDNICliente()
     {
@@ -25,6 +26,7 @@ class Cliente
                 $this->apellido = $result->apellido;
                 $this->dni = $result->dni;
                 $this->email = $result->email;
+                $this->condicioniva = $result->condicioniva;
 
                 return true;
             }
@@ -64,12 +66,13 @@ class Cliente
     public function insertCliente()
     {
         $connect = Database::connectDB();
-        $sql = "INSERT INTO cliente(nombre, apellido, dni, email) 
-        VALUES ('$this->nombre', '$this->apellido', '$this->dni', '$this->email')";
+        $sql = "INSERT INTO cliente(nombre, apellido, dni, email, condicioniva)
+        VALUES ('$this->nombre', '$this->apellido', '$this->dni', '$this->email', '$this->condicioniva')";
         $result = $connect->query($sql);
         if($result != false)
         {    
            return true;
+           //return $sql;
         }
         else
         {          
@@ -80,7 +83,7 @@ class Cliente
     public function updateCliente()
     {
         $connect = Database::connectDB();
-        $sql = "UPDATE cliente SET nombre= '$this->nombre',apellido= '$this->apellido',dni= $this->dni,email= '$this->email' 
+        $sql = "UPDATE cliente SET nombre= '$this->nombre',apellido= '$this->apellido',dni= $this->dni,email= '$this->email', condicioniva = '$this->condicioniva'
         WHERE idcliente = $this->idcliente";
         //var_dump($sql);
         $result = $connect->query($sql);
