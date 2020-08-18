@@ -61,8 +61,8 @@ if(isset($_POST['agregarArticulo']))
 if(isset($_POST['mostrarCliente']))
 {
     $cliente = new Cliente();
-    $cliente->dni = $_POST['dni'];
-    if( $cliente->selectDNICliente())
+    $cliente->cuit = $_POST['cuit'];
+    if($cliente->selectCuitCliente())
     {
         $_SESSION['cliente'] = $cliente->idcliente;
         echo json_encode($cliente);

@@ -147,7 +147,7 @@ Usuario::verificarSesion(17);
         <div class="row justify-content-center">
 
             <div class="input-group col-md-3 mt-4">
-                <input autofocus type="text" class="form-control" name="dni" id="dni" placeholder="Ingrese DNI">
+                <input autofocus type="text" class="form-control" name="cuit" id="cuit" placeholder="Ingrese CUIT/CUIL">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit" name="buscarCliente" id="buscarCliente">Buscar Cliente</button>
                 </div>

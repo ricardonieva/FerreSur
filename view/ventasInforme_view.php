@@ -81,7 +81,7 @@ function cargarVentas(){
                 <tr>
                     <td>${item.idventa}</td>
                     <td>${item.fechaHora}</td>
-                    <td>${item.nombre}, ${item.apellido}</td>
+                    <td>${item.nombre}</td>
                     <td>${item.AP}</td>
                     <td>${item.estado}</td>
                     <td><button class="btn btn-info" onclick="mostrarFacturaDeVenta(${item.idventa});">Ver</button></td>

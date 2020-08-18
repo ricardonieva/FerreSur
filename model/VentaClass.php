@@ -73,7 +73,8 @@ class Venta
     public function buscarVentaPorId($idventa)
     {
         $connect = Database::connectDB();    
-        $sql = "SELECT *,lineaventa.idventa as venta_idventa, DATE_FORMAT(venta.fechaHora,'%d/%m/%Y') AS fecha FROM venta,lineaventa,articulo WHERE venta.idventa = $idventa AND lineaventa.idventa = venta.idventa AND lineaventa.idarticulo = articulo.idarticulo";    
+        $sql = "SELECT * FROM venta, lineaventa, articulo, cliente WHERE venta.idventa = $idventa AND venta.idcliente = cliente.idcliente AND 
+        lineaventa.idventa = venta.idventa AND lineaventa.idarticulo = articulo.idarticulo";    
         $result = $connect->query($sql);
         if($result != false)
         {

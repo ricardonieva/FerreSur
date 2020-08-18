@@ -113,8 +113,8 @@ buscarCliente.addEventListener('click', buscarClienteASD, true);
 
 function buscarClienteASD(e){
     e.preventDefault();
-    var cliente = document.getElementById('dni').value;
-    console.log(cliente);
+    var cliente = document.getElementById('cuit').value;
+    //console.log(cliente);
     var mostrarCliente = document.getElementById('mostrarCliente');
     var datosCliente;
     connect = new XMLHttpRequest();
@@ -132,13 +132,17 @@ function buscarClienteASD(e){
             {
                 mostrarCliente.innerHTML = `
                 <div class="alert alert-info" role="alert">
-                ${datosCliente.nombre} ${datosCliente.apellido}
+                ${datosCliente.nombre} 
                 </div>
                 `;     
             }
             else
             {
-                alert("No se encuentra el cliente");
+                var result = window.confirm('No se encuentra el cliente. Desea crearlo?');
+                if(result)
+                {
+                    window.open("../view/Clientes_view.php");
+                }
             }
            
         }
@@ -149,7 +153,7 @@ function buscarClienteASD(e){
     }
     connect.open('POST','../controller/VentasController.php',true);
     connect.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    connect.send('dni='+cliente+'&mostrarCliente=true');
+    connect.send('cuit='+cliente+'&mostrarCliente=true');
 }
 
 /////////////////////boton finalizar

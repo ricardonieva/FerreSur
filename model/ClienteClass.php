@@ -136,5 +136,21 @@ class Cliente
             return false;
         }
     }
+
+    public static function descripcionDeCondicionDeIva($iva)
+    {
+        if($iva == "RI")
+        {
+            return "Responsable Inscripto";
+        }
+        if($iva == "MT")
+        {
+            return "Monotributista";
+        }
+        if($iva == "CF")
+        {
+            return "Consumidor Final";
+        }
+    }
 }
 ?>
