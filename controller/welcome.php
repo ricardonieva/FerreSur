@@ -1,9 +1,14 @@
 <?php 
 
 require_once ('../model/UsuarioClass.php');
+require_once ('../model/CompraClass.php');
 
-$user = new Usuario();
-echo "user: ".$_SESSION['usuario_id'];
+$compra = new Compra();
+
+$result = $compra->calcularIVACompra(13, "RI");
+var_dump($result);
+// $user = new Usuario();
+// echo "user: ".$_SESSION['usuario_id'];
 //$user->registrarSesion();
 // foreach($_POST as $campo => $valor) 
 // echo "$campo -> $valor <br>"; 

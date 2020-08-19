@@ -235,11 +235,9 @@ class Compra
                     foreach($result as $row)
                     {
                         $total = $total + $row['unidades'] * $row['articulo_costounitario'];
-                        $iva = ($row['unidades'] * $row['articulo_costounitario']) * $row['iva'] /100;
-                        $netoGravado = ($row['unidades'] * $row['articulo_costounitario']) - $iva;
+                        $iva = $iva + round(($row['unidades'] * $row['articulo_costounitario']) * ($row['iva']/100), 2);
                     } 
-                    $netoGravado = $netoGravado;
-                    $iva = $iva;                 
+                    $netoGravado = $total - $iva;
                     return compact("netoGravado", "iva", "total");
                 }
             }
