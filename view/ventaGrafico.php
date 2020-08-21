@@ -13,7 +13,7 @@ $ventas = $ventas->cantidadDeUnidadesVentidas($_GET['fechadesde'], $_GET['fechah
 $probando = 123;
 $tituloDelGrafico = "Artículos vendidos desde el ".date("d/m/Y", strtotime($_GET['fechadesde']))." hasta ".date("d/m/Y", strtotime($_GET['fechahasta']));
 foreach($ventas as $row) {
-    $dataPoints[] = array("y" => $row["cantidad"], "label" => $row["nombre"], "indexLabel"=> "$".$row["sumaTotal"]); 
+    $dataPoints[] = array("y" => $row["sumaTotal"], "label" => $row["nombre"], "indexLabel"=> "Unidades: ".$row["cantidad"]); 
 }
 //var_dump($dataPoints);
 
@@ -53,7 +53,7 @@ if(isset($_POST['btnMostrar'])) {
 
 <br><br>
 <form action="" method="POST">
-    <div class="container-fluid">
+    <div class="container-fluid eliminarImprimir">
         <div class="row justify-content-center form-group">
             <div class="col-md-2 mt-2">
                 <label>Seleccione la fecha</label>
@@ -74,6 +74,11 @@ if(isset($_POST['btnMostrar'])) {
 
 <div id="chartContainer3" style="height: 370px; width: 100%;"></div>
 
+<div class="eliminarImprimir">
+    <div class="d-flex justify-content-center">
+            <button class="btn btn-primary" onclick="window.print();">Imprirmir</button>
+    </div>
+</div>
 
 <script type="text/javascript">
     window.onload = function() {
@@ -85,11 +90,11 @@ if(isset($_POST['btnMostrar'])) {
             text: "<?php echo $tituloDelGrafico; ?>"
         },
         axisY: {
-            title: "Unidades"
+            title: "Total"
         },
         data: [{
             type: "column",
-            yValueFormatString: "#,##0.## unidades",
+            yValueFormatString: "$ #,##0.##",
             dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
         }]
     });
