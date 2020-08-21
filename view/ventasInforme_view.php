@@ -17,8 +17,14 @@ Usuario::verificarSesion(18);
             <input type="date" class="form-control input-group" placeholder="Fecha Hasta" id="fechahasta" name="fechahasta">
         </div>   
         <div class="col-md-1 mt-4">
-            <button class="btn btn-primary" id="botonMostrar">Mostrar</button>
-        </div>      
+            <button class="btn btn-primary form-control" id="botonMostrar">Mostrar</button>
+        </div>
+        <div class="col-md-1 mt-4">
+            <button class="btn btn-info form-control" id="btnIva">IVA Venta</button>
+        </div>
+        <div class="col-md-1 mt-4">
+            <button class="btn btn-success form-control" id="btnGraficos">Graficos</button>
+        </div>
     </div>           
  
     <div class="row justify-content-center mt-3">
@@ -153,6 +159,18 @@ function anularVenta(idventa, estado){
     }    
 }
 
+///////
 
+    btnIva.addEventListener('click', function() {
+        var fechaDesde = document.getElementById('fechadesde').value;
+        var fechaHasta = document.getElementById('fechahasta').value;
+        window.open( '../view/ventaLibroIva.php?fechadesde='+fechaDesde+'&fechahasta='+fechaHasta);
+    });
 
+////
+    btnGraficos.addEventListener('click', function() {
+        var fechaDesde = document.getElementById('fechadesde').value;
+        var fechaHasta = document.getElementById('fechahasta').value;
+        window.open( '../view/ventaGrafico.php?fechadesde='+fechaDesde+'&fechahasta='+fechaHasta);
+    });
 </script>

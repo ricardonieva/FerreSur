@@ -182,5 +182,147 @@ class Venta
             return false;
         }
     }
+
+    ////////
+    public function consultarVentasFechasIVA($desde, $hasta)
+    {
+        $connect = Database::connectDB();
+        if($desde == '' || $hasta == '')
+        {
+            $sql = "SELECT * FROM venta,cliente WHERE venta.idcliente = cliente.idcliente ORDER BY fechaHora DESC";
+        }
+        else
+        {
+            $sql = "SELECT * FROM venta,cliente WHERE venta.fechaHora BETWEEN '$desde' AND '$hasta' AND venta.idcliente = cliente.idcliente ORDER BY fechaHora DESC";
+        }
+        //var_dump($sql);
+        $result = $connect->query($sql);
+        if($result != false)
+        {
+            if($result->rowCount() > 0)
+            {
+                return $result->fetchAll();
+            }
+            else
+            {
+                return false;
+            }        
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    ////////
+    public static function calcularIvaVenta($idventa) 
+    {
+        $connect = Database::connectDB();
+        $sql = "SELECT * FROM lineaventa, articulo WHERE lineaventa.idventa = $idventa AND lineaventa.idarticulo = articulo.idarticulo";
+        //var_dump($sql);
+        $result = $connect->query($sql);
+        if($result != false)
+        {
+            if($result->rowCount() > 0)
+            {
+                $result = $result->fetchAll();               
+                $total = 0;
+                $netoGravado = 0;
+                $iva = 0;
+                foreach($result as $row)
+                {
+                    $total = $total + $row['cantidad'] * $row['articulo_precioVenta'];
+                    $iva = $iva + round(($row['cantidad'] * $row['articulo_precioVenta']) * ($row['iva']/100), 2);
+                } 
+                $netoGravado = $total - $iva;
+                return compact("netoGravado", "iva", "total");
+                
+            }
+            else
+            {
+                return false;
+            }        
+        }
+        else
+        {
+            return false;
+        } 
+    }
+    ///
+
+    public function cantidadDeUnidadesVentidas($desde, $hasta) {
+        $connect = Database::connectDB();
+        $sql = "SELECT articulo.idarticulo, articulo.nombre,SUM(lineaventa.cantidad) as cantidad, 
+        SUM(lineaventa.cantidad * lineaventa.articulo_precioVenta) as sumaTotal FROM venta,lineaventa,articulo WHERE venta.fechaHora 
+        BETWEEN '$desde' AND '$hasta' AND lineaventa.idarticulo = articulo.idarticulo AND venta.idventa = lineaventa.idventa 
+        GROUP BY lineaventa.idarticulo";
+        //var_dump($sql);
+        $result = $connect->query($sql);
+        if($result != false)
+        {
+            if($result->rowCount() > 0)
+            {
+                return $result->fetchAll();
+            }
+            else
+            {
+                return false;
+            }        
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function dineroIngresadoPorVentasDiarias($desde, $hasta) {
+        $connect = Database::connectDB();
+        $sql = "SELECT SUM(lineaventa.cantidad * lineaventa.articulo_precioVenta) as sumaTotal, 
+        DATE_FORMAT(venta.fechaHora, '%d/%m/%Y') as fecha FROM venta,lineaventa,articulo 
+        WHERE venta.fechaHora BETWEEN '$desde' AND '$hasta' AND lineaventa.idarticulo = articulo.idarticulo 
+        AND venta.idventa = lineaventa.idventa GROUP BY DATE_FORMAT(venta.fechaHora, '%d/%m/%Y')";
+        //var_dump($sql);
+        $result = $connect->query($sql);
+        if($result != false)
+        {
+            if($result->rowCount() > 0)
+            {
+                return $result->fetchAll();
+            }
+            else
+            {
+                return false;
+            }        
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function dineroIngresadoDeVentasEnFechaEspecifica($fecha) {
+        $connect = Database::connectDB();
+        $sql = "SELECT SUM(lineaventa.cantidad * lineaventa.articulo_precioVenta) as sumaTotal, articulo.nombre, 
+        SUM(lineaventa.cantidad) as unidades, articulo.precioVenta FROM venta,lineaventa,articulo WHERE venta.fechaHora 
+        BETWEEN '$fecha 00:00:00' AND '$fecha 23:59:59' AND lineaventa.idarticulo = articulo.idarticulo 
+        AND venta.idventa = lineaventa.idventa GROUP BY articulo.nombre";
+        //var_dump($sql);
+        $result = $connect->query($sql);
+        if($result != false)
+        {
+            if($result->rowCount() > 0)
+            {
+                return $result->fetchAll();
+            }
+            else
+            {
+                return false;
+            }        
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 ?>
