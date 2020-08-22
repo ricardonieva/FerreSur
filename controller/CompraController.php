@@ -10,6 +10,7 @@ $art = new Articulo();
 $pro = new Proveedor();
 
 if(isset($_POST['buscarProveedor'])){    
+    $_SESSION['detalle_Compra']= [];
     $pro->idproveedor = $_POST['idProveedor'];
     $pro->selectProveedor();
     $_SESSION['idProveedor'] = $pro->idproveedor;
@@ -44,9 +45,42 @@ if(isset($_POST['buscarCodigo'])){
 //boton agregar articulo
 if(isset($_POST['agregarArticulo']))
 {
-    $_SESSION['detalle_Compra'][] = array("codigo" => $_POST['idarticulo'], "cantidad" => $_POST['unidades'], "costoUnitario" => $_POST['costoUnitario'], "nombre" => $_POST['nombre']);
+    $articuloCargado = false;
+    //if(!isset($_SESSION['detalle_Compra'])) { $_SESSION['detalle_Compra']= []; }
+    for($i=0; $i< count($_SESSION['detalle_Compra']); $i++) {
+        if($_SESSION['detalle_Compra'][$i]['codigo'] == $_POST['idarticulo']) {
+            $articuloCargado = true;
+            $_SESSION['detalle_Compra'][$i]['cantidad'] = $_SESSION['detalle_Compra'][$i]['cantidad'] + $_POST['unidades'];
+            $_SESSION['detalle_Compra'][$i]['costoUnitario'] = $_POST['costoUnitario'];
+        }
+    }
+    if(!$articuloCargado) {
+        $_SESSION['detalle_Compra'][] = array("codigo" => $_POST['idarticulo'], "cantidad" => $_POST['unidades'], "costoUnitario" => $_POST['costoUnitario'], "nombre" => $_POST['nombre']);
+    }   
     echo json_encode($_SESSION['detalle_Compra']);
 }
+
+//boton elimiar articulo
+if(isset($_POST['eliminarArticulo']))
+{
+    //limpia la variable session
+    for($i=0; $i< count($_SESSION['detalle_Compra']); $i++)
+    {
+        if(count($_SESSION['detalle_Compra']) == 1)
+        {
+            unset($_SESSION['detalle_Compra']);
+            $_SESSION['detalle_Compra'] = [];
+            break;
+        }      
+        if($_SESSION['detalle_Compra'][$i]['codigo'] == $_POST['idarticulo'])
+        {             
+            unset($_SESSION['detalle_Compra'][$i]);
+            $_SESSION['detalle_Compra'] = array_values($_SESSION['detalle_Compra']);
+        }             
+    }
+    echo json_encode($_SESSION['detalle_Compra']);
+}
+
 
 ////////boton finalizar compra
 if(isset($_POST['finalizarCompra']))

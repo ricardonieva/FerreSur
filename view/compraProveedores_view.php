@@ -136,10 +136,10 @@ Usuario::verificarSesion(24);
           <tr>
             <th scope="col">Codigo</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Descripcion</th>
             <th scope="col">Costo Unitario</th>
             <th scope="col">Cantidad</th>
             <th scope="col">Subtotal</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody id="tablaArticulo">    

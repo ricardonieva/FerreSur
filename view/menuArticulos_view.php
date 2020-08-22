@@ -14,7 +14,6 @@ Usuario::verificarSesion(6);
             <ul>
 
                 <li><a href="../view/Articulos_view.php">Lista de Articulo</a></li>
-                <li><a href="../view/actualizarStock_view.php">Actualizar Stock</a></li>
                 <li><a href="../view/rubro_view.php">Rubro</a></li>
                 <li><a href="../view/menuprincipal_view.php">Menu Principal</a></li>
 

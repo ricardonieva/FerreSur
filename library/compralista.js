@@ -249,7 +249,7 @@ function guardarCambios(){
         body: data
         })
         .then(res => res.text())
-        .then(data => {                     
+        .then(data => {
             if(data){
                 alert('La compra se modifico satisfactoriamente');
             }           

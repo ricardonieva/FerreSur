@@ -124,25 +124,59 @@ function buscarCodigoArticulo(e){
 
     });
 }
+
+//////// 
+function iterarTabla(detalle) {
+  var tabla = document.getElementById('tablaArticulo');
+  var total = 0;
+  tabla.innerHTML = ``;
+  for(let item of detalle) {
+    var subtotal = item.costoUnitario * item.cantidad;
+    total = total + subtotal;
+    tabla.innerHTML += `
+    <tr>
+      <td>${item.codigo}</td>
+      <td>${item.nombre}</td>
+      <td>${item.costoUnitario}</td>
+      <td>${item.cantidad}</td>
+      <td>${subtotal}</td>
+      <td><button class='btn btn-danger' onclick='eliminarArticulo(${item.codigo})'>Eliminar</button></td>
+    </tr>    
+    `;
+  }
+  document.getElementById('divtotal').innerHTML = `
+  <div class="alert alert-primary" role="alert" id="total">
+    Total: $ ${total}
+  </div>
+  `;
+
+}
+
+///// eliminar articulo de la lista
+function eliminarArticulo(idarticulo) {
+    const data = new FormData();
+    data.append('eliminarArticulo', 'true');
+    data.append('idarticulo', idarticulo);
+
+    fetch('../controller/CompraController.php',{
+      method: 'POST',
+      body: data
+    })
+    .then(res => res.json())
+    .then(data => {
+        //console.log(data);
+        iterarTabla(data);
+    });
+}
+
 //////////////////////// botom agregar articulo
 var total = 0;
 agregarArticulo.addEventListener('click', function(e) {
     e.preventDefault();
     var cantidadinput = document.getElementById('cantidad');
     var precioinput = document.getElementById('precio');
-    var tabla = document.getElementById('tablaArticulo');
     var subtotal = cantidadinput.value * precioinput.value;
-    total = total + subtotal;
-      tabla.innerHTML += `
-      <tr>
-        <td>${articulo.codigo}</td>
-        <td>${articulo.nombre}</td>
-        <td>${articulo.descripcion}</td>
-        <td>${precioinput.value}</td>
-        <td>${cantidadinput.value}</td>
-        <td>${subtotal}</td>
-      </tr>    
-      `;
+    total = total + subtotal;     
 
     const data = new FormData();
     data.append('agregarArticulo', 'true');
@@ -155,13 +189,11 @@ agregarArticulo.addEventListener('click', function(e) {
       method: 'POST',
       body: data
     })
-    
-      document.getElementById('divtotal').innerHTML = `
-      <div class="alert alert-primary" role="alert" id="total">
-        Total: $ ${total}
-      </div>
-      `;
-    
+    .then(res => res.json())
+    .then(data => {
+        iterarTabla(data);
+    });
+        
     });
 //////////////////////finalizar compra proveedores
 finalizarCompra.addEventListener('click', function(e){  
