@@ -23,7 +23,7 @@ if(isset($_POST['btnEliminar']))
     </div>
 
     <div class="row justify-content-center mt-4">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <table class="table">
                 <thead>
                     <tr>
@@ -32,6 +32,8 @@ if(isset($_POST['btnEliminar']))
                         <th>Descripcion</th>
                         <th>Precio de Venta</th>
                         <th>Stock</th>
+                        <th>IVA</th>
+
                         <th></th>
                         <th></th>
                     </tr>
@@ -46,8 +48,9 @@ if(isset($_POST['btnEliminar']))
                                 echo "<td>$row[descripcion]</td>";
                                 echo "<td>$row[precioVenta]</td>";
                                 echo "<td>$row[stock]</td>";
+                                echo "<td>$row[iva] %</td>";
                                 echo "<td><a href='../view/articuloModificar_view.php?idArticulo=$row[idarticulo]' class='btn btn-info'>Modificar</a></td>";
-                                echo "<td><button class='btn btn-danger' name='btnEliminar' value='$row[idarticulo]'>Eliminar</button></td>";
+                                echo "<td><form method='POST'><button type='submit' class='btn btn-danger' name='btnEliminar' value='$row[idarticulo]'>Eliminar</button></form></td>";
                             echo "</tr>";
                         }                   
                     ?>                  

@@ -12,6 +12,7 @@ if(isset($_POST['agregarArticulo']))
   $articulo->descripcion = $_POST['descripcion'];
   $articulo->precioVenta = $_POST['precioVenta'];
   $articulo->costoUnitario = $_POST['costoUnitario'];
+  $articulo->iva = $_POST['selectIva'];
   if($_POST['estado'] == 'on')
   {
     $articulo->estado = 1;
@@ -22,7 +23,7 @@ if(isset($_POST['agregarArticulo']))
   }
   $articulo->stock = $_POST['stock'];
   $articulo->stockminimo = $_POST['stockMinimo'];
-  $articulo->Rubro = $_POST['rubro'];
+  $articulo->Rubro = $_POST['rubro']; 
   $articulo->insertArticulo();
 }
 
@@ -46,31 +47,25 @@ if(isset($_POST['agregarArticulo']))
 
     <div class="row justify-content-center">
       <div class="form-group col-md-4">
-        <label for="precioVenta">Precio de venta</label>
-        <input type="text" class="form-control" name="precioVenta" placeholder="Precio del articulo">
-    
-      </div>
-
-      <div class="form-group col-md-4">
           <label for="costoUnitario">Costo unitario</label>
-          <input type="text" class="form-control" name="costoUnitario" placeholder="Costo unitario del articulo">     
+          <input type="text" class="form-control" name="costoUnitario" id="costoUnitario" placeholder="Costo unitario del articulo">     
+      </div>
+      <div class="form-group col-md-4">
+          <label for="selectIva">IVA %</label>
+          <select name="selectIva" class="form-control" id="selectIva">
+            <option></option>
+            <option>10.5</option>
+            <option>21</option>
+          </select>   
       </div>
     </div>  
 
-    <div class="row justify-content-center">          
+    <div class="row justify-content-center">    
       <div class="form-group col-md-4">
-        <label for="stock">Stock</label>
-        <input type="text" class="form-control" name="stock" placeholder="Stock del articulo">
+        <label for="precioVenta">Precio de venta</label>
+        <input type="text" class="form-control" name="precioVenta" id="precioVenta">
       </div>
-      
-      <div class="form-group col-md-4">
-        <label for="stockMinimo">Stock Minimo</label>
-        <input type="text" class="form-control" name="stockMinimo" placeholder="Stock minimo del articulo">
-      </div>   
-    </div>
-
-    <div class="row justify-content-center">       
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-4 mt-2">
         Rubro
         <select name="rubro" class="form-control">
           <?php 
@@ -78,14 +73,29 @@ if(isset($_POST['agregarArticulo']))
             {
               echo "<option value='$row[idrubro]'>$row[nombre]</option>";
             } 
-          ?>    
-
+          ?>
         </select>
       </div>
+    </div>  
+
+    <div class="row justify-content-center">          
+      <div class="form-group col-md-4">
+        <label for="stock">Stock</label>
+        <input type="text" class="form-control" name="stock" placeholder="Stock del articulo">
+      </div>      
+      <div class="form-group col-md-4">
+        <label for="stockMinimo">Stock Minimo</label>
+        <input type="text" class="form-control" name="stockMinimo" placeholder="Stock minimo del articulo">
+      </div>   
+    </div>
+
+    <div class="row justify-content-center">            
        <div class="form-group col-md-4">     
           <label for="estadoArticulo">Habilitado
           <input type="checkbox" class="form-control" name="estado" checked>    
           </label>   
+       </div>
+       <div class="form-group col-md-4">       
        </div>
     </div>    
 
@@ -97,3 +107,18 @@ if(isset($_POST['agregarArticulo']))
   </form>
 </div>
 <?php require_once ('../view/pie.php') ?>
+
+<script type="text/javascript">
+
+  selectIva.addEventListener('change', function () {
+    var precioUnitario = document.getElementById('costoUnitario').value;
+    var iva = document.getElementById('selectIva').value;
+
+    var precio = precioUnitario * (1+ iva/100);
+    precio = Math.round(precio * 100) / 100
+
+    var precioVenta = document.getElementById('precioVenta').value = precio;
+
+  });
+
+</script>

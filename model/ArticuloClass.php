@@ -7,6 +7,7 @@ class Articulo
     public $descripcion;
     public $precioVenta;
     public $costoUnitario;
+    public $iva;
     public $estado;
     public $stock;
     public $stockminimo;
@@ -35,10 +36,11 @@ class Articulo
     public function insertArticulo()
     {
         $connect = Database::connectDB();
-        $sql="INSERT INTO articulo(nombre, descripcion, precioVenta, costoUnitario, estado, stock, stockminimo, idRubro) 
-        VALUES ('$this->nombre','$this->descripcion',$this->precioVenta, $this->costoUnitario, '$this->estado', $this->stock, $this->stockminimo, $this->Rubro)";
+        $sql="INSERT INTO articulo(nombre, descripcion, precioVenta, costoUnitario, iva, estado, stock, stockminimo, idRubro) 
+        VALUES ('$this->nombre','$this->descripcion',$this->precioVenta, $this->costoUnitario, $this->iva, '$this->estado', $this->stock, $this->stockminimo, $this->Rubro)";
+        //die($sql);
         $result = $connect->query($sql);
-        if(!$result)
+        if($result == false)
         {
             echo "<script>alert('Error al cargar Artoculo'); </script>";
         }
@@ -62,6 +64,7 @@ class Articulo
             $this->descripcion = $row->descripcion;
             $this->precioVenta = $row->precioVenta;
             $this->costoUnitario = $row->costoUnitario;
+            $this->iva = $row->iva;
             $this->estado = $row->estado;
             $this->stock  = $row->stock;
             $this->stockminimo = $row->stockminimo;
@@ -77,8 +80,8 @@ class Articulo
     public function updateArticulo()
     {
         $connect = Database::connectDB();
-        $sql = "UPDATE articulo SET nombre='$this->nombre',descripcion='$this->descripcion',precioVenta=$this->precioVenta,costoUnitario=$this->costoUnitario,estado='$this->estado',stock=$this->stock,stockminimo=$this->stockminimo,idRubro=$this->Rubro WHERE idarticulo = $this->idarticulo";
-        var_dump($sql);
+        $sql = "UPDATE articulo SET nombre='$this->nombre',descripcion='$this->descripcion',precioVenta=$this->precioVenta,costoUnitario=$this->costoUnitario, iva=$this->iva, estado='$this->estado',stock=$this->stock,stockminimo=$this->stockminimo,idRubro=$this->Rubro WHERE idarticulo = $this->idarticulo";
+        //var_dump($sql);
         $result = $connect->query($sql);
         if(!$result)
         {
