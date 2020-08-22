@@ -104,7 +104,7 @@ var idcompraGlobal;
 function modificarCompra(idcompra){
     idcompraGlobal = idcompra;
     tabla.innerHTML = ``;
-    //detalle = [];
+    detalle = [];
 
     const data = new FormData();
     data.append('buscarCompraCompleta', 'true');
@@ -119,13 +119,12 @@ function modificarCompra(idcompra){
 
         $('#exampleModal').modal('show');
 
-        for(let item of data){
+        for(let item of data) {
             var detalle_compra = {codigo:item.idarticulo, nombre:item.articulo_nombre, unidades:item.unidades, costounitario:item.articulo_costounitario};
             detalle.push(detalle_compra);
         }
         iterarArrayDeArticulo(detalle);
         document.getElementById('tablaArticulo').innerHTML = ``;
-        
     }) 
       
 }
