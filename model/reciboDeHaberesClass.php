@@ -41,7 +41,6 @@ class ReciboDeHaberes
             echo "<script>alert('Error al eliminar Recibo de Haberes ".$this->idReciboDeHaberes."');</script>";
             return false;
         }
-       
     }
 
     public function selectReciboDeHaberes()
@@ -209,7 +208,7 @@ class ReciboDeHaberes
                     $diasPorcentualTrabajados = ($asistencia["diasTrabajadosHabiles"] / $diasHabiles) / 2;
                     if($diasPorcentualTrabajados >= 1)
                     {
-                        if($row->tipo = "Porcentual")
+                        if($row->tipo == "Porcentual")
                         {
                             $totalPresentismo = $sueldoBrutoSinConceptos * $row->valor / 100;
                             $sueldoBrutoConConceptos = $sueldoBrutoConConceptos + $totalPresentismo;
@@ -300,7 +299,7 @@ class ReciboDeHaberes
                 $AñosAntiguedad = $this->empleado->calcularAntiguedadDelEmpleado();
                 if($AñosAntiguedad > 0)
                 {
-                    if($row->tipo = "Porcentual")
+                    if($row->tipo == "Porcentual")
                     {
                         $totalAntiguedad =  (($sueldoBrutoSinConceptos * $row->valor) / 100) * $AñosAntiguedad;
                         $sueldoBrutoConConceptos = $sueldoBrutoConConceptos + $totalAntiguedad;
@@ -566,6 +565,29 @@ class ReciboDeHaberes
         $sql = "UPDATE recibodehaberes SET totalHaberes= $totalSueldoTotal,totalDeducciones=$totalDeducciones WHERE recibodehaberes.idReciboDeHaberes = $this->idReciboDeHaberes"; 
         $connect->query($sql);          
         
+    }
+
+    public function eliminarRecibosRepetidos($idLiquidacion, $idEmpleado) {
+        try {
+            $connect = Database::connectDB();
+            $sql = "SELECT idReciboDeHaberes FROM recibodehaberes WHERE recibodehaberes.empleado_idEmpleado = $idEmpleado AND recibodehaberes.liquidacion_idliquidacion = $idLiquidacion";
+            $result = $connect->query($sql);
+            if($result != false) {
+                if(count($result) > 0) {
+                    foreach($result->fetchAll() as $row) {
+                        $this->idReciboDeHaberes = $row['idReciboDeHaberes'];
+                        $this->deleteReciboDeHaberes();
+                    }
+                }
+            }
+          
+            return true;
+        }
+        catch(Exception $ex) {
+            echo "<script>alert('Error al eliminar Recibo de Haberes ".$this->idReciboDeHaberes."');</script>";
+            return false;
+        }
+       
     }
 }
 ?>

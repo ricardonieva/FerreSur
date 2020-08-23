@@ -133,10 +133,10 @@ if(isset($_POST['btnEliminar']))
                     <table class="table mt-5">
                         <thead>
                             <tr>                                
-                                <th>Id Recibo</th>
+                                <th>Recibo</th>
                                 <th>CUIL</th>
-                                <th>Apellido</th>
-                                <th>Nombre</th>
+                                <th>Empelado</th>
+                                <th>Fecha</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -154,8 +154,8 @@ if(isset($_POST['btnEliminar']))
                                 echo "<tr>";
                                     echo "<td>".$row->idReciboDeHaberes."</td>";
                                     echo "<td>".$row->empleado->cuil."</td>";
-                                    echo "<td>".$row->empleado->apellido."</td>";
-                                    echo "<td>".$row->empleado->nombre."</td>";
+                                    echo "<td>".$row->empleado->apellido." ".$row->empleado->nombre."</td>";
+                                    echo "<td>".date("d/m/Y", strtotime($row->fechaDeGeneracion))."</td>";
                                     echo "<td><button class='btn btn-info' onclick='verReciboDeHaberes($row->idReciboDeHaberes);'>Ver Recibo</button></td>";
                                     echo "<td><button class='btn btn-danger' form='form1' name='btnEliminar' value='$row->idReciboDeHaberes'>Eliminar Recibo</button></td>";
                                 echo "</tr>";

@@ -11,6 +11,7 @@ if(isset($_POST['btnGenerarLiquidaciones']))
    foreach($_POST['checkEmpleado'] as $row)
    {    
         $RH = new ReciboDeHaberes();
+        $RH->eliminarRecibosRepetidos($_POST['selectLiquidacion'], $row);
         $RH->calcularRecibo_Concepto($_POST['selectLiquidacion'], $row);        
    }
    echo "<script>alert('Se generaron las respectivas liquidaciones Satisfactoriamente')</script>";
