@@ -15,14 +15,15 @@ Usuario::verificarSesion(12);
         </div>
     </div>    
 
-    <div class="rol justify-content-center mt-3">
-        <div class="col-md-9">
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-10">
             <table class="table ">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Cantidad</th>
                         <th>Fecha</th>
+                        <th>Codigo Empleado</th>
                         <th>Empleado</th>
                         <th></th>
                         <th></th>

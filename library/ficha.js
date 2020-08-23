@@ -18,8 +18,9 @@ function cargarFichas(){
             <tr>
                 <th>${item.idficha}</th>
                 <td>${item.cantidad}</td>
-                <td>${item.fecha}</td>
+                <td>${formato(item.fecha)}</td>
                 <td>${item.empleado_idEmpleado}</td>
+                <td>${item.nombre} ${item.apellido}</td>
                 <td><button class="btn btn-info form-control"   onclick="botonModificarFicha(${item.idficha},${item.cantidad},'${item.fecha}',${item.empleado_idEmpleado});">Modificar</button></td>
                 <td><button class="btn btn-danger form-control"  onclick="eliminarFicha(${item.idficha});">Eliminar</button></td>
             </tr>
@@ -147,3 +148,7 @@ function eliminarFicha(idficha){
         });
     }    
 }
+
+function formato(texto){
+    return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1');
+  }
