@@ -203,7 +203,7 @@ if(isset($_POST['btnEliminar']))
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>Total</td>
+                                <td><?php if(isset($totalHaberes)) { echo "Total"; } ?></td>
                                 <td><?php if(isset($totalHaberes)) { echo number_format($totalHaberes, 2, ',', '.'); } ?></td>
                                 <td><?php if(isset($totalDeducciones)) { echo number_format($totalDeducciones, 2, ',', '.'); } ?></td>
                                 <td><?php if(isset($totalNeto)) { echo number_format($totalNeto, 2, ',', '.'); } ?></td>
