@@ -21,7 +21,7 @@ if(isset($_POST['btnEliminar']))
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <title>Tipo de Liquidacion</title>
+    <title>Libro unico</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -74,9 +74,9 @@ if(isset($_POST['btnEliminar']))
 <br><br><br>
 
 <form action="" method="POST" id="form1">
-    <h3 class="text-center mt-3">Generar Liquidacion</h3>
+    <h3 class="text-center mt-3">Libro Unico de Liquidación de Haberes</h3>
         <div class="container-fluid mt-5">
-            <div class="row justify-content-center">
+            <div class="row justify-content-center eliminarImprimir">
                 <div class="col-md-6">
                     Codigo:
                     <select name="selectLiquidacion" class="form-control" onchange="this.form.submit()">
@@ -96,7 +96,7 @@ if(isset($_POST['btnEliminar']))
 
         <div class="container-fluid mt-5">
             <div class="row justify-content-center">
-                <div class="col-md-10">
+                <div class="col-md-12">
                    <?php
                         if(isset($_POST['selectLiquidacion']))
                         {
@@ -137,6 +137,9 @@ if(isset($_POST['btnEliminar']))
                                 <th>CUIL</th>
                                 <th>Empelado</th>
                                 <th>Fecha</th>
+                                <th>Credito</th>
+                                <th>Debito</th>
+                                <th>Netos</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -146,57 +149,79 @@ if(isset($_POST['btnEliminar']))
                     <?php        
                            
                             $liq->selectAllReciboDeHaberes();
-                            $total = 0;
+                            $totalHaberes = 0;
+                            $totalDeducciones = 0;
+                            $totalNeto = 0;
                             //var_dump($liq->listaReciboDeHaberes);
                             //die();
                             foreach($liq->listaReciboDeHaberes as $row)
                             {
+                                $haberes = 0;
+                                $deducciones = 0;
+                                $neto = 0;
+                                $row->selectAllRecibo_Concepto();
+                                foreach($row->listaRecibo_Concepto as $row2)
+                                {
+                                    if($row2->concepto->percepcionSalarial === "Haber")
+                                    {
+                                        $haberes = $haberes + $row2->importe;
+                                    }
+                                    else
+                                    {
+                                        $deducciones = $deducciones + $row2->importe;
+                                    }
+                                }
+                                $haberes = $haberes /2;
+                                $deducciones = $deducciones /2;
+                                $neto = $haberes - $deducciones;
+
                                 echo "<tr>";
                                     echo "<td>".$row->idReciboDeHaberes."</td>";
                                     echo "<td>".$row->empleado->cuil."</td>";
                                     echo "<td>".$row->empleado->apellido." ".$row->empleado->nombre."</td>";
                                     echo "<td>".date("d/m/Y", strtotime($row->fechaDeGeneracion))."</td>";
-                                    echo "<td><button class='btn btn-info' onclick='verReciboDeHaberes($row->idReciboDeHaberes);'>Ver Recibo</button></td>";
-                                    echo "<td><button class='btn btn-danger' form='form1' name='btnEliminar' value='$row->idReciboDeHaberes'>Eliminar Recibo</button></td>";
+                                    echo "<td>".number_format($haberes, 2, ',', '.')."</td>";
+                                    echo "<td>".number_format($deducciones, 2, ',', '.')."</td>";
+                                    echo "<td>".number_format($neto, 2, ',', '.')."</td>";
+
+                                    echo "<td><button class='btn btn-info eliminarImprimir' onclick='verReciboDeHaberes($row->idReciboDeHaberes);'>Ver Recibo</button></td>";
+                                    echo "<td><button class='btn btn-danger eliminarImprimir' form='form1' name='btnEliminar' value='$row->idReciboDeHaberes'>Eliminar Recibo</button></td>";
                                 echo "</tr>";
-                                $row->selectAllRecibo_Concepto();
-                                //echo "<br>";
-                                //var_dump($row->listaRecibo_Concepto);
-                                //die();
-                                foreach($row->listaRecibo_Concepto as $row2)
-                                {
-                                    if($row2->concepto->percepcionSalarial === "Haber")
-                                    {
-                                        $total = $total + $row2->importe;
-                                        //echo "total: ".$row2->importe."<br>";                                        
-                                    }
-                                }
-                                //temporalemte se solucionara el bug asi xD
-                                
+                               
+                                // sumamos todos los total
+                                $totalHaberes = $totalHaberes + $haberes;
+                                $totalDeducciones = $totalDeducciones + $deducciones;
+                                $totalNeto = $totalNeto + $neto;
                             }
-                            $total = $total/2;
+                            
                         }
                    ?>
                             
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Total</td>
+                                <td><?php if(isset($totalHaberes)) { echo number_format($totalHaberes, 2, ',', '.'); } ?></td>
+                                <td><?php if(isset($totalDeducciones)) { echo number_format($totalDeducciones, 2, ',', '.'); } ?></td>
+                                <td><?php if(isset($totalNeto)) { echo number_format($totalNeto, 2, ',', '.'); } ?></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
                     </table>                
-                </div>
-
-            
-                <div class="col-md-10">
-                    <h4>Total Pagado : $ 
-                        <?php 
-                        if(isset($total))
-                        {
-                            echo number_format($total, 2, ',', '.'); 
-                        }
-                        ?>
-                    </h4>
-                </div>
+                </div>     
 
             </div>   
         </div>
 
+    <div class="eliminarImprimir">
+        <div class="d-flex justify-content-center">
+                <button class="btn btn-primary" onclick="window.print();">Imprirmir</button>
+        </div>     
+    </div>
 
 
  <!-- boton menu empleado -->
