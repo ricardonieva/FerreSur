@@ -122,7 +122,7 @@ function cargarDatosDeLquidacion(idCompra){
             document.getElementById('tablaCompra').innerHTML += `
             <tr>
                 <td>${item.idarticulo}</td>
-                <td>${item.articulo_nombre}</td>
+                <td>${item.nombre}</td>
                 <td>${item.unidades}</td>
                 <td>${item.articulo_costounitario}</td>
                 <td>${subtotal}</td>               

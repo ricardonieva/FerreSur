@@ -120,7 +120,7 @@ function modificarCompra(idcompra){
         $('#exampleModal').modal('show');
 
         for(let item of data) {
-            var detalle_compra = {codigo:item.idarticulo, nombre:item.articulo_nombre, unidades:item.unidades, costounitario:item.articulo_costounitario};
+            var detalle_compra = {codigo:item.idarticulo, nombre:item.nombre, unidades:item.unidades, costounitario:item.articulo_costounitario};
             detalle.push(detalle_compra);
         }
         iterarArrayDeArticulo(detalle);

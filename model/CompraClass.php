@@ -111,8 +111,8 @@ class Compra
     public function buscarCompraCompleta()
     {
         $connect = Database::connectDB();
-        $sql = "SELECT * FROM compra, detalle_compra 
-        WHERE compra.idcompra = $this->idcompra AND detalle_compra.idcompra = compra.idcompra";
+        $sql = "SELECT * FROM compra, detalle_compra, articulo WHERE compra.idcompra = $this->idcompra 
+        AND detalle_compra.idcompra = compra.idcompra AND detalle_compra.idarticulo = articulo.idarticulo";
         //var_dump($sql);
         $result = $connect->query($sql);
         if($result != false)
@@ -142,7 +142,8 @@ class Compra
             $connect->exec($sql);
             foreach($detalle_compra as $row)
             {
-                $sql = "INSERT INTO detalle_compra(idcompra, unidades, articulo_costounitario, articulo_nombre, idarticulo) VALUES ($idcompra, $row->unidades, $row->costounitario, '$row->nombre',$row->codigo)";
+                //$sql = "INSERT INTO detalle_compra(idcompra, unidades, articulo_costounitario, articulo_nombre, idarticulo) VALUES ($idcompra, $row->unidades, $row->costounitario, '$row->nombre',$row->codigo)";
+                $sql = "INSERT INTO detalle_compra(idcompra, unidades, articulo_costounitario, idarticulo) VALUES ($idcompra, $row->unidades, $row->costounitario, $row->codigo)";
                 $connect->exec($sql);
             }
             $connect->commit();
