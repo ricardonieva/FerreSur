@@ -91,7 +91,7 @@ if(isset($_POST['finalizar']))
             $linea = new LineaDeVenta();
             $linea->cantidad = $row['cantidad']; 
             $linea->articulo_precioVenta = $row['precio']; 
-            $linea->articulo_nombre = $row['nombre']; 
+            //$linea->articulo_nombre = $row['nombre']; 
             $linea->cantidad = $row['cantidad']; 
             $linea->idarticulo = $row['id'];
             //var_dump($linea);

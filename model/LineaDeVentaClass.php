@@ -4,7 +4,6 @@ class LineaDeVenta
     public $idlineaVenta;
     public $cantidad;
     public $articulo_precioVenta;
-    public $articulo_nombre;
     public $idventa;
     public $idarticulo;
 
@@ -17,8 +16,8 @@ class LineaDeVenta
         $idVenta = $result->id; 
         //var_dump($idVenta);
 
-        $sql = "INSERT INTO lineaventa(cantidad, articulo_precioVenta, articulo_nombre, idventa, idarticulo) 
-        VALUES ($this->cantidad, $this->articulo_precioVenta, '$this->articulo_nombre', $idVenta, $this->idarticulo)";
+        $sql = "INSERT INTO lineaventa(cantidad, articulo_precioVenta, idventa, idarticulo) 
+        VALUES ($this->cantidad, $this->articulo_precioVenta, $idVenta, $this->idarticulo)";
         //var_dump($sql);
         $result = $connect->query($sql);
         if($result != false)

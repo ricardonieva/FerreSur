@@ -73,8 +73,9 @@ class Venta
     public function buscarVentaPorId($idventa)
     {
         $connect = Database::connectDB();    
-        $sql = "SELECT * FROM venta, lineaventa, articulo, cliente WHERE venta.idventa = $idventa AND venta.idcliente = cliente.idcliente AND 
-        lineaventa.idventa = venta.idventa AND lineaventa.idarticulo = articulo.idarticulo";    
+        $sql = "SELECT *, articulo.nombre as articulo_nombre FROM venta, lineaventa, articulo, cliente 
+        WHERE venta.idventa = $idventa AND venta.idcliente = cliente.idcliente AND lineaventa.idventa = venta.idventa 
+        AND lineaventa.idarticulo = articulo.idarticulo";    
         $result = $connect->query($sql);
         if($result != false)
         {
