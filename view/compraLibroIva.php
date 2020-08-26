@@ -1,7 +1,7 @@
 <?php
 require_once ('../model/UsuarioClass.php');
 require_once ('../model/CompraClass.php');
-//Usuario::verificarSesion(25);
+Usuario::verificarSesion(33);
 require_once ('../view/cabecera.php');
 
 

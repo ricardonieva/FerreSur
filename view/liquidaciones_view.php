@@ -1,7 +1,7 @@
 <?php
+require_once ('../model/UsuarioClass.php');
 require_once ('../view/cabecera.php');
 require_once ('../model/LiquidacionClass.php');
-require_once ('../model/UsuarioClass.php');
 Usuario::verificarSesion(14);
 
 

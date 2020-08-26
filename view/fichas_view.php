@@ -1,7 +1,7 @@
 <?php
-require_once ('../view/cabecera.php');
 require_once ('../model/UsuarioClass.php');
-Usuario::verificarSesion(12);
+require_once ('../view/cabecera.php');
+Usuario::verificarSesion(36);
 
 ?>
 <br><br><br>

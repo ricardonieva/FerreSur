@@ -1,6 +1,6 @@
 <?php
-require_once ('../view/cabecera.php');
 require_once ('../model/UsuarioClass.php');
+require_once ('../view/cabecera.php');
 usuario::verificarSesion(28);
 require_once ('../model/VentaClass.php');
 require_once ('../model/ClienteClass.php');

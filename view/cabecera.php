@@ -51,7 +51,7 @@ error_reporting(0);
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active"><a href="../view/menuPrincipal_view.php" class="navbar-brand">Ferre-Sur  </a></li>
-              <li class="nav-item active"><p class="navbar-brand"> <?php echo $_SESSION['usuario']; ?> </p></li>
+              <li class="nav-item active"><p class="navbar-brand">| <?php echo $_SESSION['usuario']; ?> </p></li>
             </ul> 
 
             <a class="btn btn-primary" href="../controller/cerrarSesionController.php">Cerrar Sesion</a> 

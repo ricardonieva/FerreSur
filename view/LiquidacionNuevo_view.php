@@ -2,7 +2,7 @@
 require_once ('../model/UsuarioClass.php');
 require_once ('../model/LiquidacionClass.php');
 require_once ('../model/tiposDeLiquidacionClass.php');
-//Usuario::verificarSesion(5);
+Usuario::verificarSesion(38);
 
 if(isset($_POST['btnGenerar']))
 {

@@ -1,9 +1,9 @@
 <?php
-require_once ('../view/cabecera.php');
 require_once ('../model/UsuarioClass.php');
+require_once ('../view/cabecera.php');
 require_once ('../model/LiquidacionClass.php');
 require_once ('../model/tiposDeLiquidacionClass.php');
-//Usuario::verificarSesion(5);
+Usuario::verificarSesion(37);
 
 $liq = new Liquidacion();
 $liq->idliquidacion = $_GET['idLiquidacion'];

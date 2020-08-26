@@ -2,7 +2,7 @@
 require_once ('../model/UsuarioClass.php');
 require_once ('../model/VentaClass.php');
 require_once ('../model/ArticuloClass.php');
-//Usuario::verificarSesion(25);
+Usuario::verificarSesion(40);
 require_once ('../view/cabecera.php');
 
 

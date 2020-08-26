@@ -1,6 +1,6 @@
 <?php
-require_once ('../view/cabecera.php');
 include_once ('../model/UsuarioClass.php');
+require_once ('../view/cabecera.php');
 Usuario::verificarSesion(27);
 $idLiquidacion = (int) $_GET['recibodehaberesid'];
 ?>

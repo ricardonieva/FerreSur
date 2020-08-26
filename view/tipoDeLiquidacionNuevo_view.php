@@ -1,7 +1,8 @@
 <?php
+require_once ('../model/UsuarioClass.php');
+Usuario::verificarSesion(13);
 require_once ('../model/conceptoClass.php');
 require_once ('../model/tiposDeLiquidacionClass.php');
-session_start();
 $concepto = new Concepto();
 if(isset($_POST['botonAgregar']))
 {

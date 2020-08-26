@@ -1,7 +1,6 @@
 <?php
-session_start();
-require_once ('../view/cabecera.php');
 require_once ('../model/UsuarioClass.php');
+require_once ('../view/cabecera.php');
 require_once ('../model/EmpleadoClass.php');
 require_once ('../model/subModulosClass.php');
 Usuario::verificarSesion(2);

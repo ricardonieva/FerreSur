@@ -1,4 +1,6 @@
 <?php
+require_once ('../model/UsuarioClass.php');
+Usuario::verificarSesion(13);
 require_once ('../view/cabecera.php');
 require_once ('../model/tiposDeLiquidacionClass.php');
 require_once ('../model/conceptoClass.php');

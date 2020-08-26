@@ -1,9 +1,9 @@
 <?php
+require_once ('../model/UsuarioClass.php');
 require_once ('../view/cabecera.php');
 require_once ('../model/categoriaClass.php');
 require_once ('../model/EmpleadoClass.php');
-require_once ('../model/UsuarioClass.php');
-//Usuario::verificarSesion(2);//2 es todo lo q sea articulos
+Usuario::verificarSesion(35);
 
 $idEmple = (int) $_GET['idEmpleado'];
 $categoria = new Categoria();

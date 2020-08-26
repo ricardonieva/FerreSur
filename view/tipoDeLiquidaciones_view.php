@@ -1,7 +1,7 @@
 <?php
+require_once ('../model/UsuarioClass.php');
 require_once ('../view/cabecera.php');
 require_once ('../model/tiposDeLiquidacionClass.php');
-require_once ('../model/UsuarioClass.php');
 Usuario::verificarSesion(13);
 
 if(isset($_POST['btnEliminar']))

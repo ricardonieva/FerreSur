@@ -2,7 +2,7 @@
 require_once ('../model/UsuarioClass.php');
 require_once ('../model/EmpleadoClass.php');
 require_once ('../model/categoriaClass.php');
-//Usuario::verificarSesion(4);//4 es todo lo q sea articulos
+Usuario::verificarSesion(34);
 $categoria = new Categoria();
 
 if(isset($_POST['btnAgregarEmpleado']))

@@ -1,6 +1,6 @@
 <?php
-include_once ('../view/cabecera.php');
 require_once ('../model/UsuarioClass.php');
+include_once ('../view/cabecera.php');
 Usuario::verificarSesion(10);
 ?>
 

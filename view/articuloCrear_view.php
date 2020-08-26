@@ -1,9 +1,9 @@
 <?php
-require_once ('../view/cabecera.php');
 require_once ('../model/UsuarioClass.php');
+require_once ('../view/cabecera.php');
 require_once ('../model/RubroClass.php');
 require_once ('../model/ArticuloClass.php');
-//Usuario::verificarSesion(3);//3 es todo lo q sea articulos
+Usuario::verificarSesion(30);
 
 if(isset($_POST['agregarArticulo']))
 {
