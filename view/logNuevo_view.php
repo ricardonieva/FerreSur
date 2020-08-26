@@ -73,7 +73,7 @@
                 </div>
                     
                 <br />  
-                <input type="submit" name="guardar" class="btn btn-info" value="Guardar" />  
+                <button type="submit" name="guardar" id="guardar" class="btn btn-info">Guardar</button>
                 
             
                 
@@ -98,7 +98,8 @@ require_once ('../view/pie.php');
 ?>
 
 <script>
-formulario.addEventListener('submit', validar,false);
+//formulario.addEventListener('submit', validar,false);
+guardar.addEventListener('click', validar);
 
 function validar(e){
     var usuario = document.getElementById('usuario');

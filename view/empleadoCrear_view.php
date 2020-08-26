@@ -126,30 +126,11 @@ if(isset($_POST['btnAgregarEmpleado']))
         <label for="direccion">Telefono</label>
         <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Telefono">
       </div>
-
-      <div class="form-group col-md-4">
-        <label for="direccion">Empresa</label>
-        <select class="form-control" id="empresa" name="empresa">
-          <option value="Personal">Personal</option>
-          <option value="Claro">Claro</option>
-          <option value="Movistar">Movistar</option>
-          <option value="Tuenti">Tuenti</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="row justify-content-center">
       <div class="form-group col-md-4">
         <label for="direccion">cuenta Bancaria</label>
         <input type="text" class="form-control" name="ctaBancaria" placeholder="Cuenta Bancaria">
-      </div>
-
-      <div class="form-group col-md-4">
-       
-      </div>
-    </div>
-
-
+      </div>     
+    </div>  
      <div class="col-md-4 offset-md-2 ">
        <button type="submit" class="btn btn-primary" name="btnAgregarEmpleado">Agregar empleado</button>
      </div>

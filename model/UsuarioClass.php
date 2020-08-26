@@ -136,9 +136,16 @@ class Usuario{
         $connect = Database::connectDB();
         $sql = "SELECT * FROM usuario WHERE idEmpleado = $id";
         $result = $connect->query($sql);
-        if($result->rowCount() > 0)
-        {            
-            return true;
+        if($result != false)
+        {    
+            if($result->rowCount() > 0)
+            {
+                return true;
+            }  
+            else
+            {
+                return false;
+            }      
         }
         else
         {

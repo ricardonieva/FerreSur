@@ -1,7 +1,7 @@
 <?php
 require_once ('../model/UsuarioClass.php');
 require_once ('../view/cabecera.php');
-Usuario::verificarSesion(5);//2 es todo lo q sea articulos
+//Usuario::verificarSesion(5);//2 es todo lo q sea articulos
 //sesion::verificarSiTieneRol();
 ?>
 

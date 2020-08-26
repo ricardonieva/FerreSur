@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once ('../model/UsuarioClass.php');
 require_once ('../model/EmpleadoClass.php');
 
@@ -12,9 +11,9 @@ $nombre = "";
 if(isset($_POST['buscarEmpleado']))
 {    
     $emp->cuil = $_POST['buscarcuil'];
-    $datos = $emp->selectCuilEmpleado();
+    $emp->selectCuilEmpleado();
 
-    if($datos == false)
+    if($emp->idEmpleado != NULL)
     {
         $sesioncreada = $sesion->sesionConsulta($emp->idEmpleado);
         if($sesioncreada == false)
