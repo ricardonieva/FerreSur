@@ -92,7 +92,7 @@ class ReciboDeHaberes
                 $RC = new Recibo_concepto();
                 $RC->idRecibo_concepto = $row["idRecibo_concepto"];
                 $RC->importe = $row["importe"];
-                //$RC->cantidad = $row["cantidad"];
+                $RC->cantidad = $row["cantidad"];
                 //$RC->concepto_detalle = $row["concepto_detalle"];
                 $concep = new Concepto();
                 $concep->idConcepto = $row["concepto_idconcepto"];

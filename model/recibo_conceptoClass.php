@@ -17,8 +17,8 @@ class Recibo_concepto
             $connect = Database::connectDB();
             // $sql = "INSERT INTO recibo_concepto(importe, cantidad, concepto_detalle, concepto_idconcepto, ReciboDeHaberes_idReciboDeHaberes) 
             // VALUES ($this->importe, $this->cantidad, '$this->concepto_detalle',$this->concepto,$this->ReciboDeHaberes)";
-            $sql = "INSERT INTO recibo_concepto(importe, concepto_idconcepto, ReciboDeHaberes_idReciboDeHaberes) 
-            VALUES ($this->importe, $this->concepto,$this->ReciboDeHaberes)";
+            $sql = "INSERT INTO recibo_concepto(importe, cantidad,concepto_idconcepto, ReciboDeHaberes_idReciboDeHaberes) 
+            VALUES ($this->importe,  $this->cantidad, $this->concepto,$this->ReciboDeHaberes)";
             //var_dump($sql);
             $result = $connect->query($sql);
              if (!$result) {

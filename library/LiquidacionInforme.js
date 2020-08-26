@@ -100,7 +100,7 @@ window.addEventListener('load', function(){
             <tr>
                 <td>${item['concepto'].idConcepto}</td>
                 <td>${item['concepto'].detalle}</td>
-                <td>${item['concepto'].valor}</td>
+                <td>${item.cantidad}</td>
                 <td>${haberes}</td>
                 <td>${deducciones}</td>
             </tr>
