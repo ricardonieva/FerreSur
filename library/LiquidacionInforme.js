@@ -99,8 +99,8 @@ window.addEventListener('load', function(){
             tablaDet.innerHTML += `
             <tr>
                 <td>${item['concepto'].idConcepto}</td>
-                <td>${item.concepto_detalle}</td>
-                <td>${item.cantidad}</td>
+                <td>${item['concepto'].detalle}</td>
+                <td>${item['concepto'].valor}</td>
                 <td>${haberes}</td>
                 <td>${deducciones}</td>
             </tr>
