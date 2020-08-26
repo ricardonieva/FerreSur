@@ -110,8 +110,10 @@ class ReciboDeHaberes
         try
         {
             $connect = Database::connectDB();
-            $sql = "INSERT INTO recibodehaberes(liquidacion_idliquidacion, empleado_idEmpleado, categoria_tipo, categoria_sueldoBasico, categoria_formaLaboral, fechaDeGeneracion, TipoDeRecibo) 
-            VALUES (".$this->liquidacion->idliquidacion.",".$this->empleado->idEmpleado.",'$this->categoria_tipo',$this->categoria_sueldoBasico,'$this->categoria_formalaboral', '$this->fechaDeGeneracion', '$this->TipoDeRecibo')";
+            // $sql = "INSERT INTO recibodehaberes(liquidacion_idliquidacion, empleado_idEmpleado, categoria_tipo, categoria_sueldoBasico, categoria_formaLaboral, fechaDeGeneracion, TipoDeRecibo) 
+            // VALUES (".$this->liquidacion->idliquidacion.",".$this->empleado->idEmpleado.",'$this->categoria_tipo',$this->categoria_sueldoBasico,'$this->categoria_formalaboral', '$this->fechaDeGeneracion', '$this->TipoDeRecibo')";
+             $sql = "INSERT INTO recibodehaberes(liquidacion_idliquidacion, empleado_idEmpleado, categoria_tipo, categoria_sueldoBasico, categoria_formaLaboral, fechaDeGeneracion) 
+             VALUES (".$this->liquidacion->idliquidacion.",".$this->empleado->idEmpleado.",'$this->categoria_tipo',$this->categoria_sueldoBasico,'$this->categoria_formalaboral', '$this->fechaDeGeneracion')";
             //var_dump($sql);
             $result = $connect->query($sql);
              if (!$result) {
@@ -149,7 +151,7 @@ class ReciboDeHaberes
         $this->categoria_tipo = $this->empleado->categoria->Tipo;
         $this->categoria_sueldoBasico = $this->empleado->categoria->sueldoBasico;
         $this->categoria_formalaboral = $this->empleado->categoria->formaLaboral;
-        $this->TipoDeRecibo = $this->liquidacion->TipoDeLiquidacion->tipo;
+        //$this->TipoDeRecibo = $this->liquidacion->TipoDeLiquidacion->tipo;
         $this->fechaDeGeneracion = date('Y-m-d');
         $this->insertReciboDeHaberes();
         $this->idReciboDeHaberes = $this->lastIdReciboDeHaberes();
@@ -561,9 +563,9 @@ class ReciboDeHaberes
             }            
         }
 
-        $connect = Database::connectDB();
-        $sql = "UPDATE recibodehaberes SET totalHaberes= $totalSueldoTotal,totalDeducciones=$totalDeducciones WHERE recibodehaberes.idReciboDeHaberes = $this->idReciboDeHaberes"; 
-        $connect->query($sql);          
+        // $connect = Database::connectDB();
+        // $sql = "UPDATE recibodehaberes SET totalHaberes= $totalSueldoTotal,totalDeducciones=$totalDeducciones WHERE recibodehaberes.idReciboDeHaberes = $this->idReciboDeHaberes"; 
+        // $connect->query($sql);          
         
     }
 
