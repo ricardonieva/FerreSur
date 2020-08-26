@@ -575,7 +575,7 @@ class ReciboDeHaberes
             $sql = "SELECT idReciboDeHaberes FROM recibodehaberes WHERE recibodehaberes.empleado_idEmpleado = $idEmpleado AND recibodehaberes.liquidacion_idliquidacion = $idLiquidacion";
             $result = $connect->query($sql);
             if($result != false) {
-                if(count($result) > 0) {
+                if($result->rowCount() > 0) {
                     foreach($result->fetchAll() as $row) {
                         $this->idReciboDeHaberes = $row['idReciboDeHaberes'];
                         $this->deleteReciboDeHaberes();
