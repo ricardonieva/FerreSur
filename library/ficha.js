@@ -19,9 +19,9 @@ function cargarFichas(){
                 <th>${item.idficha}</th>
                 <td>${item.cantidad}</td>
                 <td>${formato(item.fecha)}</td>
-                <td>${item.empleado_idEmpleado}</td>
+                <td>${item.cuil}</td>
                 <td>${item.nombre} ${item.apellido}</td>
-                <td><button class="btn btn-info form-control"   onclick="botonModificarFicha(${item.idficha},${item.cantidad},'${item.fecha}',${item.empleado_idEmpleado});">Modificar</button></td>
+                <td><button class="btn btn-info form-control" onclick="botonModificarFicha(${item.idficha},${item.cantidad},'${item.fecha}',${item.cuil});">Modificar</button></td>
                 <td><button class="btn btn-danger form-control"  onclick="eliminarFicha(${item.idficha});">Eliminar</button></td>
             </tr>
             `;
@@ -33,13 +33,13 @@ function cargarFichas(){
 
 function nuevaFicha(){
 
-    var emplead = document.getElementById('idempleado');
+    var cuil = document.getElementById('cuil');
     var cantida = document.getElementById('cantidadFicha');
     var fech = document.getElementById('fecha');
 
     const data = new FormData();
     data.append('nuevaFicha','true');
-    data.append('empleado', emplead.value);
+    data.append('cuil', cuil.value);
     data.append('cantidad',cantida.value);
     data.append('fecha',fech.value);
 
@@ -49,10 +49,10 @@ function nuevaFicha(){
     })
     .then(res=> res.json())
     .then(data => {
-        alert(data);
         if(data == true)
         {
-            alert('Se cargo la ficha satisfactoriamente');            
+            alert('Se cargo la ficha satisfactoriamente');   
+            cargarFichas()         
         }
         else
         {
@@ -70,7 +70,7 @@ modificarFicha.addEventListener('click', modificarFichaBD);
 
 function modificarFichaBD(){
 
-    var idempleado = document.getElementById('idempleadoModificar');
+    var cuil = document.getElementById('cuilModificar');
     var cantidad = document.getElementById('cantidadFichaModificar');
     var fecha = document.getElementById('fechaModificar');
 
@@ -79,7 +79,7 @@ function modificarFichaBD(){
     data.append('idFicha', idFichaGlobal);
     data.append('cantidad', cantidad.value);
     data.append('fecha', fecha.value);
-    data.append('idempleado',idempleado.value);
+    data.append('cuil',cuil.value);
     
     fetch('../controller/fichaController.php', {
         method: 'POST',
@@ -102,13 +102,13 @@ function modificarFichaBD(){
 var idFichaGlobal;
 // boton modificar ficha
 
-function botonModificarFicha(idficha, cantidad, fecha, idempleado){
+function botonModificarFicha(idficha, cantidad, fecha, cuil){
 
     idFichaGlobal = idficha;
 
     $('#exampleModal2').modal('show');
 
-    document.getElementById('idempleadoModificar').value = idempleado;
+    document.getElementById('cuilModificar').value = cuil;
     document.getElementById('cantidadFichaModificar').value = cantidad;
     document.getElementById('fechaModificar').value = fecha;
     

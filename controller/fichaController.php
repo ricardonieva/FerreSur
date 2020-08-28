@@ -1,16 +1,19 @@
 <?php
 require_once ('../model/fichaClass.php');
+require_once ('../model/EmpleadoClass.php');
 
 $ficha = new ficha();
+$empleado = new Empleado();
 
 if(isset($_POST['nuevaFicha']))
 {
-    $ficha->empleado = $_POST['empleado'];
+    $empleado->cuil = $_POST['cuil'];
+    $empleado->selectCuilEmpleado();
+    $ficha->empleado = $empleado->idEmpleado;
     $ficha->cantidad = $_POST['cantidad'];
     $ficha->fecha = $_POST['fecha'];
     $data = $ficha->nuevaFicha();   
-    echo json_encode($data);
-    
+    echo json_encode($data);    
 }
 
 if(isset($_POST['cargarFichas'])){
@@ -28,7 +31,9 @@ if(isset($_POST['modificarFicha'])){
     $ficha->idficha = $_POST['idFicha'];
     $ficha->cantidad = $_POST['cantidad'];
     $ficha->fecha = $_POST['fecha'];
-    $ficha->empleado = $_POST['idempleado'];
+    $empleado->cuil = $_POST['cuil'];
+    $empleado->selectCuilEmpleado();
+    $ficha->empleado = $empleado->idEmpleado;
     $data = $ficha->modificarFicha();
     echo json_encode($data);
 }

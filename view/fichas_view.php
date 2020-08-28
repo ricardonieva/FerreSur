@@ -23,7 +23,7 @@ Usuario::verificarSesion(36);
                         <th>Id</th>
                         <th>Cantidad</th>
                         <th>Fecha</th>
-                        <th>Codigo Empleado</th>
+                        <th>CUIL</th>
                         <th>Empleado</th>
                         <th></th>
                         <th></th>
@@ -55,7 +55,7 @@ Usuario::verificarSesion(36);
       <div class="row justify-content-center">
             <div class="col-md-6">
                 Empleado
-                <input type="number" placeholder="id de empleado" name="empleado" id="idempleado" class="form-control">
+                <input type="number" placeholder="CUIL" name="empleado" id="cuil" class="form-control">
             </div>
             <div class="col-md-6">
                 Cantidad de ficha
@@ -97,7 +97,7 @@ Usuario::verificarSesion(36);
       <div class="row justify-content-center">
             <div class="col-md-6">
                 Empleado
-                <input type="number" placeholder="id de empleado" name="empleado" id="idempleadoModificar" class="form-control">
+                <input type="number" placeholder="CUIL" name="empleado" id="cuilModificar" class="form-control">
             </div>
             <div class="col-md-6">
                 Cantidad de ficha

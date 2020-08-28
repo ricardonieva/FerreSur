@@ -33,7 +33,7 @@ class ficha
 
     public function cargarFichas(){
         $connect = Database::connectDB();
-        $sql = "SELECT * FROM ficha, empleado WHERE ficha.empleado_idEmpleado = empleado.idEmpleado";
+        $sql = "SELECT * FROM ficha, empleado WHERE ficha.empleado_idEmpleado = empleado.idEmpleado ORDER BY ficha.fecha DESC";
         //var_dump($sql);
         $result = $connect->query($sql);
         if($result->rowCount() >0)
