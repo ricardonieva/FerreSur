@@ -55,7 +55,7 @@ $ventas = $ventas->consultarVentasFechasIVA($_GET['fechadesde'], $_GET['fechahas
                                     <th><?php echo $row['idventa']; ?></th>
                                     <td><?php echo date("d/m/Y", strtotime($row['fechaHora'])); ?></td>
                                     <td><?php echo $row['nombre']; ?></td>
-                                    <td><?php echo $row['cuit']; ?></td>
+                                    <td><?php echo ($row['cuit'] == 0) ? "-" : $row['cuit']; ?></td>
                                     <td><?php echo $row['condicioniva'] ?></td>
                                     <td><?php echo ($row['condicioniva'] == "RI") ? "Factura A" : "Factura B"; ?></td>
                                     <?php $calculosIVA = Venta::calcularIvaVenta($row['idventa']); ?>
