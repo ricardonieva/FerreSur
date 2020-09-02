@@ -30,12 +30,12 @@ $compras = $compras->consultarComprasFechas($_GET['fechadesde'], $_GET['fechahas
             </div>
         </div>
 
-        <div class="row justify-content-center mt-3">
+        <div class="row justify-content-center mt-3 eventText">
             <div class="col-md-12">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>N°</th>                            
+                            <th>N° Fac.</th>                            
                             <th>Fecha</th>
                             <th>Proveedor</th>
                             <th>CUIT</th>
@@ -43,7 +43,7 @@ $compras = $compras->consultarComprasFechas($_GET['fechadesde'], $_GET['fechahas
                             <th>Tipo Factura</th>
                             <th>Total</th>
                             <th>Neto Gravado</th>
-                            <th>IVA Credito Fiscal</th>
+                            <th>IVA Credito</th>
                         </tr>
                     </thead>
                     <tbody>

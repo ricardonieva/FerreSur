@@ -3,6 +3,7 @@ require_once ('../persistence/database.php');
 class Venta
 {
     public $idventa;
+    public $numerofactura;
     public $fechaHora;
     public $tipodepago;
     public $estado;
@@ -11,10 +12,11 @@ class Venta
 
     public function insertrVenta()
     {
+        $this->generarNumeroDeFactura();
         $connect = Database::connectDB();
-        $sql = "INSERT INTO venta (fechaHora, tipodepago, estado, idEmpleado, idcliente)
-        VALUES (now(), '$this->tipodepago', '$this->estado', $this->idEmpleado, $this->idcliente)";
-        //var_dump($sql);
+        $sql = "INSERT INTO venta (numerofactura, fechaHora, tipodepago, estado, idEmpleado, idcliente)
+        VALUES ('$this->numerofactura' ,now(), '$this->tipodepago', '$this->estado', $this->idEmpleado, $this->idcliente)";
+        //die($sql);
         $result = $connect->query($sql);
         if($result != false)
         {
@@ -324,6 +326,15 @@ class Venta
         {
             return false;
         }
+    }
+
+    public function generarNumeroDeFactura(){
+        $idVenta = $this->ultimaIdDeVenta();
+        $numeroDeFactura = $idVenta->id + 1;
+        while(strlen($numeroDeFactura) < 8){
+            $numeroDeFactura = "0".$numeroDeFactura;
+        }
+        $this->numerofactura = "0001-".$numeroDeFactura;
     }
 }
 ?>
