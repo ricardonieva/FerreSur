@@ -34,12 +34,13 @@ error_reporting(0);
     <style type="text/css" media="print">
       @media print 
       {
-      .eliminarImprimir {display:none;}	
+      .eliminarImprimir {display:none;
+        font-size: 1.4em;}	
       }	
 
       .eventText
       {
-        font-size: x-large;
+        font-size:small;
       }		
 		</style>
 

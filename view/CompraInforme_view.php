@@ -19,7 +19,7 @@ $idCompra = (int) $_GET['idcompra'];
         </div>
 
         <div class="col-md-2">
-            <h6 class="mt-2">Orden De Compra</h6>
+            <h6 class="mt-2">Factura De Compra</h6>
             <h6 id="numeroDeCompra"></h6>
             <h6 id="fechaDeCompra"></h6>
         </div>

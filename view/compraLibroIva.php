@@ -61,7 +61,7 @@ $compras = $compras->consultarComprasFechas($_GET['fechadesde'], $_GET['fechahas
                                     <td><?php echo ($row['condicioniva'] == "MT") ? "Factura C" : "Factura A"; ?></td>
                                     <?php $calculosIVA = Compra::calcularIVACompra($row['idcompra'], $row['condicioniva']); ?>
                                     <td><?php echo "$ ".$calculosIVA['total']; ?></td>
-                                    <td><?php echo ($calculosIVA['netoGravado'] != "-") ? "$ ".$calculosIVA['netoGravado'] : $calculosIVA['netoGravado']; ?></td>
+                                    <td><?php echo "$ ".$calculosIVA['netoGravado']; ?></td>
                                     <td><?php echo ($calculosIVA['iva'] != "-") ? "$ ".$calculosIVA['iva'] : $calculosIVA['iva']; ?></td>
                                 </tr>
                         <?php 

@@ -136,9 +136,9 @@ if(isset($_POST['btnEliminar']))
                                 <th>Recibo</th>
                                 <th>CUIL</th>
                                 <th>Empelado</th>
-                                <th>Fecha</th>
-                                <th>Credito</th>
-                                <th>Debito</th>
+                                <th>Fecha Liq.</th>
+                                <th>Creditos</th>
+                                <th>Debitos</th>
                                 <th>Netos</th>
                                 <th></th>
                                 <th></th>
