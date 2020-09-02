@@ -110,7 +110,7 @@ Usuario::verificarSesion(4);
 
     <div class="row justify-content-center mt-3">
         <div class="col-md-12">
-            <table class="table">
+            <table class="table table-hover table-dark">
                 <thead>
                     <tr>
                         <th scope="col">Id Integrante</th>

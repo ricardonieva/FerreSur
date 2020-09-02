@@ -13,7 +13,7 @@ Usuario::verificarSesion(17);
         <div class="row justify-content-center mt-3">
 
             <div class="input-group col-md-5">
-                <input autofocus type="text" class="form-control" name="Articulo" id="Articulo" placeholder="Codigo de Articulo">
+                <input autofocus type="text" class="form-control" pattern="[0-9]+" title="Ingrese solo numeros" name="Articulo" id="Articulo" placeholder="Codigo de Articulo">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit" name="buscarArticulo" id="buscarArticulo">Buscar Articulo</button>
                     <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">Buscar por Nombre</button>
@@ -27,7 +27,7 @@ Usuario::verificarSesion(17);
             <div class="modal-content">
                 <div class="modal-header">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Nombre" name="nombrearticulo" id="nombrearticulo">
+                    <input type="text" class="form-control" pattern="[a-zA-Z]+" title="Ingrese solo letras" placeholder="Nombre" name="nombrearticulo" id="nombrearticulo">
                     <button class="btn btn-outline-secondary" id="botonBuscar" name="botonBuscar" type="submit">Buscar</button>
                 </div>
 
@@ -37,7 +37,7 @@ Usuario::verificarSesion(17);
                 </div>
                 <div class="modal-body">
 
-                <table class="table">
+                <table class="table table-hover table-dark">
                     <thead>
                     <tr>
                         <th>Codigo</th>
@@ -90,7 +90,7 @@ Usuario::verificarSesion(17);
         <div class="row justify-content-center mt-3">
 
             <div class="input-group col-md-2">
-            <input type="text" class="form-control" name="cantidad" id="cantidad" placeholder="Cantidad">
+            <input type="text" class="form-control" pattern="[0-9]+" title="Ingrese solo numeros" name="cantidad" id="cantidad" placeholder="Cantidad">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit" name="agregarArticulo" id="agregarArticulo">Agregar</button>
             </div>
@@ -147,7 +147,7 @@ Usuario::verificarSesion(17);
         <div class="row justify-content-center">
 
             <div class="input-group col-md-3 mt-4">
-                <input autofocus type="text" class="form-control" name="cuit" id="cuit" placeholder="Ingrese CUIT/CUIL">
+                <input autofocus type="text" pattern="[0-9]+" title="Ingrese solo numeros" class="form-control" name="cuit" id="cuit" placeholder="Ingrese CUIT/CUIL">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit" name="buscarCliente" id="buscarCliente">Buscar Cliente</button>
                 </div>

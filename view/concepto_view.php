@@ -17,7 +17,7 @@ Usuario::verificarSesion(12);
 
     <div class="rol justify-content-center mt-3">
         <div class="col-md-12">
-            <table class="table">
+            <table class="table table-hover table-dark">
                 <thead>
                     <tr>
                         <th>Tipo Concepto</th>

@@ -28,7 +28,7 @@ Usuario::verificarSesion(19);
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <table class="table">
+            <table class="table table-hover table-dark">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -154,7 +154,7 @@ Usuario::verificarSesion(19);
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-12">
-                    <table class="table">
+                    <table class="table table-hover table-dark">
                         <thead>
                             <tr>
                                 <th>idCliente</th>

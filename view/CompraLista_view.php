@@ -19,7 +19,7 @@ require_once ('../view/cabecera.php');
         <div class="col-md-1 mt-4">
             <button class="btn btn-primary form-control" id="botonMostrar">Mostrar</button>
         </div>
-        <div class="col-md-1 mt-4">
+        <div class="col-md-2 mt-4">
             <button class="btn btn-primary form-control" id="btnLibroIVA">IVA Compra</button>
         </div>
         <div class="col-md-1 mt-4">
@@ -29,7 +29,7 @@ require_once ('../view/cabecera.php');
  
     <div class="row justify-content-center mt-3">
         <div class="col-md-12">
-            <table class="table table-striped">
+            <table class="table table-hover table-dark">
                 <thead>
                     <tr>
                         <th>N°</th>                            

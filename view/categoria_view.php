@@ -14,7 +14,7 @@ Usuario::verificarSesion(3);
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <table class="table">
+            <table class="table table-hover table-dark">
                 <thead>
                     <tr>
                         <th>IdCategoria</th>

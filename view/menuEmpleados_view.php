@@ -12,20 +12,22 @@ Usuario::verificarSesion(8);
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 col-md-6">
-            <ul>
-                <li><a href="../view/empleados_view.php">Lista De Empleados</a></li>
-                <li><a href="../view/RolAsignar_view.php">Agregar Rol a Empleado</a></li> 
-                <li><a href="../view/categoria_view.php">Categoria</a></li>
-                <li><a href="../view/grupoFamiliar_view.php">Grupo Familiar</a></li>         
-                <li><a href="../view/calendario_view.php">Calendario</a></li>
-                <li><a href="../view/asistencia_view.php">Asistencia</a></li>
-                <li><a href="../view/concepto_view.php">Conceptos</a></li>
-                <li><a href="../view/fichas_view.php">Ficha</a></li>
-                <li><a href="../view/tipoDeLiquidaciones_view.php">Lista Tipo de Liquidacion</a></li>
-                <li><a href="../view/Liquidaciones_view.php">Lista de Liquidacion de Sueldos</a></li>
-                <li><a href="../view/generarLiquidaciones_view.php">Generar Liquidaciones</a></li>
-                <li><a href="../view/libroUnicoDeLiquidacionDeHaberes.php">Libro Unico</a></li>
-                <li><a href="../view/menuPrincipal_view.php">Volver</a></li>
+            <ul class="lista">
+                
+
+                <li><button class="box" onclick="window.open('../view/empleados_view.php','_parent')">Lista De Empleados</button></li>
+                <li><button class="box" onclick="window.open('../view/RolAsignar_view.php','_parent')">Agregar Rol a Empleado</button></li>
+                <li><button class="box" onclick="window.open('../view/categoria_view.php','_parent')">Categoria</button></li>
+                <li><button class="box" onclick="window.open('../view/grupoFamiliar_view.php','_parent')">Grupo Familiar</button></li>
+                <li><button class="box" onclick="window.open('../view/calendario_view.php','_parent')">Calendario</button></li>
+                <li><button class="box" onclick="window.open('../view/asistencia_view.php','_parent')">Asistencia</button></li>
+                <li><button class="box" onclick="window.open('../view/concepto_view.php','_parent')">Conceptos</button></li>
+                <li><button class="box" onclick="window.open('../view/fichas_view.php','_parent')">Ficha</button></li>
+                <li><button class="box" onclick="window.open('../view/tipoDeLiquidaciones_view.php','_parent')">Lista de Liquidación</button></li>
+                <li><button class="box" onclick="window.open('../view/Liquidaciones_view.php','_parent')">Lista de Liquidacion de Sueldos</button></li>
+                <li><button class="box" onclick="window.open('../view/generarLiquidaciones_view.php','_parent')">Generar Liquidaciones</button></li>
+                <li><button class="box" onclick="window.open('../view/libroUnicoDeLiquidacionDeHaberes.php','_parent')">Libro Unico</button></li>
+                <li><button class="box" onclick="window.open('../view/menuPrincipal_view.php','_parent')"><img class="imagen" src="images/Logos/back.svg" alt="volver">Volver</button></li> 
 
             </ul>
 

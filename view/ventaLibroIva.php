@@ -31,7 +31,7 @@ $ventas = $ventas->consultarVentasFechasIVA($_GET['fechadesde'], $_GET['fechahas
 
         <div class="row justify-content-center mt-3">
             <div class="col-md-12">
-                <table class="table table-striped">
+                <table class="table table-hover table-dark">
                     <thead>
                         <tr>
                             <th>N°</th>                            

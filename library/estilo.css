@@ -1,0 +1,14 @@
+th {
+    color: #b24e14;
+}
+
+tr {
+    text-align: center;
+}
+
+.linearg {
+    font-size: 40px;
+    background: -webkit-linear-gradient(#fff, black);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

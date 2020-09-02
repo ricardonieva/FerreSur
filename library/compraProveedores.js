@@ -95,7 +95,7 @@ function buscarCodigoArticulo(e){
         {
             articulo = data;
             mostrarDatosArticulo.innerHTML = `
-            <table class="table">
+            <table class="table table-hover table-dark">
             <thead>
                 <tr>
                 <th scope="col">Codigo</th>

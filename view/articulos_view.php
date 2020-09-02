@@ -1,11 +1,10 @@
 <?php
-require_once ('../model/UsuarioClass.php');
-require_once ('../view/cabecera.php');
-require_once ('../model/ArticuloClass.php');
+require_once('../model/UsuarioClass.php');
+require_once('../view/cabecera.php');
+require_once('../model/ArticuloClass.php');
 Usuario::verificarSesion(20);
 
-if(isset($_POST['btnEliminar']))
-{
+if (isset($_POST['btnEliminar'])) {
     $articulo = new Articulo();
     $articulo->idarticulo = $_POST['btnEliminar'];
     $articulo->deleteArticulo();
@@ -24,7 +23,7 @@ if(isset($_POST['btnEliminar']))
 
     <div class="row justify-content-center mt-4">
         <div class="col-md-12">
-            <table class="table">
+            <table class="table table-hover table-dark">
                 <thead>
                     <tr>
                         <th>Codigo</th>
@@ -40,20 +39,19 @@ if(isset($_POST['btnEliminar']))
                 </thead>
                 <tbody>
                     <?php
-                        foreach(Articulo::selectAllArticulos() as $row)
-                        {
-                            echo "<tr>";
-                                echo "<td>$row[idarticulo]</td>";
-                                echo "<td>$row[nombre]</td>";
-                                echo "<td>$row[descripcion]</td>";
-                                echo "<td>$row[precioVenta]</td>";
-                                echo "<td>$row[stock]</td>";
-                                echo "<td>$row[iva] %</td>";
-                                echo "<td><a href='../view/articuloModificar_view.php?idArticulo=$row[idarticulo]' class='btn btn-info'>Modificar</a></td>";
-                                echo "<td><form method='POST'><button type='submit' class='btn btn-danger' name='btnEliminar' value='$row[idarticulo]'>Eliminar</button></form></td>";
-                            echo "</tr>";
-                        }                   
-                    ?>                  
+                    foreach (Articulo::selectAllArticulos() as $row) {
+                        echo "<tr>";
+                        echo "<td class='center'>$row[idarticulo]</td>";
+                        echo "<td>$row[nombre]</td>";
+                        echo "<td>$row[descripcion]</td>";
+                        echo "<td>$row[precioVenta]</td>";
+                        echo "<td>$row[stock]</td>";
+                        echo "<td>$row[iva] %</td>";
+                        echo "<td><a href='../view/articuloModificar_view.php?idArticulo=$row[idarticulo]' class='btn btn-info'>Modificar</a></td>";
+                        echo "<td><form method='POST'><button type='submit' class='btn btn-danger' name='btnEliminar' value='$row[idarticulo]'>Eliminar</button></form></td>";
+                        echo "</tr>";
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>

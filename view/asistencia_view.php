@@ -1,7 +1,7 @@
 <?php
-require_once ('../view/cabecera.php');
 require_once ('../model/UsuarioClass.php');
 Usuario::verificarSesion(11);
+require_once ('../view/cabecera.php');
 ?>
 <br><br><br>
 <div class="container-fluid">
@@ -30,7 +30,7 @@ Usuario::verificarSesion(11);
 
     <div class="row justify-content-center mt-3">
       <div class="col-md-8">
-        <table class="table" id="tablaAsistenciaHead">
+        <table class="table table-hover table-dark" id="tablaAsistenciaHead">
           <thead>
             <tr>
               <th>Fecha</th>

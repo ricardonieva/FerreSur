@@ -23,8 +23,8 @@ if(isset($_POST['btnEliminar']))
 <form action="" method="POST">
     <div class="container-fluid mt-3">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-10">
-                <table class="table">
+            <div class="col-12 col-md-12">
+                <table class="table table-hover table-dark">
                     <thead>
                         <tr>
                             <th>Codigo</th>
@@ -59,6 +59,7 @@ if(isset($_POST['btnEliminar']))
         </div>
     </div>
 </form>
+
 
 <?php
 require_once ('../view/pie5.php');

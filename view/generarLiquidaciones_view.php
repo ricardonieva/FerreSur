@@ -3,6 +3,7 @@ require_once ('../model/UsuarioClass.php');
 Usuario::verificarSesion(15);
 require_once ('../model/EmpleadoClass.php');
 require_once ('../model/reciboDeHaberesClass.php');
+require_once ('../view/cabecera.php');
 
 //Usuario::verificarSesion(5);
 $empleado = new Empleado();
@@ -89,7 +90,7 @@ if(isset($_POST['btnGenerarLiquidaciones']))
                         ?>   
                     </select>
                     <div class="table-responsive">      
-                        <table class="table mt-3">
+                        <table class="table mt-3 table-hover table-dark">
                             <thead>
                                 <tr>
                                     <th>CUIL</th>
