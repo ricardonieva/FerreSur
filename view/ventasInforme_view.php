@@ -32,7 +32,7 @@ Usuario::verificarSesion(18);
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>N°</th>                            
+                        <th>N° Fac.</th>                            
                         <th>Fecha</th>
                         <th>Cliente</th>
                         <th>Empleado</th>
@@ -85,7 +85,7 @@ function cargarVentas(){
         for(let item of data){
             tablaVenta.innerHTML += `
                 <tr>
-                    <td>${item.idventa}</td>
+                    <td>${item.numerofactura}</td>
                     <td>${item.fechaHora}</td>
                     <td>${item.nombre}</td>
                     <td>${item.AP}</td>

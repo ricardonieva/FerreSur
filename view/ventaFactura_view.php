@@ -33,7 +33,7 @@ $iva10 = 0;
 
         <div class="col-md-2">
             <h5 class="mt-2"><?php echo ($venta[0]['condicioniva'] == "RI") ? "Factura A" : "Factura B"; ?></h5>
-            <h5>N° <?php echo $venta[0]['numerofactura']; ?></h5>
+            <h6>N° <?php echo $venta[0]['numerofactura']; ?></h6>
             <h6>Fecha <?php echo date("d/m/Y", strtotime($venta[0]['fechaHora'])); ?> </h6>
         </div>
     </div>
@@ -161,7 +161,7 @@ require_once ('../view/pie4.php');
 ?>
 
 <script type="text/javascript">
-    document.title = "Factura N° "+ <?php echo $_GET['ventaid']; ?>;
+    document.title = "Factura N° "+ '<?php echo $venta[0]['numerofactura']; ?>';
     function botonImprimir(){
         window.print();
     }

@@ -34,7 +34,7 @@ $ventas = $ventas->consultarVentasFechasIVA($_GET['fechadesde'], $_GET['fechahas
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>N°</th>                            
+                            <th>N° Fac.</th>                            
                             <th>Fecha</th>
                             <th>Destinatario</th>
                             <th>CUIT/CUIL</th>
@@ -42,7 +42,7 @@ $ventas = $ventas->consultarVentasFechasIVA($_GET['fechadesde'], $_GET['fechahas
                             <th>Tipo Factura</th>
                             <th>Total</th>
                             <th>Neto Gravado</th>
-                            <th>IVA Debito Fiscal</th>
+                            <th>IVA Debito</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +52,7 @@ $ventas = $ventas->consultarVentasFechasIVA($_GET['fechadesde'], $_GET['fechahas
                             $iva = 0;
                             foreach($ventas as $row) { ?>
                                 <tr>
-                                    <th><?php echo $row['idventa']; ?></th>
+                                    <td><?php echo $row['numerofactura']; ?></td>
                                     <td><?php echo date("d/m/Y", strtotime($row['fechaHora'])); ?></td>
                                     <td><?php echo $row['nombre']; ?></td>
                                     <td><?php echo ($row['cuit'] == 0) ? "-" : $row['cuit']; ?></td>
