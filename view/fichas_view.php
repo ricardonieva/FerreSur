@@ -17,7 +17,7 @@ Usuario::verificarSesion(36);
 
     <div class="row justify-content-center mt-3">
         <div class="col-md-10">
-            <table class="table ">
+            <table class="table table-hover table-dark">
                 <thead>
                     <tr>
                         <th>Id</th>

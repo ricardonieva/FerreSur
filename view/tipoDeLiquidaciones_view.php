@@ -23,7 +23,7 @@ if(isset($_POST['btnEliminar']))
     <div class="container-fluid mt-3">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10">
-                <table class="table">
+                <table class="table table-hover table-dark">
                     <thead>
                         <tr>
                             <th>Codigo</th>

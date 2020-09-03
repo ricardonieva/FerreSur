@@ -1,3 +1,6 @@
+<?php
+  require_once ('../view/cabecera.php');
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -61,6 +64,7 @@
   
 </div>
 <!-- Fin container -->
+
 
 <?php
 require_once ('../view/pie.php');

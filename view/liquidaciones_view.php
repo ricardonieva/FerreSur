@@ -14,7 +14,7 @@ if(isset($_POST['btnEliminar']))
 
 ?>
 <br><br>
-<h3 class="text-center mt-3">Lista de Liquidaciones</h3>
+<h3 class="text-center mt-4">Lista de Liquidaciones</h3>
 <form action="" method="POST">
     <div class="d-flex justify-content-center"> 
         <a href="../view/LiquidacionNuevo_view.php" class="btn btn-success mt-3">Nueva Liquidacion</a>
@@ -23,7 +23,7 @@ if(isset($_POST['btnEliminar']))
     <div class="container-fluid mt-4">
         <div class="row justify-content-center">
             <div class="form-group col-md-12">
-                <table class="table">
+                <table class="table table-hover table-dark">
                     <thead>
                         <tr>
                             <th>codigo</th>

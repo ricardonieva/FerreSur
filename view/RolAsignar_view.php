@@ -75,7 +75,7 @@ if(isset($_POST['btnGuardarCambios']))
 
 ?>
 
-<div align="center">
+<div align="center" class="container">
      <h3 class="mt-5">Asignar Permisos al Empleado</h3>
 </div>
 
@@ -83,7 +83,7 @@ if(isset($_POST['btnGuardarCambios']))
 
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="input-group col-md-4">
+            <div class="input-group col-md-4 mt-3">
                 <input autofocus type="text" class="form-control" name="buscarcuil" placeholder="CUIL">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit" name="btnBuscarEmpleado">Buscar Empleado</button>
@@ -109,7 +109,7 @@ if(isset($_POST['btnGuardarCambios']))
         <div class="row justify-content-center mt-4">
             <div class="col-md-8">
                <table class="table" id="tablaRoles">
-                   <thead>
+                   <thead class="table-dark">
                        <tr>
                            <th>Codigo</th>
                            <th>SubModulo</th>
@@ -143,8 +143,8 @@ if(isset($_POST['btnGuardarCambios']))
 
         <div class="row justify-content-center mt-3">
             <div class="col-md-6">
-                <table class="table" id="tablaRolesEmpleado">
-                    <thead>
+                <table class="table " id="tablaRolesEmpleado">
+                    <thead class="table-dark">
                         <tr>
                             <th>Codigo</th>
                             <th>Nombre</th>
@@ -179,10 +179,10 @@ if(isset($_POST['btnGuardarCambios']))
 </form>
 
 
+
 <?php
 include_once ('../view/pie3.php');
 ?>
-
 <script>
     $('#tablaRoles').DataTable();
     $('#tablaRolesEmpleado').DataTable();    

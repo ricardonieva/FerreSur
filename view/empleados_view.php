@@ -24,7 +24,7 @@ if(isset($_POST['btnEliminar']))
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="form-group col-md-10">
-                <table class="table">
+                <table class="table table-hover table-dark">
                     <thead>
                         <tr>
                             <th>ID</th>

@@ -28,7 +28,7 @@ Usuario::verificarSesion(24);
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="input-group">
-                <input class="form-control" id="id" type="text" placeholder="Codigo de Proveedor">
+                <input class="form-control" id="id" type="text" pattern="[0-9]+" title="Ingrese solo numeros" placeholder="Codigo de Proveedor">
                 <button class="btn btn-light" id="buscarPorID">Buscar Por id</button>
                 <button type="button" class="btn btn-light" id="buscarPorNombre" data-toggle="modal" data-target="#exampleModal">Buscar Por Razon Social</button>                
             </div>
@@ -47,11 +47,11 @@ Usuario::verificarSesion(24);
           </div>
           <div class="modal-body">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Razon Social" id="modalRazonsocial">
+              <input type="text" class="form-control" pattern="[a-zA-Z]+" title="Ingrese solo letras" placeholder="Razon Social" id="modalRazonsocial">
               <button class="btn btn-info" id="buscarPorRazonSocial">Buscar</button>
             </div>   
             
-            <table class="table">
+            <table class="table table-hover table-dark">
               <thead>
                 <tr>
                   <th>Codigo</th>
@@ -88,7 +88,7 @@ Usuario::verificarSesion(24);
     <div class="row justify-content-center mt-3">
 
         <div class="input-group col-md-5">
-            <input type="text" class="form-control" name="buscarId" id="buscarId" placeholder="codigo de articulo" aria-label="Buscar articulo" aria-describedby="buscarArticulo">
+            <input type="text" class="form-control" pattern="[0-9]+" title="Ingrese solo numeros" name="buscarId" id="buscarId" placeholder="codigo de articulo" aria-label="Buscar articulo" aria-describedby="buscarArticulo">
                 <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit" name="buscarArticulo" id="buscarArticulo">Buscar por Codigo</button>
                         <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">
@@ -103,7 +103,7 @@ Usuario::verificarSesion(24);
           <div class="modal-content">
             <div class="modal-header">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Nombre" name="nombrearticulo" id="nombrearticulo">
+                <input type="text" class="form-control" pattern="[a-zA-Z]+" title="Ingrese solo letras" placeholder="Nombre" name="nombrearticulo" id="nombrearticulo">
                 <button class="btn btn-outline-secondary" id="botonBuscar" name="botonBuscar" type="submit">Buscar</button>
               </div>
 
@@ -113,7 +113,7 @@ Usuario::verificarSesion(24);
             </div>
             <div class="modal-body">
 
-              <table class="table">
+              <table class="table table-hover table-dark">
                 <thead>
                   <tr>
                     <th>Codigo</th>
@@ -141,15 +141,15 @@ Usuario::verificarSesion(24);
 
     <div class="row justify-content-center">
         <div class="col-md-5 input-group">
-            <input type="text" class="form-control" placeholder="Cantidad" id="cantidad">
-            <input type="text" class="form-control" placeholder="Precio" id="precio">
+            <input type="text" class="form-control" pattern="[0-9]+" title="Ingrese solo numeros" placeholder="Cantidad" id="cantidad">
+            <input type="text" class="form-control" pattern="[0-9]+" title="Ingrese solo numeros" placeholder="Precio" id="precio">
             <button class="btn btn-primary" id="agregarArticulo">Agregar</button>
         </div>
     </div>
 
     <div class="row justify-content-center mt-3">
       <div class="col-md-8">
-      <table class="table">
+      <table class="table table-hover table-dark">
         <thead>
           <tr>
             <th scope="col">Codigo</th>

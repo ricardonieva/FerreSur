@@ -3,6 +3,7 @@ require_once ('../model/UsuarioClass.php');
 require_once ('../model/LiquidacionClass.php');
 require_once ('../model/EmpleadoClass.php');
 require_once ('../model/reciboDeHaberesClass.php');
+require_once ('../view/cabecera.php');
 Usuario::verificarSesion(16);
 
 $liq = new Liquidacion();
@@ -104,7 +105,7 @@ if(isset($_POST['btnEliminar']))
                             $liq->selectLiquidacion();
                     ?>
 
-                    <table class="table">
+                    <table class="table table-hover table-dark">
                         <thead>
                             <tr>
                                 <th>Codigo</th>
@@ -130,7 +131,7 @@ if(isset($_POST['btnEliminar']))
                         </tbody>
                     </table>
                        
-                    <table class="table mt-5">
+                    <table class="table mt-5 table-hover table-dark">
                         <thead>
                             <tr>                                
                                 <th>Recibo</th>
@@ -203,10 +204,10 @@ if(isset($_POST['btnEliminar']))
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><?php if(isset($totalHaberes)) { echo "Total"; } ?></td>
-                                <td><?php if(isset($totalHaberes)) { echo number_format($totalHaberes, 2, ',', '.'); } ?></td>
-                                <td><?php if(isset($totalDeducciones)) { echo number_format($totalDeducciones, 2, ',', '.'); } ?></td>
-                                <td><?php if(isset($totalNeto)) { echo number_format($totalNeto, 2, ',', '.'); } ?></td>
+                                <td style="color: #81b214; font-size: 20px;"><?php if(isset($totalHaberes)) { echo "Total"; } ?></td>
+                                <td style="color: #81b214; font-size: 20px;"><?php if(isset($totalHaberes)) { echo number_format($totalHaberes, 2, ',', '.'); } ?></td>
+                                <td style="color: #81b214; font-size: 20px;"><?php if(isset($totalDeducciones)) { echo number_format($totalDeducciones, 2, ',', '.'); } ?></td>
+                                <td style="color: #81b214; font-size: 20px;"><?php if(isset($totalNeto)) { echo number_format($totalNeto, 2, ',', '.'); } ?></td>
                                 <td></td>
                                 <td></td>
                             </tr>

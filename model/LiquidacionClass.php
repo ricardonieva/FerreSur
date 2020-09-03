@@ -43,7 +43,7 @@ class Liquidacion
     {
         $connect = Database::connectDB();
         $sql = "SELECT * FROM liquidacion, tiposdeliquidacion 
-        WHERE liquidacion.TiposDeLiquidacion_idTiposDeLiquidacion = tiposdeliquidacion.idTiposDeLiquidacion";
+        WHERE liquidacion.TiposDeLiquidacion_idTiposDeLiquidacion = tiposdeliquidacion.idTiposDeLiquidacion order by idliquidacion DESC";
         $result = $connect->query($sql);
         if (!$result) {
             echo "\nPDO::errorInfo():\n";

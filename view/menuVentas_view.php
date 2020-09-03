@@ -12,12 +12,13 @@ Usuario::verificarSesion(9);
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 col-md-6">
-            <ul>
-                <li><a href="../view/ventas_view.php">Nueva Venta</a></li>
-                <li><a href="../view/ventasInforme_view.php">Informe de Venta</a></li>
-                <li><a href="../view/Clientes_view.php">Clientes</a></li>
+            <ul class="lista">
+                
 
-                <li><a href="../view/menuPrincipal_view.php">Volver</a></li>
+                <li><button class="box" onclick="window.open('../view/ventas_view.php','_parent')">Nueva Venta</button></li>
+                <li><button class="box" onclick="window.open('../view/ventasInforme_view.php','_parent')">Informe de Venta</button></li>
+                <li><button class="box" onclick="window.open('../view/Clientes_view.php','_parent')">Clientes</button></li>
+                <li><button class="box" onclick="window.open('../view/menuPrincipal_view.php','_parent')"><img class="imagen" src="images/Logos/back.svg" alt="volver">Volver</button></li>
 
             </ul>
 
