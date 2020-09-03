@@ -104,9 +104,10 @@ function cargarDatosDeLquidacion(idCompra){
     })
     .then(res => res.json())
     .then(data => {
+        console.log(data);
         //alert(data);
-        document.getElementById('numeroDeCompra').innerHTML = `N° ${data.compra.idcompra}`;
-        document.getElementById('fechaDeCompra').innerHTML = `${formato(data.compra.fecha)}`;
+        document.getElementById('numeroDeCompra').innerHTML = `N° ${data.compra.numerofactura}`;
+        document.getElementById('fechaDeCompra').innerHTML = `${formato(data.compra.fechafactura)}`;
 
         document.getElementById('listaProveedor').innerHTML = `
         <li>Nombre: ${data.proveedor.razonSocial}</li>

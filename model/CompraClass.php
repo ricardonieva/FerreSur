@@ -5,6 +5,8 @@ require_once ('../model/ArticuloClass.php');
 class Compra 
 {  
     public $idcompra;
+    public $numerofactura;
+    public $fechafactura;
     public $idproveedor;
     public $fecha;
     public $estado;
@@ -14,8 +16,8 @@ class Compra
     {
         $fecha = date('Y-m-d H:i:s');
         $connect = Database::connectDB();
-        $sql = "INSERT INTO compra (idproveedor, fecha, estado, idEmpleado) 
-        VALUES ($this->idproveedor, '$fecha', 'en proceso', $this->idEmpleado)";
+        $sql = "INSERT INTO compra (numerofactura, fechafactura,idproveedor, fecha, estado, idEmpleado) 
+        VALUES ('$this->numerofactura','$this->fechafactura',$this->idproveedor, '$fecha', 'en proceso', $this->idEmpleado)";
         //var_dump($sql);
         $result = $connect->query($sql);
         if($result != false)
@@ -62,6 +64,8 @@ class Compra
             {
                 $result = $result->fetchObject();
                 $this->idproveedor = $result->idproveedor;
+                $this->numerofactura = $result->numerofactura;
+                $this->fechafactura = $result->fechafactura;
                 $this->fecha = $result->fecha;
                 $this->estado = $result->estado;
                 $this->idEmpleado = $result->idEmpleado ;

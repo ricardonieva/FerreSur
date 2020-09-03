@@ -205,6 +205,8 @@ finalizarCompra.addEventListener('click', function(e){
     const data = new FormData();
     data.append('finalizarCompra', 'true');
     data.append('idproveedor', id.value);
+    data.append('numeroFactura', document.getElementById('numeroFactura').value);
+    data.append('fechaFactura', document.getElementById('fechaFactura').value);
     
     fetch('../controller/CompraController.php',{
       method: 'POST',

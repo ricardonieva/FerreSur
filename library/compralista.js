@@ -22,7 +22,9 @@ function cargarCompras()
             tablaVenta.innerHTML += `
                 <tr>
                     <td>${item.idcompra}</td>
-                    <td>${item.fecha}</td>
+                    <td>${formato(item.fecha)}</td>
+                    <td>${item.numerofactura}</td>
+                    <td>${formato(item.fechafactura)}</td>
                     <td>${item.razonSocial}</td>
                     <td>${item.cuil}</td>
                     <td>${item.condicioniva}</td>
@@ -273,3 +275,9 @@ btnGraficos.addEventListener("click", function(){
 
     window.open("../view/compraGrafico.php?fechadesde="+fechaDesde+"&fechahasta="+fechaHasta);
 });
+
+
+///
+function formato(texto){
+    return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1');
+  }

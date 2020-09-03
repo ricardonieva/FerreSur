@@ -6,10 +6,27 @@ Usuario::verificarSesion(24);
 
 <div class="container-fluid">
     <br>
-<h3 class="mt-5 text-center">Compra a Proveedores</h3>
+<h3 class="mt-5 text-center">Factura de Compra</h3>
 
     <div class="row justify-content-center">
-        <div class="col-md-5">
+        <div class="col-md-3">
+            <div>
+                <label>Numero de Factura</label>
+                <input id="numeroFactura" type="text" placeholder="Numero de Factura" class="form-control">                            
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div>
+                <label>Fecha de Factura</label>
+                <input  id="fechaFactura" type="date" placeholder="Fecha de Factura" class="form-control">                            
+            </div>
+        </div>
+    </div>
+
+<hr>
+    <h5 align="center">Datos del Proveedor</h5>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
             <div class="input-group">
                 <input class="form-control" id="id" type="text" placeholder="Codigo de Proveedor">
                 <button class="btn btn-light" id="buscarPorID">Buscar Por id</button>
@@ -54,9 +71,8 @@ Usuario::verificarSesion(24);
     </div>
     <!-- end modal -->
 
-    <hr>
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-3">
         <div class="col-md-2">
             <strong>Razon Social</strong>
             <p id="dataNombre"></p>
@@ -66,7 +82,9 @@ Usuario::verificarSesion(24);
             <p id="dataMail"></p>
         </div>
     </div>
-    
+    <hr>
+
+    <h5 align="center">Carga de Articulos</h5>
     <div class="row justify-content-center mt-3">
 
         <div class="input-group col-md-5">

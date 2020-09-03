@@ -86,6 +86,8 @@ if(isset($_POST['eliminarArticulo']))
 if(isset($_POST['finalizarCompra']))
 {
     $compra = new Compra();
+    $compra->numerofactura = $_POST['numeroFactura'];
+    $compra->fechafactura = $_POST['fechaFactura'];
     $compra->idproveedor = $_SESSION['idProveedor'];
     $compra->idEmpleado = $_SESSION['idempleado'];
 

@@ -36,7 +36,7 @@ $compras = $compras->consultarComprasFechas($_GET['fechadesde'], $_GET['fechahas
                     <thead>
                         <tr>
                             <th>N° Fac.</th>                            
-                            <th>Fecha</th>
+                            <th>Fecha Fac</th>
                             <th>Proveedor</th>
                             <th>CUIT</th>
                             <th>Condicion</th>
@@ -53,8 +53,8 @@ $compras = $compras->consultarComprasFechas($_GET['fechadesde'], $_GET['fechahas
                             $iva = 0;
                             foreach($compras as $row) { ?>
                                 <tr>
-                                    <th><?php echo $row['idcompra']; ?></th>
-                                    <td><?php echo date("d/m/Y", strtotime($row['fecha'])); ?></td>
+                                    <td><?php echo $row['numerofactura']; ?></td>
+                                    <td><?php echo date("d/m/Y", strtotime($row['fechafactura'])); ?></td>
                                     <td><?php echo $row['razonSocial']; ?></td>
                                     <td><?php echo $row['cuil']; ?></td>
                                     <td><?php echo $row['condicioniva'] ?></td>

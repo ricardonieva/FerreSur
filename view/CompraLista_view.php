@@ -6,7 +6,7 @@ require_once ('../view/cabecera.php');
 
 <br><br><br><br>
 <div class="container-fluid">
-    <h5 class="text-center">Lista de Compra</h5>
+    <h5 class="text-center">Lista Facturas de Compra</h5>
     <div class="row justify-content-center mt-3">
         <div class="col-md-3">
             Fecha Desde:
@@ -33,7 +33,9 @@ require_once ('../view/cabecera.php');
                 <thead>
                     <tr>
                         <th>N°</th>                            
-                        <th>Fecha</th>
+                        <th>Fecha Carga</th>
+                        <th>N° Fac.</th>
+                        <th>Fecha Fac.</th>
                         <th>Proveedor</th>
                         <th>CUIT</th>
                         <th>Condicion</th>
