@@ -19,7 +19,7 @@
         tablafir.innerHTML = `
         <tr>
             <td>El presente es duplicado del recibo original que obra en nuestro poder firmado por el empleado.</td>
-            <td class="text-center">Firma Del Empleado <br><img src="../view/images/cuadroblanco.png" alt="firma" width="145" height="81"></td>
+            <td class="text-center">Firma Del Empleado <br><img src="../view/images/cuadro transparente.png" alt="firma" width="145" height="81"></td>
         </tr>
         `;
     }

@@ -14,8 +14,8 @@ Usuario::verificarSesion(7);
         <div class="col-12 col-md-6">
             <ul>
                 <li><a href="../view/proveedores_view.php">Lista Proveedores</a></li>
-                <li><a href="../view/compraProveedores_view.php">Compra a Proveedores</a></li>
-                <li><a href="../view/CompraLista_view.php">Lista de Compra a Proveedores</a></li>
+                <li><a href="../view/compraProveedores_view.php">Cargar Factura de Compra</a></li>
+                <li><a href="../view/CompraLista_view.php">Lista de Facturas de Compra</a></li>
                 <li><a href="../view/menuPrincipal_view.php">Volver</a></li>
 
             </ul>
