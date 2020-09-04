@@ -40,7 +40,7 @@ error_reporting(0);
     }
 
     .eventText {
-      font-size: x-large;
+      font-size: small;
     }
   </style>
   <style>
@@ -92,7 +92,7 @@ error_reporting(0);
   </style>
   <style>
     th {
-      color: #81b214;
+      color: #086396;
     }
 
     tr {
