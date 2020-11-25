@@ -353,14 +353,14 @@ class ReciboDeHaberes
         }
         ///////////////////
         //////////////// Aguinaldo 
-        if($this->categoria_formalaboral == 'Mensual')
-        {            
+        if($this->categoria_formalaboral == "Mensual")
+        {
             foreach($this->liquidacion->TipoDeLiquidacion->TiposDeLiquidacion_conceptos as $row)
             {
                 if($row->detalle == "Sueldo Anual Complementario")
-                {   
+                {
                     $connect = Database::connectDB();
-                    $sql = "SELECT * FROM recibodehaberes WHERE TipoDeRecibo='Sueldo' AND empleado_idEmpleado=".$this->empleado->idEmpleado." ORDER BY idReciboDeHaberes DESC LIMIT 6";
+                    $sql = "SELECT * FROM recibodehaberes WHERE recibodehaberes.categoria_formaLaboral ='Mensual' AND empleado_idEmpleado=".$this->empleado->idEmpleado." ORDER BY idReciboDeHaberes DESC LIMIT 7";
                     $result = $connect->query($sql);
                     if(!$result)
                     {
@@ -371,13 +371,15 @@ class ReciboDeHaberes
                         $mayor = 0;
                         if($result->rowCount() > 0)
                         {
-                            foreach($result->fetchAll() as $row2)
-                            {
-                                if($row2['totalHaberes'] > $mayor)
+                            $result = $result->fetchAll();
+                            for($i=1; $i< count($result); $i++)
+                            //foreach($result->fetchAll() as $row2)
+                            {                                
+                                $totalDeReciboDeHaberesFor = $this->calcularTotalDeReciboDeHaberes($result[$i]['idReciboDeHaberes']);
+                                if($totalDeReciboDeHaberesFor > $mayor)
                                 {
-                                    $mayor = $row2['totalHaberes'];
+                                    $mayor = $totalDeReciboDeHaberesFor;
                                 }
-                                
                             }
                         }
                     }
@@ -590,6 +592,38 @@ class ReciboDeHaberes
             return false;
         }
        
+    }
+
+    public function calcularTotalDeReciboDeHaberes($idReciboDeHaberes){
+        try {
+            $connect = Database::connectDB();
+            $sql = "SELECT * FROM recibo_concepto WHERE recibo_concepto.ReciboDeHaberes_idReciboDeHaberes = $idReciboDeHaberes";
+            //die($sql);
+            $result = $connect->query($sql);
+            $totalDelRecibo = 0;
+            if($result != false) {
+                if($result->rowCount() > 0) {
+                    foreach($result->fetchAll() as $row) {
+                        $recibo = new recibo_concepto();
+                        $recibo->idRecibo_concepto = $row['idRecibo_concepto'];
+                        $recibo->selectRecibo_concepto();
+                        //var_dump($recibo);
+                        //die;
+                        if($recibo->concepto->percepcionSalarial == "Haber"){
+                            $totalDelRecibo = $totalDelRecibo + $recibo->importe;
+                        }
+                        else{
+                            $totalDelRecibo = $totalDelRecibo - $recibo->importe;
+                        }
+                    }
+                }
+                return $totalDelRecibo;
+            }
+        }
+        catch(Exception $ex) {
+            echo "<script>alert('Error al consultar Recibo de Haberes ".$idReciboDeHaberes."');</script>";
+            return false;
+        }
     }
 }
 ?>

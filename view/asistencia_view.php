@@ -30,7 +30,7 @@ require_once ('../view/cabecera.php');
 
     <div class="row justify-content-center mt-3">
       <div class="col-md-8">
-        <table class="table table-hover table-dark" id="tablaAsistenciaHead">
+        <table class="table table-hover" id="tablaAsistenciaHead">
           <thead>
             <tr>
               <th>Fecha</th>
