@@ -1,5 +1,6 @@
 <?php
 require_once ('../persistence/database.php');
+require_once ('../model/conceptoClass.php');
 
 class Recibo_concepto
 {
@@ -43,13 +44,24 @@ class Recibo_concepto
             $sql = "SELECT * FROM recibo_concepto WHERE recibo_concepto.idRecibo_concepto = $this->idRecibo_concepto";
             //var_dump($sql);
             $result = $connect->query($sql);
-             if (!$result) {
-                echo "\nPDO::errorInfo():\n";
-                print_r($connect->errorInfo());
+             if ($result != false){
+                if($result->rowCount() > 0){
+                    $result = $result->fetchAll();
+                    $objConcepto = new Concepto();
+                    $objConcepto->idConcepto = $result[0]["concepto_idconcepto"];
+                    $objConcepto->selectConcepto();
+                    $this->idRecibo_concepto = $result[0]["idRecibo_concepto"];
+                    $this->importe = $result[0]["importe"];
+                    $this->cantidad = $result[0]["cantidad"];
+                    $this->concepto_detalle = $objConcepto->detalle;
+                    $this->concepto = $objConcepto;
+                    $this->ReciboDeHaberes_idReciboDeHaberes = $result[0]["ReciboDeHaberes_idReciboDeHaberes"]; 
+                }
             }
             else
             {
-                
+                echo "\nPDO::errorInfo():\n";
+                print_r($connect->errorInfo());
             }
         }
         catch(Exception $ex)
