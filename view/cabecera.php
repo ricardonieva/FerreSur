@@ -98,6 +98,10 @@ error_reporting(0);
     tr {
       text-align: center;
     }
+    .imgsize{
+      height: 25px;
+      margin-bottom: 9px;
+    }
   </style>
 
 </head>
@@ -108,7 +112,7 @@ error_reporting(0);
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active"><a href="../view/menuPrincipal_view.php" class="navbar-brand">Ferre-Sur </a></li>
+          <li class="nav-item active"><a href="../view/menuPrincipal_view.php" class="navbar-brand">Ferre-Sur <img src="../view/images/logo.ico" class="imgsize" alt="icono"></a></li>
           <li class="nav-item active">
             <p class="navbar-brand">| <?php echo $_SESSION['usuario']; ?> </p>
           </li>

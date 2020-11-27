@@ -61,6 +61,12 @@ if(isset($_POST['guadarConceptos']))
           width: 150px;
           height: 100px;
       }
+      body {
+      background: rgb(38, 130, 181);
+      background: linear-gradient(90deg, rgba(38, 130, 181, 0.5102240725391719) 0%, rgba(179, 153, 153, 1) 100%);
+      
+
+    }
     </style>
         
     <style type="text/css" media="print">
