@@ -8,14 +8,15 @@ if(isset($_POST['botonAgregar']))
 {
     $concepto->idConcepto = $_POST['selectConcepto'];
     $concepto->selectConcepto();
-    $_SESSION['LISTACONCEPTOS'][] = $concepto;
+    $_SESSION['LISTACONCEPTOS'][] = serialize($concepto);
 }
 
 if(isset($_POST['quitarElemento']))
 {
     for($i = 0; $i < count($_SESSION['LISTACONCEPTOS']); $i++)
     {
-        if($_SESSION['LISTACONCEPTOS'][$i]->idConcepto == $_POST['quitarElemento'])
+        $concepto = unserialize($_SESSION['LISTACONCEPTOS'][$i]);
+        if($concepto->idConcepto == $_POST['quitarElemento'])
         {
             unset($_SESSION['LISTACONCEPTOS'][$i]);
             $_SESSION['LISTACONCEPTOS'] = array_values($_SESSION['LISTACONCEPTOS']);
@@ -29,7 +30,10 @@ if(isset($_POST['guadarConceptos']))
     $tipoLiq = new tiposDeLiquidacion();
     $tipoLiq->nombre = $_POST['txtNombre'];
     $tipoLiq->tipo = $_POST['tipo'];
-    $tipoLiq->TiposDeLiquidacion_conceptos = $_SESSION['LISTACONCEPTOS'];
+    foreach($_SESSION['LISTACONCEPTOS'] as $row){
+        $row = unserialize($row);
+        $tipoLiq->lista_TiposDeLiquidacion_conceptos($row);
+    }
     $tipoLiq->insertTiposDeLiquidacion();
     unset($_SESSION['LISTACONCEPTOS']);
 }
@@ -137,8 +141,10 @@ if(isset($_POST['guadarConceptos']))
                         <tbody>
 
                         <?php
+                           
                             foreach($_SESSION['LISTACONCEPTOS'] as $row)
                             {
+                                $row = unserialize($row);
                                 echo "<tr>";
                                     echo "<td>".$row->idConcepto."</td>";
                                     echo "<td>".$row->detalle."</td>";
