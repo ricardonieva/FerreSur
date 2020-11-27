@@ -83,6 +83,7 @@ body{
   box-shadow: 0 0 250px #000;
   text-align: center;
   padding: 4rem 2rem;
+  background-color: rgba(63, 127, 191, 0.33);
 }
 .in{
   border: 1px solid #242c37;
