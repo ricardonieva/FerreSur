@@ -92,6 +92,12 @@
     
     <!-- Fin container -->
 </form>
+<style>
+    body {
+      background: rgb(38, 130, 181);
+      background: linear-gradient(90deg, rgba(38, 130, 181, 0.5102240725391719) 0%, rgba(179, 153, 153, 1) 100%);
+    }
+</style>
 
 <?php
 require_once ('../view/pie.php');

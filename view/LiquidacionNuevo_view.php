@@ -1,5 +1,6 @@
 <?php
 require_once ('../model/UsuarioClass.php');
+require_once ('../view/cabecera.php');
 require_once ('../model/LiquidacionClass.php');
 require_once ('../model/tiposDeLiquidacionClass.php');
 Usuario::verificarSesion(38);
@@ -59,7 +60,7 @@ if(isset($_POST['btnGenerar']))
 <br>
 
 <form action="" method="POST">
-    <h3 class="text-center mt-3">Crear Liquidacion</h3>
+    <h3 class="text-center mt-5">Crear Liquidacion</h3>
         <div class="container-fluid eliminarImprimir mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-4">
