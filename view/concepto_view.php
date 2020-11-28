@@ -62,6 +62,8 @@ Usuario::verificarSesion(12);
                     <option>Presentismo</option>
                     <option>Sueldo</option>
                     <option>Dias Feriados</option>
+                    <option>Despido</option>
+                    <option>SAC</option>
                 </select>
             </div>
             <div class="col-md-6">
