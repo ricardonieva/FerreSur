@@ -194,7 +194,7 @@ class ReciboDeHaberes
                         $recibo_concepto = new Recibo_concepto();
                         $recibo_concepto->importe = $sueldoDiasFeriadosBrutos;
                         $recibo_concepto->cantidad =$diasProcentualFeriados * 100;
-                        $recibo_concepto->unidades = $asistencia["diasTrabajadosFeriados"]/2;
+                        $recibo_concepto->unidades = $asistencia["diasTrabajadosFeriados"];
                         $recibo_concepto->concepto_detalle = $row->detalle;
                         $recibo_concepto->concepto = $row->idConcepto;
                         $recibo_concepto->ReciboDeHaberes = $this->idReciboDeHaberes;
