@@ -12,7 +12,8 @@ if(isset($_POST['reciboDeHaberesInforme'])){
     $RH->idReciboDeHaberes = $_POST['idReciboDeHaberes'];
     $RH->selectReciboDeHaberes();
     $RH->selectAllRecibo_Concepto();
-    
+    //var_dump($RH->listaRecibo_Concepto);
+    //die;
     echo json_encode($RH);
 }
 

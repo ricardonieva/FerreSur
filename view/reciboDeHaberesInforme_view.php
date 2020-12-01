@@ -64,6 +64,7 @@ $idLiquidacion = (int) $_GET['recibodehaberesid'];
                     <tr>
                         <th>Fecha de Cobro</th>
                         <th>Cuenta Bancaria</th>
+                        <th>Banco</th>
                         <th>Periodo</th>
                     </tr>
                 </thead>
@@ -79,6 +80,7 @@ $idLiquidacion = (int) $_GET['recibodehaberesid'];
                     <tr>
                         <th>Codigo</th>
                         <th>Detalle</th>
+                        <th>Valor</th>
                         <th>Cantidad</th>
                         <th>Haberes</th>
                         <th>Deducciones</th>

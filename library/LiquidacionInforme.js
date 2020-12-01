@@ -46,7 +46,7 @@ window.addEventListener('load', function(){
     .then(res => res.json())
     .then(data => {
 
-        document.title = 'Factura de Haberes N° '+data['idReciboDeHaberes'];
+        document.title = 'Recibo de Haberes N° '+data['idReciboDeHaberes'];
         document.getElementById('NumeroDeRecibo').innerHTML = 'N° '+data['idReciboDeHaberes'];
         // document.getElementById('FechaDeRecibo').innerHTML = formato(data['cabecera'][0].fechaliquidacion);
 
@@ -71,6 +71,7 @@ window.addEventListener('load', function(){
         <tr>
             <td>${formato(data['liquidacion'].fechaDePago)}</td>
             <td>${data['empleado'].cuentaBancaria}</td>
+            <td>${data['liquidacion'].banco}</td>
             <td>${formato(data['liquidacion'].desde)} - ${formato(data['liquidacion'].hasta)}</td>
         </tr>
         `;
@@ -101,6 +102,7 @@ window.addEventListener('load', function(){
                 <td>${item['concepto'].idConcepto}</td>
                 <td>${item['concepto'].detalle}</td>
                 <td>${item.cantidad}</td>
+                <td>${item.unidades > 0 ? item.unidades : ""}</td>
                 <td>${haberes}</td>
                 <td>${deducciones}</td>
             </tr>

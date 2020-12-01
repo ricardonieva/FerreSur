@@ -7,6 +7,7 @@ class Recibo_concepto
     public $idRecibo_concepto;
     public $importe;
     public $cantidad;
+    public $unidades;
     public $concepto_detalle;
     public $concepto;
     public $ReciboDeHaberes;
@@ -18,8 +19,8 @@ class Recibo_concepto
             $connect = Database::connectDB();
             // $sql = "INSERT INTO recibo_concepto(importe, cantidad, concepto_detalle, concepto_idconcepto, ReciboDeHaberes_idReciboDeHaberes) 
             // VALUES ($this->importe, $this->cantidad, '$this->concepto_detalle',$this->concepto,$this->ReciboDeHaberes)";
-            $sql = "INSERT INTO recibo_concepto(importe, cantidad,concepto_idconcepto, ReciboDeHaberes_idReciboDeHaberes) 
-            VALUES ($this->importe,  $this->cantidad, $this->concepto,$this->ReciboDeHaberes)";
+            $sql = "INSERT INTO recibo_concepto(importe, cantidad, unidades,concepto_idconcepto, ReciboDeHaberes_idReciboDeHaberes) 
+            VALUES ($this->importe, $this->cantidad, $this->unidades,$this->concepto,$this->ReciboDeHaberes)";
             //var_dump($sql);
             $result = $connect->query($sql);
              if (!$result) {
@@ -53,6 +54,7 @@ class Recibo_concepto
                     $this->idRecibo_concepto = $result[0]["idRecibo_concepto"];
                     $this->importe = $result[0]["importe"];
                     $this->cantidad = $result[0]["cantidad"];
+                    $this->unidades = $result[0]["unidades"];
                     $this->concepto_detalle = $objConcepto->detalle;
                     $this->concepto = $objConcepto;
                     $this->ReciboDeHaberes_idReciboDeHaberes = $result[0]["ReciboDeHaberes_idReciboDeHaberes"]; 
