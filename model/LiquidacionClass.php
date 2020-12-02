@@ -11,6 +11,7 @@ class Liquidacion
     public $hasta;
     public $banco;
     public $fechaDePago;
+    public $cerrado;
     public $TipoDeLiquidacion;
     public $listaReciboDeHaberes = array();
    
@@ -28,9 +29,12 @@ class Liquidacion
         $sql = "INSERT INTO liquidacion(nombre, desde, hasta, banco, fechaDePago, TiposDeLiquidacion_idTiposDeLiquidacion) 
         VALUES ('$this->nombre', '$this->desde', '$this->hasta', '$this->banco', '$this->fechaDePago', $this->TipoDeLiquidacion)";
         $result = $connect->query($sql);
-        if (!$result) {
-            echo "\nPDO::errorInfo():\n";
-            print_r($connect->errorInfo());
+        //var_dump($sql);
+        if ($result == false) {
+            //echo "\nPDO::errorInfo():\n";
+            $error = $connect->errorInfo();
+            $error = str_replace("'","",$error[2]);
+            echo "<script>alert('".$error."')</script>";
         }
         else
         {
@@ -60,7 +64,7 @@ class Liquidacion
         $connect = Database::connectDB();
         $sql = "SELECT * FROM liquidacion WHERE liquidacion.idliquidacion = $this->idliquidacion";
         $result = $connect->query($sql);
-        if (!$result) {
+        if ($result == false) {
             echo "\nPDO::errorInfo():\n";
             print_r($connect->errorInfo());
         }
@@ -74,6 +78,7 @@ class Liquidacion
                 $this->hasta = $result->hasta;
                 $this->banco = $result->banco;
                 $this->fechaDePago = $result->fechaDePago;
+                $this->cerrado = $result->cerrado;
                 $tiposLiq = new tiposDeLiquidacion();
                 $tiposLiq->idTiposDeLiquidacion = $result->TiposDeLiquidacion_idTiposDeLiquidacion;
                 $tiposLiq->SelectTiposLiq();
@@ -140,6 +145,23 @@ class Liquidacion
         else
         {
             echo "<script>alert('Se modifico liquidacion correctamente')</script>";
+            return true;
+        }
+    }
+
+    public function cerrarLiquidacion(){
+        $connect = Database::connectDB();
+        $sql = "UPDATE liquidacion SET cerrado = 1 WHERE liquidacion.idliquidacion = $this->idliquidacion";
+        $result = $connect->query($sql);
+        if ($result == false) {
+            echo "\nPDO::errorInfo():\n";
+            print_r($connect->errorInfo());
+            echo "<script>alert('Error al cerrar la liquidacion')</script>";
+            return false;
+        }
+        else
+        {
+            echo "<script>alert('Se cerro liquidacion correctamente')</script>";
             return true;
         }
     }

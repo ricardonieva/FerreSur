@@ -17,6 +17,12 @@ if(isset($_POST['btnEliminar']))
     unset($_POST['selectLiquidacion']);
 }
 
+if(isset($_POST['cerrarLiquidacion']))
+{
+    $liq->idliquidacion = $_POST['cerrarLiquidacion'];
+    $liq->cerrarLiquidacion();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -115,6 +121,7 @@ if(isset($_POST['btnEliminar']))
                                 <th>Banco</th>
                                 <th>fechaDePago</th>
                                 <th>Tipo</th>
+                                <th>Cerrado</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -127,9 +134,20 @@ if(isset($_POST['btnEliminar']))
                                 <td><?php echo $liq->banco; ?></td>
                                 <td><?php echo date("d/m/Y", strtotime($liq->fechaDePago)); ?></td>
                                 <td><?php echo $liq->TipoDeLiquidacion->nombre; ?></td>
+                                <td><?php echo $liq->cerrado == 0 ? "No" : "Si" ; ?></td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <?php if($liq->cerrado == 0) { ?>
+                    <form action="" method="POST">
+                        <div class="eliminarImprimir">
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" name="cerrarLiquidacion" onclick="confirmarCierrerLiquidacion(event);" value="<?php echo $liq->idliquidacion; ?>" class="btn btn-warning">Cerrar Liquidacion</button>
+                        </div>
+                        </div>
+                    </form>                    
+                    <?php } ?>
                        
                     <table class="table mt-5 table-hover table-dark">
                         <thead>
@@ -186,7 +204,9 @@ if(isset($_POST['btnEliminar']))
                                     echo "<td>".number_format($neto, 2, ',', '.')."</td>";
 
                                     echo "<td><button class='btn btn-info eliminarImprimir' onclick='verReciboDeHaberes($row->idReciboDeHaberes);'>Ver Recibo</button></td>";
-                                    echo "<td><button class='btn btn-danger eliminarImprimir' form='form1' name='btnEliminar' value='$row->idReciboDeHaberes'>Eliminar Recibo</button></td>";
+                                    if($liq->cerrado == 0){
+                                        echo "<td><button class='btn btn-danger eliminarImprimir' form='form1' name='btnEliminar' value='$row->idReciboDeHaberes'>Eliminar Recibo</button></td>";
+                                    }
                                 echo "</tr>";
                                
                                 // sumamos todos los total
@@ -244,9 +264,14 @@ if(isset($_POST['btnEliminar']))
   </body>
 </html>
 
-<script>
-    function verReciboDeHaberes(idReciboDeHaberes)
-    {
+<script type="text/javascript">
+    function verReciboDeHaberes(idReciboDeHaberes){
         window.open("../view/recibodehaberesinforme_view.php?recibodehaberesid="+idReciboDeHaberes);
+    }
+
+    function confirmarCierrerLiquidacion(evt){
+        if(!confirm('Esta seguro de cerrar la Liquidacion?')) {
+            evt.preventDefault();
+        }
     }
 </script>

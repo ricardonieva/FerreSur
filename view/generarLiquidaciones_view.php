@@ -85,7 +85,9 @@ if(isset($_POST['btnGenerarLiquidaciones']))
                         <?php                            
                             foreach(Liquidacion::selectAllLiquidacion() as $row)
                             {
-                                echo "<option value='$row[idliquidacion]'> $row[nombre]</option>";             
+                                if($row["cerrado"] == 0){
+                                    echo "<option value='$row[idliquidacion]'> $row[nombre]</option>";
+                                }
                             }
                         ?>   
                     </select>
