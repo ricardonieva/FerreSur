@@ -172,8 +172,8 @@ class ReciboDeHaberes
                     $sueldoDiasHabilesBrutos = $diasPorcentualTrabajados * $this->empleado->categoria->sueldoBasico;   
                     $recibo_concepto = new Recibo_concepto();
                     $recibo_concepto->importe = $sueldoDiasHabilesBrutos;
-                    $recibo_concepto->cantidad = $diasPorcentualTrabajados * 100;
-                    $recibo_concepto->unidades = 0;
+                    $recibo_concepto->cantidad = $this->empleado->categoria->sueldoBasico;
+                    $recibo_concepto->unidades = $diasPorcentualTrabajados;
                     $recibo_concepto->concepto_detalle = $row->detalle;
                     $recibo_concepto->concepto = $row->idConcepto;
                     $recibo_concepto->ReciboDeHaberes = $this->idReciboDeHaberes;
@@ -190,10 +190,10 @@ class ReciboDeHaberes
                     $diasProcentualFeriados = $asistencia["diasTrabajadosFeriados"] / $diasHabiles;
                     if($diasProcentualFeriados > 0)
                     {
-                        $sueldoDiasFeriadosBrutos = $diasProcentualFeriados * $this->empleado->categoria->sueldoBasico;   
+                        $sueldoDiasFeriadosBrutos = (1/$diasHabiles) * $this->empleado->categoria->sueldoBasico;   
                         $recibo_concepto = new Recibo_concepto();
-                        $recibo_concepto->importe = $sueldoDiasFeriadosBrutos;
-                        $recibo_concepto->cantidad =$diasProcentualFeriados * 100;
+                        $recibo_concepto->importe = $sueldoDiasFeriadosBrutos * $asistencia["diasTrabajadosFeriados"];
+                        $recibo_concepto->cantidad =  $sueldoDiasFeriadosBrutos;
                         $recibo_concepto->unidades = $asistencia["diasTrabajadosFeriados"];
                         $recibo_concepto->concepto_detalle = $row->detalle;
                         $recibo_concepto->concepto = $row->idConcepto;
@@ -260,8 +260,8 @@ class ReciboDeHaberes
                 {                
                     $recibo_concepto = new Recibo_concepto();
                     $recibo_concepto->importe = $SuledoPorLasFichas;
-                    $recibo_concepto->cantidad = $CantidadDeFichas;
-                    $recibo_concepto->unidades = 0;
+                    $recibo_concepto->cantidad = $this->categoria_sueldoBasico;
+                    $recibo_concepto->unidades = $CantidadDeFichas;
                     $recibo_concepto->concepto_detalle = $row->detalle;
                     $recibo_concepto->concepto = $row->idConcepto;
                     $recibo_concepto->ReciboDeHaberes = $this->idReciboDeHaberes;
@@ -285,8 +285,8 @@ class ReciboDeHaberes
                 {                
                     $recibo_concepto = new Recibo_concepto();
                     $recibo_concepto->importe = $SuledoTotalPorHorasTrabajadas;
-                    $recibo_concepto->cantidad = $horasTrabajadas;
-                    $recibo_concepto->unidades = 0;
+                    $recibo_concepto->cantidad = $this->empleado->categoria->sueldoBasico;
+                    $recibo_concepto->unidades = $horasTrabajadas;
                     $recibo_concepto->concepto_detalle = $row->detalle;
                     $recibo_concepto->concepto = $row->idConcepto;
                     $recibo_concepto->ReciboDeHaberes = $this->idReciboDeHaberes;
@@ -349,8 +349,8 @@ class ReciboDeHaberes
                 {
                     $recibo_concepto = new Recibo_concepto();
                     $recibo_concepto->importe = $SuledoTotalPorDespido;
-                    $recibo_concepto->unidades = 0;
-                    $recibo_concepto->cantidad = $SuledoTotalPorDespido;
+                    $recibo_concepto->unidades = $AñosAntiguedad;
+                    $recibo_concepto->cantidad = $this->empleado->categoria->sueldoBasico;
                     $recibo_concepto->concepto_detalle = $row->detalle;
                     $recibo_concepto->concepto = $row->idConcepto;
                     $recibo_concepto->ReciboDeHaberes = $this->idReciboDeHaberes;
@@ -370,7 +370,7 @@ class ReciboDeHaberes
                 if($row->detalle == "Sueldo Anual Complementario")
                 {
                     $connect = Database::connectDB();
-                    $sql = "SELECT * FROM recibodehaberes WHERE recibodehaberes.categoria_formaLaboral ='Mensual' AND empleado_idEmpleado=".$this->empleado->idEmpleado." ORDER BY idReciboDeHaberes DESC LIMIT 7";
+                    $sql = "SELECT recibodehaberes.* FROM recibodehaberes,liquidacion,tiposdeliquidacion WHERE liquidacion.desde BETWEEN '".$this->liquidacion->desde."'  AND '".$this->liquidacion->hasta."' AND recibodehaberes.categoria_formaLaboral ='Mensual' AND empleado_idEmpleado=".$this->empleado->idEmpleado." AND recibodehaberes.liquidacion_idliquidacion = liquidacion.idliquidacion AND liquidacion.TiposDeLiquidacion_idTiposDeLiquidacion = tiposdeliquidacion.idTiposDeLiquidacion AND tiposdeliquidacion.Tipo = 'sueldo' ORDER BY idReciboDeHaberes DESC LIMIT 6";                   
                     $result = $connect->query($sql);
                     if(!$result)
                     {
@@ -395,8 +395,8 @@ class ReciboDeHaberes
                     }
                     $recibo_concepto = new Recibo_concepto();
                     $recibo_concepto->importe = $mayor/2;
-                    $recibo_concepto->cantidad = $mayor/2;
-                    $recibo_concepto->unidades = 0;
+                    $recibo_concepto->cantidad = $mayor;
+                    $recibo_concepto->unidades = 0.5;
                     $recibo_concepto->concepto_detalle = $row->detalle;
                     $recibo_concepto->concepto = $row->idConcepto;
                     $recibo_concepto->ReciboDeHaberes = $this->idReciboDeHaberes;
@@ -419,8 +419,8 @@ class ReciboDeHaberes
                     $sueldoBrutoConConceptos = $sueldoBrutoConConceptos + $total;
                     $recibo_concepto = new Recibo_concepto();
                     $recibo_concepto->importe = $total;
-                    $recibo_concepto->cantidad = $row->valor;
-                    $recibo_concepto->unidades = 0;
+                    $recibo_concepto->cantidad = 0;
+                    $recibo_concepto->unidades = $row->valor;
                     $recibo_concepto->concepto_detalle = $row->detalle;
                     $recibo_concepto->concepto = $row->idConcepto;
                     $recibo_concepto->ReciboDeHaberes = $this->idReciboDeHaberes;
@@ -432,8 +432,8 @@ class ReciboDeHaberes
                     $sueldoBrutoConConceptos = $sueldoBrutoConConceptos + $total;
                     $recibo_concepto = new Recibo_concepto();
                     $recibo_concepto->importe = $total;
-                    $recibo_concepto->cantidad = $row->valor;
-                    $recibo_concepto->unidades = 0;
+                    $recibo_concepto->cantidad = 1;
+                    $recibo_concepto->unidades = $row->valor;
                     $recibo_concepto->concepto_detalle = $row->detalle;
                     $recibo_concepto->concepto = $row->idConcepto;
                     $recibo_concepto->ReciboDeHaberes = $this->idReciboDeHaberes;
@@ -558,8 +558,8 @@ class ReciboDeHaberes
                     //$sueldoBrutoConConceptos = $sueldoBrutoConConceptos + $total;
                     $recibo_concepto = new Recibo_concepto();
                     $recibo_concepto->importe = $total;
-                    $recibo_concepto->cantidad = $row->valor;
-                    $recibo_concepto->unidades = 0;
+                    $recibo_concepto->cantidad = 0;
+                    $recibo_concepto->unidades = $row->valor;
                     $recibo_concepto->concepto_detalle = $row->detalle;
                     $recibo_concepto->concepto = $row->idConcepto;
                     $recibo_concepto->ReciboDeHaberes = $this->idReciboDeHaberes;
@@ -574,7 +574,7 @@ class ReciboDeHaberes
                     $recibo_concepto = new Recibo_concepto();
                     $recibo_concepto->importe = $total;
                     $recibo_concepto->cantidad = $row->valor;
-                    $recibo_concepto->unidades = 0;
+                    $recibo_concepto->unidades = 1;
                     $recibo_concepto->concepto_detalle = $row->detalle;
                     $recibo_concepto->concepto = $row->idConcepto;
                     $recibo_concepto->ReciboDeHaberes = $this->idReciboDeHaberes;

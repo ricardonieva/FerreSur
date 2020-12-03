@@ -96,17 +96,49 @@ window.addEventListener('load', function(){
                 haberes = "";
                 TotalDeducciones = TotalDeducciones + parseFloat(item.importe);                
             }
-          
+            
+            let valor = "";
+            let cantidad = "";
+            if(item.concepto.tipoConcepto == "Sueldo" && item.concepto.detalle == "Sueldo Basico"){ 
+                valor = parseFloat(item.cantidad).toFixed(2);
+                cantidad = (item.unidades*100)+"%";
+            }
+            else{
+                if(item.concepto.tipo == "Porcentual"){
+                    valor = item.cantidad > 0 ? item.cantidad+"%" : "";
+                    cantidad = item.unidades > 0 ? item.unidades+"%" : "";
+                    if(item.concepto.tipoConcepto == "Antiguedad"){
+                        cantidad = item.unidades;
+                    }
+                    if(item.concepto.tipoConcepto == "Dias Feriados" || item.concepto.tipoConcepto == "Despido"){
+                        valor = parseFloat(item.cantidad).toFixed(2);
+                        cantidad = item.unidades;
+                    }
+                    if(item.concepto.tipoConcepto == "Sueldo"){
+                        valor = parseFloat(item.cantidad).toFixed(2);
+                        cantidad = item.unidades;
+                    }
+                    if(item.concepto.tipoConcepto == "SAC"){
+                        valor = parseFloat(item.cantidad).toFixed(2);
+                        cantidad = (item.unidades*100)+"%";
+                    }
+                }
+                else{
+                    valor = parseFloat(item.cantidad).toFixed(2);
+                    cantidad = item.unidades;
+                }
+            }           
+
             tablaDet.innerHTML += `
             <tr>
                 <td>${item['concepto'].idConcepto}</td>
                 <td>${item['concepto'].detalle}</td>
-                <td>${item.cantidad}</td>
-                <td>${item.unidades > 0 ? item.unidades : ""}</td>
-                <td>${haberes}</td>
-                <td>${deducciones}</td>
+                <td>${valor}</td>
+                <td>${cantidad}</td>
+                <td>${haberes != "" ? parseFloat(haberes).toFixed(2) : ""}</td>
+                <td>${deducciones != "" ? parseFloat(deducciones).toFixed(2) : ""}</td>
             </tr>
-            `;           
+            `;
         }
 
         var totalneto = totalHaberes - TotalDeducciones;
