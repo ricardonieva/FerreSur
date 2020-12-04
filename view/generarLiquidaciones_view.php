@@ -4,18 +4,21 @@ Usuario::verificarSesion(15);
 require_once ('../model/EmpleadoClass.php');
 require_once ('../model/reciboDeHaberesClass.php');
 require_once ('../view/cabecera.php');
+require_once ('../model/LiquidacionClass.php');
 
-//Usuario::verificarSesion(5);
 $empleado = new Empleado();
-if(isset($_POST['btnGenerarLiquidaciones']))
-{ 
-   foreach($_POST['checkEmpleado'] as $row)
-   {    
-        $RH = new ReciboDeHaberes();
-        $RH->eliminarRecibosRepetidos($_POST['selectLiquidacion'], $row);
-        $RH->calcularRecibo_Concepto($_POST['selectLiquidacion'], $row);        
-   }
-   echo "<script>alert('Se generaron las respectivas liquidaciones Satisfactoriamente')</script>";
+if(isset($_POST['btnGenerarLiquidaciones'])){
+    $liquidacion = new Liquidacion();
+    $liquidacion->idliquidacion = $_POST['selectLiquidacion'];
+    $liquidacion->selectLiquidacion();
+    foreach($_POST['checkEmpleado'] as $row){
+        if($empleado->verificarSiTieneDiasFichasHoras($row, $liquidacion->desde, $liquidacion->hasta) != false){
+            $RH = new ReciboDeHaberes();
+            $RH->eliminarRecibosRepetidos($_POST['selectLiquidacion'], $row);
+            $RH->calcularRecibo_Concepto($_POST['selectLiquidacion'], $row);
+        }        
+    }
+    echo "<script>alert('Se generaron las respectivas liquidaciones Satisfactoriamente')</script>";
 }
 
 ?>
@@ -75,7 +78,7 @@ if(isset($_POST['btnGenerarLiquidaciones']))
 
 <br><br><br>
 
-<form action="" method="POST">
+<form action="" method="POST" name="form1">
     <h3 class="text-center mt-3">Generar Liquidacion</h3>
         <div class="container-fluid eliminarImprimir mt-3">
             <div class="row justify-content-center">
@@ -115,8 +118,20 @@ if(isset($_POST['btnGenerarLiquidaciones']))
                                 ?>                                
                             </tbody>
                         </table>
-                    </div>     
-                <button class="btn btn-info" name="btnGenerarLiquidaciones" type="submit">Generar Liquidaciones</button>
+                    </div>
+                    <div class="container-fluid mt-3">
+                        <div class="row justify-content-center">
+                            <div class="col-md-3">
+                                <button class="btn btn-info" name="btnGenerarLiquidaciones" type="submit">Generar Liquidaciones</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-info" id="btnMarcar" onclick="seleccionar_todo(event)">Marcar Todos</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-info" id="btnDesmarcar" onclick="deseleccionar_todo(event)">Desarcar Todos</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>   
         </div>
@@ -141,3 +156,23 @@ if(isset($_POST['btnGenerarLiquidaciones']))
         </footer>   
   </body>
 </html>
+
+<script type="text/javascript">
+    function seleccionar_todo(evt){
+        evt.preventDefault();
+        for (i=0;i<document.form1.elements.length;i++){
+            if(document.form1.elements[i].type == "checkbox"){
+                document.form1.elements[i].checked=1;
+            }
+        }
+    }
+
+    function deseleccionar_todo(evt){
+        evt.preventDefault();
+        for (i=0;i<document.form1.elements.length;i++){
+            if(document.form1.elements[i].type == "checkbox"){
+                document.form1.elements[i].checked=0;
+            }
+        }
+    }
+</script>

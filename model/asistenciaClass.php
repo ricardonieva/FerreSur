@@ -12,7 +12,7 @@ class Asistencia{
     public $calendario;
 
     public function nuevaAsistencia($fecha, $entrada, $salida, $novedad, $idempleado){
-        var_dump($idempleado);
+        //var_dump($idempleado);
 
         $apertura = new DateTime($entrada);
         $cierre = new DateTime($salida);

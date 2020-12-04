@@ -290,6 +290,37 @@ class Empleado{
         }
     }
 
+    public function verificarSiTieneDiasFichasHoras($idEmpleado, $desde, $hasta){
+        $this->idEmpleado = $idEmpleado;
+        $this->selectEmpleado();
+        if($this->categoria->formaLaboral == "Mensual"){
+            $diasTrabajados = $this->AsistenciaMensual($desde, $hasta);
+            if($diasTrabajados['diasTrabajadosHabiles'] == 0 && $diasTrabajados['diasTrabajadosFeriados'] == 0){
+                echo "<script> alert('El empleado $this->apellido $this->nombre no tiene asistencias cargadas'); </script>";
+                return false;
+            }
+        }
+        if($this->categoria->formaLaboral == "Hora"){
+            $horasTrabajadas = $this->cantidadDeHorasTrabajadas($desde, $hasta);
+            if($horasTrabajadas > 0){
+                echo "<script> alert('El empleado $this->apellido $this->nombre no tiene horas trabajadas'); </script>";
+                return false;
+            }
+        }
+        if($this->categoria->formaLaboral == "Ficha"){
+            $this->selectAllFichas($desde, $hasta);
+            $CantidadDeFichas = 0;
+            foreach($this->listaFichas as $row2)
+            {
+                $CantidadDeFichas = $CantidadDeFichas + $row2->cantidad;
+            }
+            if($CantidadDeFichas == 0){
+                echo "<script> alert('El empleado $this->apellido $this->nombre no tiene horas trabajadas'); </script>";
+                return false;
+            }
+        }
+        return true;
+    }
     
 }
 ?>
