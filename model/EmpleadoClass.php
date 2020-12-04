@@ -290,9 +290,7 @@ class Empleado{
         }
     }
 
-    public function verificarSiTieneDiasFichasHoras($idEmpleado, $desde, $hasta){
-        $this->idEmpleado = $idEmpleado;
-        $this->selectEmpleado();
+    public function verificarSiTieneDiasFichasHoras($desde, $hasta){
         if($this->categoria->formaLaboral == "Mensual"){
             $diasTrabajados = $this->AsistenciaMensual($desde, $hasta);
             if($diasTrabajados['diasTrabajadosHabiles'] == 0 && $diasTrabajados['diasTrabajadosFeriados'] == 0){

@@ -12,11 +12,45 @@ if(isset($_POST['btnGenerarLiquidaciones'])){
     $liquidacion->idliquidacion = $_POST['selectLiquidacion'];
     $liquidacion->selectLiquidacion();
     foreach($_POST['checkEmpleado'] as $row){
-        if($empleado->verificarSiTieneDiasFichasHoras($row, $liquidacion->desde, $liquidacion->hasta) != false){
-            $RH = new ReciboDeHaberes();
-            $RH->eliminarRecibosRepetidos($_POST['selectLiquidacion'], $row);
-            $RH->calcularRecibo_Concepto($_POST['selectLiquidacion'], $row);
-        }        
+        $empleado->idEmpleado = $row;
+        $empleado->selectEmpleado();
+        if($empleado->categoria->formaLaboral == "Ficha" && $liquidacion->TipoDeLiquidacion->tipo == "Sueldo"){
+            if($empleado->verificarSiTieneDiasFichasHoras($liquidacion->desde, $liquidacion->hasta) != false){
+                $RH = new ReciboDeHaberes();
+                $RH->eliminarRecibosRepetidos($_POST['selectLiquidacion'], $row);
+                $RH->calcularRecibo_Concepto($_POST['selectLiquidacion'], $row);
+            }
+        }
+        else{
+            if($empleado->categoria->formaLaboral == "Hora" && $liquidacion->TipoDeLiquidacion->tipo == "Sueldo"){
+                if($empleado->verificarSiTieneDiasFichasHoras($liquidacion->desde, $liquidacion->hasta) != false){
+                    $RH = new ReciboDeHaberes();
+                    $RH->eliminarRecibosRepetidos($_POST['selectLiquidacion'], $row);
+                    $RH->calcularRecibo_Concepto($_POST['selectLiquidacion'], $row);
+                }
+            }
+            else{
+                if($empleado->categoria->formaLaboral == "Mensual"){
+                    if($liquidacion->TipoDeLiquidacion->tipo == "Despido"){
+                        $RH = new ReciboDeHaberes();
+                        $RH->eliminarRecibosRepetidos($_POST['selectLiquidacion'], $row);
+                        $RH->calcularRecibo_Concepto($_POST['selectLiquidacion'], $row);
+                    }
+                    else{
+                        if($empleado->verificarSiTieneDiasFichasHoras($liquidacion->desde, $liquidacion->hasta) != false){
+                            $RH = new ReciboDeHaberes();
+                            $RH->eliminarRecibosRepetidos($_POST['selectLiquidacion'], $row);
+                            $RH->calcularRecibo_Concepto($_POST['selectLiquidacion'], $row);
+                        }
+                    }
+                }
+                else{
+                    $formaLaboral = $empleado->categoria->formaLaboral;
+                    echo "<script>alert('No se puede generar el recibo ya que el empleado $empleado->apellido $empleado->nombre tiene forma laboral $formaLaboral')</script>";
+                }
+            }
+        }
+       
     }
     echo "<script>alert('Se generaron las respectivas liquidaciones Satisfactoriamente')</script>";
 }
@@ -128,7 +162,7 @@ if(isset($_POST['btnGenerarLiquidaciones'])){
                                 <button class="btn btn-info" id="btnMarcar" onclick="seleccionar_todo(event)">Marcar Todos</button>
                             </div>
                             <div class="col-md-3">
-                                <button class="btn btn-info" id="btnDesmarcar" onclick="deseleccionar_todo(event)">Desarcar Todos</button>
+                                <button class="btn btn-info" id="btnDesmarcar" onclick="deseleccionar_todo(event)">Desmarcar Todos</button>
                             </div>
                         </div>
                     </div>
