@@ -8,10 +8,11 @@ require_once ('../view/cabecera.php');
     <h3 class="text-center">Asistencia de Empleados</h3>
 
     <div class="row justify-content-center">
-        <div class="input-group col-md-4">
+        <div class="input-group col-md-6">
             <input autofocus type="text" class="form-control" name="buscarcuil" id="buscarcuil" placeholder="CUIL">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" name="buscarEmpleado" id="buscarEmpleado">Buscar Empleado</button>
+                <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#modalBuscarEmpleado">Buscar Empleado por nombre</button>
             </div>
         </div>
     </div>
@@ -51,9 +52,44 @@ require_once ('../view/cabecera.php');
 
 </div>
 
-<!-- Button trigger modal -->
 
-<!-- Modal -->
+<!-- Modal BUSCAR EMPLEADO -->
+<div class="modal fade" id="modalBuscarEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Buscar Empleado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">        
+        <table class="table table-light">
+          <thead class="thead-light">
+            <tr>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>CUIL</th>
+            </tr>
+          </thead>
+          <tbody id="tablaTodosLosEmpleados">
+            <tr>
+              <td></td>
+            </tr>
+          </tbody>          
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="guardarAsistencia();">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- fin del modal de buscar empleado -->
+
+
+<!-- Modal  AGREGAR ASISTENCIA -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -76,9 +112,7 @@ require_once ('../view/cabecera.php');
                     Novedad:
                     <select name="novedad" id="novedad" class="form-control">
                         <option>Normal</option>
-                        <option>Tardanza</option>
                         <option>Falta Justificada</option>
-                        <option>Falta Injustificada</option>
                     </select> 
                 </div>                              
             </div>  
@@ -161,9 +195,6 @@ require_once ('../view/cabecera.php');
   </div>
 </div>
 <!-- fin del modal de modificar -->
-
-
-
 
 <?php
 require_once ('../view/pie3.php');

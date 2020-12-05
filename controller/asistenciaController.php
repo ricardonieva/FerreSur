@@ -15,6 +15,11 @@ if(isset($_POST['buscarEmpleado'])){
     echo json_encode($emp); 
 }
 
+if(isset($_POST['buscarTodosLosEmpleado'])){
+    $datos = $emp->allSelectEmpleados();;
+    echo json_encode($datos); 
+}
+
 if(isset($_POST['agregarAsistencia'])){
     $datos = $asistencia->nuevaAsistencia($_POST['fecha'],$_POST['entrada'], $_POST['salida'], $_POST['novedad'], $_SESSION['idDelEmpleado']);
     echo json_encode($datos);    

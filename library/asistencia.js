@@ -28,6 +28,43 @@ buscarEmpleado.addEventListener('click', function (e){
     
     });
 
+////// BUSCAR EMPLEADO POR NOMBRE
+window.addEventListener('load', function (e){
+    //e.preventDefault();    
+    const data = new FormData();
+    data.append('buscarTodosLosEmpleado', 'true');
+    fetch('../controller/asistenciaController.php', {
+        method: 'POST',
+        body: data
+    })
+    .then(res => res.json())
+    .then(data => {
+    
+    if(data != false){
+        let tabla = document.getElementById('tablaTodosLosEmpleados');
+        for(let item of data){
+            tabla.innerHTML += `
+            <tr>                       
+                <td onclick='seleccionar(${item.cuil})'>${item.idEmpleado}</td>
+                <td onclick='seleccionar(${item.cuil})'>${item.apellido} ${item.nombre}</td>
+                <td onclick='seleccionar(${item.cuil})'>${item.cuil}</td>              
+            </tr>
+            `;
+        }
+
+    }
+    else{
+        alert('Empleados No Encontrados');
+    }
+    
+    })
+    
+    });
+
+    function seleccionar(cuil){
+        document.getElementById('buscarcuil').value = cuil;
+        $("#modalBuscarEmpleado").modal('hide');
+    }
     //////////////////////////guardar nueva asistencia
 
     function guardarAsistencia(){

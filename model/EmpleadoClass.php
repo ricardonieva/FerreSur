@@ -235,13 +235,12 @@ class Empleado{
     {
         $connect = Database::connectDB();
         $sql = "SELECT * FROM empleado";
-        //var_dump($sql);
         $result = $connect->query($sql);
         if($result != false){
-            $count = $result->rowCount();
-            if($count > 0){
-            return $result->fetchAll();
-            }else{
+            if($result->rowCount() > 0){
+                return $result->fetchAll();
+            }
+            else{
                 return false;        
             }
         }
