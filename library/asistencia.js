@@ -86,8 +86,13 @@ window.addEventListener('load', function (e){
     })
     .then(res => res.text())
     .then(data => {
-        alert(data);
-        cargarTabla();
+        if(data == "true"){
+            alert("Se cargo la asistencia correctamente");
+            cargarTabla();
+        }
+        else{
+            alert("Error al cargar asistencia!!!");
+        }
 
     });
 
